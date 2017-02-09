@@ -1,0 +1,38 @@
+.content {
+	height: 100%;
+}
+
+.container-fluid {
+	height: 100%;
+	background: #f6f5fa;
+	position: relative;
+}
+
+.display-table {
+	display: table;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.display-table-row {
+    display: table-row;
+    height: 100%;
+}
+
+.display-table-cell {
+	display: table-cell;
+    float: none;
+    height: 100%;
+} 
+
+.v-align {
+	vertical-align: top;
+}
+
+.hidden-xs {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}

@@ -1,0 +1,29 @@
+.header {
+
+}
+
+.header_inner {
+	margin: 36px 0px;
+	text-align: center;
+}
+
+.logo-image {
+	width: 80px;
+}
+
+.header_company-logo {
+	font-family: 'Maxwell-Regular';
+	color: #ff7932;
+	font-size: 80px;
+	margin-top: -20px;
+    display: block;
+}
+
+.company-text {
+	font-size: 26px;
+	font-family: Arial, Sans-serif;
+	color: #ff7932;
+	max-width: 370px;
+	margin-bottom: 10px;
+	display: inline-block;
+}

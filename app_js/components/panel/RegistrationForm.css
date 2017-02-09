@@ -1,0 +1,19 @@
+.register-form {
+	margin: 20px 0px;
+}
+
+.register-text {
+	text-align: left;
+    font-size: 16px;
+    line-height: 1.3em;
+}
+
+.registration-info {
+	margin-top: 10px;
+	transition: all 3s;
+}
+
+.icon-margin {
+	margin: 4px;
+}
+
