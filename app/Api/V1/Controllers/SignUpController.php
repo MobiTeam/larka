@@ -57,7 +57,6 @@ class SignUpController extends Controller
               'token' => $token
           ], 201);
         }
-
     }
 
 
