@@ -1,0 +1,19 @@
+.buttonBlock {
+	padding: 26px 8px;
+	text-align: center;
+}
+
+.register-btn, .login-btn {
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 6px;
+	border-radius: 4px;    
+}
+
+@media only screen and (max-width: 480px) {
+	.register-btn, .login-btn {
+	    display: inline-block;
+	    font-size: 20px;
+	    margin: 10px 6px;
+	}
+}

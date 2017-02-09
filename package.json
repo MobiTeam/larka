@@ -1,0 +1,53 @@
+{
+  "name": "ugra-fit",
+  "version": "0.0.1",
+  "description": "about fitness",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MobiTeam/ftns"
+  },
+  "keywords": [
+    "ugra, fitness, ugra-fit",
+    "fitness"
+  ],
+  "author": "mobi-team",
+  "license": "ISC",
+  "dependencies": {
+    "es6-promise": "^4.0.5",
+    "event-emitter": "^0.3.4",
+    "isomorphic-fetch": "^2.2.1",
+    "jwt-simple": "^0.5.1",
+    "react": "^15.4.2",
+    "react-document-title": "^2.0.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "redux": "^3.6.0",
+    "redux-session": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-es2016": "^6.22.0",
+    "babel-preset-es2017": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-preset-stage-1": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.0.1",
+    "redux-devtools": "^3.3.2",
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.2.0",
+    "uglifyify": "^3.0.4",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
