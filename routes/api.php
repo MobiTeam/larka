@@ -11,13 +11,13 @@ $api->version('v1', function (Router $api) {
     $api->group(['prefix' => 'auth'], function(Router $api) {
         // Регистрация
         $api->post('signup', 'App\\Api\\V1\\Controllers\\SignUpController@signUp');
-        // Авторизация
+        // Авторизация(Работает)
         $api->post('login', 'App\\Api\\V1\\Controllers\\LoginController@login');
         // Сброс пароля
         $api->post('recovery', 'App\\Api\\V1\\Controllers\\ForgotPasswordController@sendResetEmail');
         // Изменение пароля
         $api->post('reset', 'App\\Api\\V1\\Controllers\\ResetPasswordController@resetPassword');
-        // Уничтожить токен
+        // Уничтожить токен(Работает)
         $api->post('destroy', 'App\\Api\\V1\\Controllers\\ForgotTokenController@forgotToken');
     });
 
@@ -38,16 +38,9 @@ $api->version('v1', function (Router $api) {
             }
         ]);
 
-        $api->get('protect', [
-            'middleware' => 'cors',
-            function() {
-                echo JWTAuth::getToken();
-            }
-        ]);
-
-
         $api->get('book', 'App\Api\V1\Controllers\BookController@index');
         $api->post('book/store', 'App\Api\V1\Controllers\BookController@store');
+        
     });
 
     $api->get('hello', function() {

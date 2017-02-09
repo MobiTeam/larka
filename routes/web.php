@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('sendemail', function () {
+
+    $data = array(
+        'email' => "Viking0607@mail.ru",
+        'password' => "123",
+        'api_token' => "Блабла"
+    );
+
+    Mail::send('emails.registration', $data, function ($message) {
+
+        $message->from('ugrafitness@gmail.com', 'Learning Laravel');
+
+        $message->to('Viking0607@mail.ru')->subject('Learning Laravel test email');
+
+    });
+
+    return "Your email has been sent successfully";
+
+});
