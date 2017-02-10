@@ -8,8 +8,8 @@ class Menu extends React.Component {
 	}
 	print (items) {
 		return items.map((el, i) => {
-			return (<li>
-						<NavLink to={ el.link } key={ i }>
+			return (<li key={ i }>
+						<NavLink to={ el.link }>
 							<i className={el.iconClass} aria-hidden="true"></i>
 					  		<span className="hidden-xs hidden-sm">{ el.title }</span>
 						</NavLink>
