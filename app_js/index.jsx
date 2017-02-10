@@ -3,8 +3,8 @@ import React from 'react'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import jwt from 'jwt-simple'
-import fetch from 'isomorphic-fetch'
+// import jwt from 'jwt-simple'
+// import fetch from 'isomorphic-fetch'
 
 // components
 import App from './containers/App'
