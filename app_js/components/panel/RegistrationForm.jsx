@@ -1,6 +1,7 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title'
 import { Link } from 'react-router'
+import { SITE_NAME } from '../../constants/conf'
 
 class RegistrationForm extends React.Component {
 	state = {
@@ -22,7 +23,7 @@ class RegistrationForm extends React.Component {
 	}
 	render () {
 		return (
-				<DocumentTitle title='Ugra-Fit: регистрация'>
+				<DocumentTitle title={ SITE_NAME + ': регистрация' }>
 					<div className="login-form-wrapper">
 						<div className="login-form-box light-shadow">
 							<h5 className="register-text">Для регистрации в системе введите свой адрес электронной почты</h5>

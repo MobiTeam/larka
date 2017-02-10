@@ -13,6 +13,11 @@ html, body {
 	src:url('../fonts/MAXWELL-REGULAR.ttf');
 }
 
+@font-face {
+	font-family: 'Evolventa-Regular';
+	src:url('../fonts/Evolventa-Regular.ttf');
+}
+
 .btn-label { 
 	position: relative;
 	left: -12px;
@@ -416,9 +421,9 @@ html, body {
 }
 
 .logo-text {
-	font-family: 'Maxwell-Regular';
+	font-family: 'Evolventa-Regular';
 	color: #ff7932;
-	font-size: 36px;
+	font-size: 32px;
 }
 
 .logo img {
@@ -474,9 +479,9 @@ html, body {
 }
 
 .header_company-logo {
-	font-family: 'Maxwell-Regular';
+	font-family: 'Evolventa-Regular';
 	color: #ff7932;
-	font-size: 80px;
+	font-size: 68px;
 	margin-top: -20px;
     display: block;
 }

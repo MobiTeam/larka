@@ -1,6 +1,7 @@
 import React from 'react'
 import Menu from './Menu'
 import { Link } from 'react-router'
+import { SITE_NAME } from '../../constants/conf'
 
 class Sidebar extends React.Component {
 	render () {
@@ -10,7 +11,7 @@ class Sidebar extends React.Component {
 						<Link to="/">
 	                    	<img src="/img/ugra-fit-logo.svg" alt="UGRA-FIT" />
 	                    	<div className="hidden-sm">
-	                    		<span className="logo-text">UGRA-FIT</span>     
+	                    		<span className="logo-text">{ SITE_NAME }</span>     
 	                    	</div>
                     	</Link>
 					</div>

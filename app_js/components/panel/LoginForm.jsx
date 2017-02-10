@@ -3,6 +3,7 @@ import DocumentTitle from 'react-document-title'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { logIn } from '../../actions/userActions'
+import { SITE_NAME } from '../../constants/conf'
  
 class LoginForm extends React.Component {
 	state = {
@@ -33,7 +34,7 @@ class LoginForm extends React.Component {
     }
 	render () {
 		return (
-				<DocumentTitle title='Ugra-Fit: авторизация'>
+				<DocumentTitle title={ SITE_NAME + ': авторизация' }>
 					<div className="login-form-wrapper">
 						<div className="login-form-box light-shadow">
 							<h4>Для входа в систему необходимо ввести логин и пароль</h4>
