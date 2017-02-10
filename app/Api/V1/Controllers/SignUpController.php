@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Api\V1\Requests\SignUpRequest;
 use Dingo\Api\Routing\Helpers;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Support\Facades\Mail;
 
 class SignUpController extends Controller
 {
@@ -38,11 +39,12 @@ class SignUpController extends Controller
               'api_token' => $api_token
           );
 
-          Mail::send('emails.registration', $data, function ($message) {
+          Mail::send('emails.registration', $data, function ($message) use ($email) {
               $message->from('ugrafitness@gmail.com', 'Ugra-fit');
 
-              $message->to(''.$email.'')->subject('Регистрация нового пользователя');
+              $message->to($email)->subject('Регистрация нового пользователя');
           });
+
           if(!Config::get('boilerplate.sign_up.release_token')) {
               return response()->json([
                   'status' => 'ok',
@@ -55,7 +57,6 @@ class SignUpController extends Controller
               'token' => $token
           ], 201);
         }
-
     }
 
 
