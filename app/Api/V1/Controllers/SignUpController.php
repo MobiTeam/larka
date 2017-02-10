@@ -34,9 +34,10 @@ class SignUpController extends Controller
           $user->save();
 
           $data = array(
-              'email' => $email,
-              'password' => $pass,
-              'api_token' => $api_token
+              'email'     => $email,
+              'password'  => $pass,
+              'api_token' => $api_token,
+              'year'      => date('Y')
           );
 
           Mail::send('emails.registration', $data, function ($message) use ($email) {
