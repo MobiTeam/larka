@@ -11,6 +11,15 @@ use Dingo\Api\Routing\Helpers;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Support\Facades\Mail;
 
+/*
+  POST - valid email
+  response:
+  201 - created (successfull)
+  409 - email exists
+  422 - email not valid
+  500 - error
+*/
+
 class SignUpController extends Controller
 {
     use Helpers;
@@ -25,7 +34,7 @@ class SignUpController extends Controller
         $user = new User();
 
         if (User::where('email', $email)->count() > 0) {
-          return $this->response->noContent()->setStatusCode(500);
+          return $this->response->noContent()->setStatusCode(409);
         }
         else {
           $user->email = $email;
@@ -46,6 +55,8 @@ class SignUpController extends Controller
               $message->to($email)->subject('Регистрация нового пользователя');
           });
 
+          return $this->response->noContent()->setStatusCode(201);
+
           if(!Config::get('boilerplate.sign_up.release_token')) {
               return response()->json([
                   'status' => 'ok',
@@ -60,12 +71,11 @@ class SignUpController extends Controller
         }
     }
 
-
     private function passGenerate(){
       $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
       $pass = array(); //remember to declare $pass as an array
       $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-      for ($i = 0; $i < 8; $i++) {
+      for ($i = 0; $i < 6; $i++) {
           $n = rand(0, $alphaLength);
           $pass[] = $alphabet[$n];
       }

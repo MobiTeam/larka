@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-    <meta charset="utf-8">
-</head>
-<body>
+
 <table style="color: #434343; max-width: 750px; font-family: Arial, Helvetica, sans-serif; border: 2px solid #fc671a; border-width: 5px 0px;">
 	<tr style="min-height: 100px;">
 		<td style="width: 50%">
 			<div class="div" style="padding-left: 1%;">
-				<img src="http://bambarm2.beget.tech/img/ugra-fit-logo.svg" style="float: left" width="60" alt="Ugra-Fit" />
 				<h2 style="color: #f66514; display:inline-block; font-size: 28px;">Ugra-Fit.ru</h2>
 			</div>
 		</td>
@@ -27,7 +21,7 @@
 	<tr style="height: 25px;"></tr>
 	<tr style="line-height: 1.3em">
 		<td colspan="2">
-			<p style="text-indent: 10px;">Поздравляем Вас с регистрацией на портале <a href="$HOMELINK">Ugra-Fit.ru</a></p>
+			<p style="text-indent: 10px;">Поздравляем Вас с регистрацией на портале <a href="/">Ugra-Fit.ru</a></p>
 			<p style="text-indent: 10px;">Для подтверждения электронного адреса, указанного при регистрации, перейдите по данной <a href="http://bambarm2.beget.tech/auth/activated?token={!! $api_token !!}">ссылке</a></p>
 			<div>
 				<p style="text-indent: 10px;">Для входа на сайт используйте следующие учетные данные:</p>
@@ -46,6 +40,3 @@
 	<tr style="height: 25px;"></tr>
 	<tr style="height: 25px;"><td colspan="2" style="color: white; background: #fc671a; padding: 10px; text-align: center;">Ugra-Fit.ru - <b>{!! $year !!}</b></td></tr>
 </table>
-
-</body>
-</html>
