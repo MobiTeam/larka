@@ -362,6 +362,7 @@ html, body {
     left: 0;
     top: 0;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .spinner {
@@ -615,7 +616,7 @@ html, body {
 
 .registration-info {
 	margin-top: 10px;
-	transition: all 3s;
+	transition: all 0.2s;
 }
 
 .icon-margin {
