@@ -12,6 +12,7 @@ const enableAuth = (Component, roles) => {
     }
 
     _checkAndRedirect () {
+      console.log(this.props);
       const { role } = this.props.user;
       const availRoles = typeof roles === "string" ? [roles] : roles;
       if (!availRoles.includes(role)) this._redirectTo('/login');

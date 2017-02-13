@@ -57,17 +57,17 @@ class SignUpController extends Controller
 
           return $this->response->noContent()->setStatusCode(201);
 
-          if(!Config::get('boilerplate.sign_up.release_token')) {
-              return response()->json([
-                  'status' => 'ok',
-              ], 201);
-          }
+          // if(!Config::get('boilerplate.sign_up.release_token')) {
+          //     return response()->json([
+          //         'status' => 'ok',
+          //     ], 201);
+          // }
 
-          $token = $JWTAuth->fromUser($user);
-          return response()->json([
-              'status' => 'ok',
-              'token' => $token
-          ], 201);
+          // $token = $JWTAuth->fromUser($user);
+          // return response()->json([
+          //     'status' => 'ok',
+          //     'token' => $token
+          // ], 201);
         }
     }
 

@@ -2,24 +2,48 @@ import React from 'react';
 import DocumentTitle from 'react-document-title'
 import { Link } from 'react-router'
 import { SITE_NAME } from '../../constants/conf'
+import { register } from '../../actions/registerActions'
+import { connect } from 'react-redux'
+
 
 class RegistrationForm extends React.Component {
-	state = {
-		showHelper : false
-	}
 	onFormSubmit (event) {
 		event.preventDefault();
 	}
 	showHelperText (showHelper) {
-		return this.state.showHelper ? (<div className="alert alert-info registration-info">
+		if (!this.props.showHelper) return null;
+		return this.props.errorFlag ? (
+				<div className="alert alert-danger registration-info">
+					Указан некорректный email-адрес. 
+				</div>
+			) : (
+				<div className="alert alert-info registration-info">
 					На данный адрес будет отправлено письмо с дальнейшими инструкциями
-				</div>) : null;
+				</div>
+			);		
 	}
 	onInputFocus (event) {
-		if (this.state.showHelper) return;
-		this.setState({
-			showHelper : true
-		})
+		if (this.props.showHelper) return;
+		// this.setState({
+		// 	showHelper : true
+		// })
+	}
+	emailIsValid (email) {
+		return /.+@.+\..+/.test(email);
+	}
+	onRegisterBtnClick (event) {
+		const email = this.refs.emailInput.value;
+		const emailIsValid = this.emailIsValid(email);
+		
+		// this.setState({
+		// 		errorFlag: !emailIsValid
+		// 	}) 
+
+		if (emailIsValid) {
+			this.props.register({
+				email
+			}); 
+		}
 	}
 	render () {
 		return (
@@ -29,9 +53,9 @@ class RegistrationForm extends React.Component {
 							<h5 className="register-text">Для регистрации в системе введите свой адрес электронной почты</h5>
 							<form method="POST" className="register-form" onSubmit={this.onFormSubmit.bind(this)}>
 								<div className="input-group">
-								  <input type="text" className="form-control" name="email" placeholder="email" onFocus={this.onInputFocus.bind(this)} />
+								  <input type="text" ref="emailInput" className="form-control" name="email" placeholder="email" onFocus={ this.onInputFocus.bind(this) } />
 								  <div className="input-group-btn">
-								    <input type="submit" className="btn btn-success" value="Зарегистрироваться" />
+								    <input type="submit" className="btn btn-success" onClick={ this.onRegisterBtnClick.bind(this) } value="Зарегистрироваться" />
 								  </div>
 								</div>
 				            	<Link to='/login' className="clearfix">      
@@ -40,7 +64,7 @@ class RegistrationForm extends React.Component {
 								    	Вернуться назад
 								    </span>	
 							    </Link>    
-								{ this.showHelperText(this.state.showHelper) }
+								{ this.showHelperText(this.props.showHelper) }
 							</form>
 						</div>
 					</div>		
@@ -50,5 +74,20 @@ class RegistrationForm extends React.Component {
 	}
 }
 
-export default RegistrationForm;
+const mapStateToProps = (state) => {
+	return {
+		showHelper : state.registration.showHelper,
+		errorFlag  : state.registration.errorFlag
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		register : (payload) => {
+			return dispatch(register(payload));
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
 

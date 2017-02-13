@@ -1,2 +1,2 @@
-export const ROOT_URL = '/api';
+export const BASE_URL = 'http://l/api';
 export const SITE_NAME = 'В-Форме';
