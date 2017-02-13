@@ -5,37 +5,54 @@ use App\User;
 use JWTAuth as JWT;
 use App\Http\Controllers\Controller;
 use App\Api\V1\Requests\LoginRequest;
-
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTFactory;
 
+/*
+  POST - email and password
+  response:
+  200 - ok (successfull)
+  401 - Unauthorized - Not activated
+  403 - Forbidden (incorrect password or email)
+  500 - error
+*/
+
 class LoginController extends Controller
 {
     public function login(LoginRequest $request, JWTAuth $JWTAuth)
     {
-        // Получаем данные
+        // Получаем данные email и password
         $credentials = $request->only(['email', 'password']);
 
         try {
             // По email определяем роль пользователя
+            // Проверяем существует ли пользователь с данным email, в случае отсутствия выдаём 403
+            if ((User::where('email', $credentials['email'])->count()) == 0){
+                throw new AccessDeniedHttpException();
+            }
+            // Проверяем активирована ли данная почта
+            if (((User::where('email', $credentials['email'])->get())[0]['is_activated']) == 0) {
+               throw new HttpException(401);
+            }
+
+            // Проверяем с помощью JWTAuth логин и пароль пользователя
             $user_id = (User::where('email', $credentials['email'])->get())[0]['id'];
             $user_group_name = (User::where('email', $credentials['email'])->find($user_id)->user_group()->get())[0]['name'];
             // Авторизация через токен
             $token = $JWTAuth->attempt($credentials,['user_group' => $user_group_name]);
-
+            // В случае неправильного пароля выдаём 403 ошибку
             if(!$token) {
                 throw new AccessDeniedHttpException();
             }
-
+        // Если произошла ошибка выдаём 500 ошибку
         } catch (JWTException $e) {
             throw new HttpException(500);
         }
 
         $claims = JWT::getJWTProvider()->decode($token);
-        
         return response()
             ->json([
                 'status' => 'ok',
