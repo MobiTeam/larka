@@ -19,6 +19,7 @@ $api->version('v1', function (Router $api) {
         $api->post('reset', 'App\\Api\\V1\\Controllers\\ResetPasswordController@resetPassword');
         // Уничтожить токен(Работает)
         $api->post('destroy', 'App\\Api\\V1\\Controllers\\ForgotTokenController@forgotToken');
+        // Активация токена 
     });
 
     // Только авторизованные и с токеном
@@ -40,7 +41,7 @@ $api->version('v1', function (Router $api) {
 
         $api->get('book', 'App\Api\V1\Controllers\BookController@index');
         $api->post('book/store', 'App\Api\V1\Controllers\BookController@store');
-        
+
     });
 
     $api->get('hello', function() {
