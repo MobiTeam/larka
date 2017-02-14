@@ -2,11 +2,20 @@ import React from 'react';
 import DocumentTitle from 'react-document-title'
 import { Link } from 'react-router'
 import { SITE_NAME } from '../../constants/conf'
-import { register } from '../../actions/registerActions'
+import { register, openHelper, registerError } from '../../actions/registerActions'
 import { connect } from 'react-redux'
 
 
 class RegistrationForm extends React.Component {
+	static propTypes = {
+		openHelper: React.PropTypes.func.isRequired,
+		register: React.PropTypes.func.isRequired,
+		registerError: React.PropTypes.func.isRequired,
+		showHelper: React.PropTypes.bool.isRequired,
+		errorFlag: React.PropTypes.bool.isRequired,
+		success: React.PropTypes.bool.isRequired,
+		errorMsg: React.PropTypes.string.isRequired
+	}
 	onFormSubmit (event) {
 		event.preventDefault();
 	}
@@ -14,7 +23,11 @@ class RegistrationForm extends React.Component {
 		if (!this.props.showHelper) return null;
 		return this.props.errorFlag ? (
 				<div className="alert alert-danger registration-info">
-					Указан некорректный email-адрес. 
+					{ this.props.errorMsg }
+				</div>
+			) : this.props.success ? (
+				<div className="alert alert-success registration-info">
+					Спасибо за регистрацию! Письмо с дальнейшими инструкциями отправлено на почту.
 				</div>
 			) : (
 				<div className="alert alert-info registration-info">
@@ -23,10 +36,8 @@ class RegistrationForm extends React.Component {
 			);		
 	}
 	onInputFocus (event) {
-		if (this.props.showHelper) return;
-		// this.setState({
-		// 	showHelper : true
-		// })
+		if (!this.props.success && this.props.showHelper) return;
+		this.props.openHelper();		
 	}
 	emailIsValid (email) {
 		return /.+@.+\..+/.test(email);
@@ -35,14 +46,12 @@ class RegistrationForm extends React.Component {
 		const email = this.refs.emailInput.value;
 		const emailIsValid = this.emailIsValid(email);
 		
-		// this.setState({
-		// 		errorFlag: !emailIsValid
-		// 	}) 
-
 		if (emailIsValid) {
 			this.props.register({
 				email
 			}); 
+		} else {
+			this.props.registerError(422);
 		}
 	}
 	render () {
@@ -53,7 +62,7 @@ class RegistrationForm extends React.Component {
 							<h5 className="register-text">Для регистрации в системе введите свой адрес электронной почты</h5>
 							<form method="POST" className="register-form" onSubmit={this.onFormSubmit.bind(this)}>
 								<div className="input-group">
-								  <input type="text" ref="emailInput" className="form-control" name="email" placeholder="email" onFocus={ this.onInputFocus.bind(this) } />
+								  <input type="text" ref="emailInput" className="form-control" name="email" placeholder="email" onChange={ this.onInputFocus.bind(this) } onFocus={ this.onInputFocus.bind(this) } />
 								  <div className="input-group-btn">
 								    <input type="submit" className="btn btn-success" onClick={ this.onRegisterBtnClick.bind(this) } value="Зарегистрироваться" />
 								  </div>
@@ -77,7 +86,9 @@ class RegistrationForm extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		showHelper : state.registration.showHelper,
-		errorFlag  : state.registration.errorFlag
+		errorFlag  : state.registration.errorFlag,
+		errorMsg  : state.registration.errorMsg,
+		success  : state.registration.success
 	}
 }
 
@@ -85,6 +96,12 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		register : (payload) => {
 			return dispatch(register(payload));
+		},
+		openHelper: (payload) => {
+			return dispatch(openHelper(payload));
+		},
+		registerError: (payload) => {
+			return dispatch(registerError(payload));
 		}
 	}
 }

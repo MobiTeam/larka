@@ -4,7 +4,9 @@ const defaultState = {
 	},
 	'registration' : {
 		'showHelper' : false,
-		'errorFlag' : false
+		'errorFlag'  : false,
+		'errorMsg'	 : '',
+		'success'	 : false 
 	},
 	'spinner' : false
 }

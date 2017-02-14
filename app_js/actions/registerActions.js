@@ -22,13 +22,13 @@ export const registerSuccess = (payload) => {
 export const registerError = (payload) => {
 	return {
 		type: 'REGISTER_ERROR',
-		payload
+		payload: payload.status
 	}
 };
 
-export const openHelper = (payload) => {
+export const openHelper = () => {
 	return {
 		type: 'OPEN_HELPER',
-		payload
+		payload: true
 	}
 }
