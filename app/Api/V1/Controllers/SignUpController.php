@@ -50,30 +50,27 @@ class SignUpController extends Controller
           );
 
           Mail::send('emails.registration', $data, function ($message) use ($email) {
-              $message->from('noreply@в-форме.рф', 'В-Форме');
+              $message->from('ugrafitness@gmail.com', 'Ugra-fit');
 
               $message->to($email)->subject('Регистрация нового пользователя');
           });
 
           return $this->response->noContent()->setStatusCode(201);
 
-          // В зависимости от статуса sign_up.release_token в конфиге слать просто ответ или сразу с токеном
-/*          if(!Config::get('boilerplate.sign_up.release_token')) {
-              return response()->json([
-                  'status' => 'ok',
-              ], 201);
-          }
+          // if(!Config::get('boilerplate.sign_up.release_token')) {
+          //     return response()->json([
+          //         'status' => 'ok',
+          //     ], 201);
+          // }
 
-          $token = $JWTAuth->fromUser($user);
-          return response()->json([
-              'status' => 'ok',
-              'token' => $token
-          ], 201);*/
-
+          // $token = $JWTAuth->fromUser($user);
+          // return response()->json([
+          //     'status' => 'ok',
+          //     'token' => $token
+          // ], 201);
         }
     }
 
-    // Функция генерации пароля
     private function passGenerate(){
       $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
       $pass = array(); //remember to declare $pass as an array

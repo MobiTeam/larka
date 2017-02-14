@@ -26,6 +26,13 @@ export const registerError = (payload) => {
 	}
 };
 
+export const registerReset = (payload) => {
+	return {
+		type: 'REGISTER_RESET',
+		payload
+	}
+};
+
 export const openHelper = () => {
 	return {
 		type: 'OPEN_HELPER',

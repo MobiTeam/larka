@@ -10,6 +10,8 @@ const registration = (state = null, action) => {
 		return { ...state, 'errorMsg': '', 'errorFlag': false, 'showHelper' : true, 'success' : true };
 	case 'REGISTER_ERROR':
 		return { ...state, 'errorMsg': getErrorByCode(action.payload), 'errorFlag': true, 'showHelper' : true, 'success' : false };
+	case 'REGISTER_RESET':
+		return { ...state, 'errorMsg': '', 'errorFlag': false, 'showHelper' : true, 'success' : false };
 	case 'OPEN_HELPER':
 		return { ...state, 'showHelper' : true, 'success' : false };
 	default:

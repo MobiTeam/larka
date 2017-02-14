@@ -2,7 +2,7 @@ import React from 'react';
 import DocumentTitle from 'react-document-title'
 import { Link } from 'react-router'
 import { SITE_NAME } from '../../constants/conf'
-import { register, openHelper, registerError } from '../../actions/registerActions'
+import { register, openHelper, registerError, registerReset } from '../../actions/registerActions'
 import { connect } from 'react-redux'
 
 
@@ -11,6 +11,7 @@ class RegistrationForm extends React.Component {
 		openHelper: React.PropTypes.func.isRequired,
 		register: React.PropTypes.func.isRequired,
 		registerError: React.PropTypes.func.isRequired,
+		registerReset: React.PropTypes.func.isRequired,
 		showHelper: React.PropTypes.bool.isRequired,
 		errorFlag: React.PropTypes.bool.isRequired,
 		success: React.PropTypes.bool.isRequired,
@@ -36,7 +37,8 @@ class RegistrationForm extends React.Component {
 			);		
 	}
 	onInputFocus (event) {
-		if (!this.props.success && this.props.showHelper) return;
+		this.props.registerReset();
+		if (!this.props.errorFlag && !this.props.success && this.props.showHelper) return;
 		this.props.openHelper();		
 	}
 	emailIsValid (email) {
@@ -102,6 +104,9 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		registerError: (payload) => {
 			return dispatch(registerError(payload));
+		},
+		registerReset: (payload) => {
+			return dispatch(registerReset(payload));
 		}
 	}
 }
