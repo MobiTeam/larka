@@ -13,6 +13,8 @@ $api->version('v1', function (Router $api) {
         $api->post('signup', 'App\\Api\\V1\\Controllers\\SignUpController@signUp');
         // Авторизация(Работает)
         $api->post('login', 'App\\Api\\V1\\Controllers\\LoginController@login');
+        // Получение данных пользователя и refresh токена
+        $api->post('relogin', 'App\\Api\\V1\\Controllers\\LoginController@relogin');
         // Сброс пароля
         $api->post('recovery', 'App\\Api\\V1\\Controllers\\ForgotPasswordController@sendResetEmail');
         // Изменение пароля
