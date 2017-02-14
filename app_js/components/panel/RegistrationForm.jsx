@@ -96,18 +96,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		register : (payload) => {
-			return dispatch(register(payload));
-		},
-		openHelper: (payload) => {
-			return dispatch(openHelper(payload));
-		},
-		registerError: (payload) => {
-			return dispatch(registerError(payload));
-		},
-		registerReset: (payload) => {
-			return dispatch(registerReset(payload));
-		}
+		register : (payload) => dispatch(register(payload)),
+		openHelper: (payload) => dispatch(openHelper(payload)),
+		registerError: (payload) => dispatch(registerError(payload)),
+		registerReset: (payload) => dispatch(registerReset(payload))
 	}
 }
 

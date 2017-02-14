@@ -6,30 +6,32 @@ import { logIn } from '../../actions/userActions'
 import { SITE_NAME } from '../../constants/conf'
  
 class LoginForm extends React.Component {
-	state = {
-		authStatus : null
+	static propTypes = {
+		logIn: React.PropTypes.func.isRequired,
+		authMsg: React.PropTypes.string.isRequired
 	}
 	onLoginFormSubmit (e) {
 		e.preventDefault();
-		const login = this.refs.loginInput.value;
-		const pass = this.refs.passInput.value;
+		const email = this.refs.loginInput.value;
+		const password = this.refs.passInput.value;
 		
-		console.log({
-			login,
-			pass
-		});
 		this.props.logIn({
-			'role' : login
-		});
-		this.redirectTo('/dashboard');
+			email,
+			password
+		}, {
+			redirect: this.redirectTo.bind(this, '/dashboard'),
+			showPreloader: true
+		});	
+
+		return false;	
 	}
 	redirectTo (link) {
       	const { router } = this.props;
       	router.push(link);
     }
-    showHelperText (authStatus) {
-    	return authStatus ? (<div className="login-helper alert alert-danger">
-					Пользователя с данным логином не существует.
+    showHelperText (authMsg) {
+    	return authMsg ? (<div className="login-helper alert alert-danger">
+					{ authMsg }
 				</div>) : null;
     }
 	render () {
@@ -59,8 +61,8 @@ class LoginForm extends React.Component {
 							    		Регистрация
 							    	</button>
 						    	</Link>    
-								{ this.showHelperText(this.state.authStatus) }
-							</form>
+								{ this.showHelperText(this.props.authMsg) }
+							</form>							
 						</div>
 					</div>		
 				</DocumentTitle>
@@ -68,13 +70,19 @@ class LoginForm extends React.Component {
 	}
 }
 
+const mapStateToProps = (state) => {
+	return {
+		authMsg : state.user.authMsg
+	}
+}
+
 function mapDispatchToProps (dispatch) {
 	return {
-		logIn: (payload) => {
-			dispatch(logIn(payload));
+		logIn: (payload, meta) => {
+			dispatch(logIn(payload, meta));
 		}
 	}
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 

@@ -1,6 +1,8 @@
 const defaultState = {
 	'user' : {
-		'role': 'guest'
+		'role': 'guest',
+		'token': null,
+		'authMsg' : ''
 	},
 	'registration' : {
 		'showHelper' : false,
@@ -8,7 +10,7 @@ const defaultState = {
 		'errorMsg'	 : '',
 		'success'	 : false 
 	},
-	'spinner' : false
+	'spinner' : false	
 }
 
 export default defaultState;

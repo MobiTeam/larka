@@ -9,5 +9,10 @@ const defaultPost = {
 	}
 }
 
-export const regFetch = (payload) => fetch(`${BASE_URL}/auth/signup`, { body: JSON.stringify(payload), ...defaultPost });
+const createFetchPromise = (link) => {
+	return (payload) => fetch(`${BASE_URL}${link}`, { body: JSON.stringify(payload), ...defaultPost });
+}
 
+export const regFetch = createFetchPromise('/auth/signup'); 
+export const authFetch = createFetchPromise('/auth/login'); 
+export const reAuthFetch = createFetchPromise('/auth/relogin'); 

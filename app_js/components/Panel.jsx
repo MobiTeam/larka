@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { logIn } from '../actions/userActions'
 
 
-class Login extends React.Component {
+class Panel extends React.Component {
 	render () {
 		return (
 			<div className="container home-wrapper">
@@ -21,4 +21,4 @@ class Login extends React.Component {
 }
 
 
-export default Login;
+export default Panel;

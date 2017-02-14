@@ -20,10 +20,15 @@ import NotFound from './components/NotFound'
 // acl
 import { all, admin, user, guest } from './constants/acl.js'
 import canSee from './hocs/enableAuth'
+import checkToken from './hocs/checkToken'
 
 // store
 import configureStore from './store/store'
 import defaultState from './store/defaultState'
+
+// set token to state
+const storeData = JSON.parse(localStorage['fit.root']);
+defaultState.user.token = storeData.token;
 
 const store = configureStore(defaultState);
 
@@ -33,8 +38,8 @@ render(
 				<Route path="/" component={App}>
 					<Route component={Panel}>
 						<IndexRoute component={Home} />
-						<Route path='login' component={LoginForm} />
-						<Route path='registration' component={RegistrationForm} />
+						<Route path='login' component={checkToken(LoginForm)} />
+						<Route path='registration' component={checkToken(RegistrationForm)} />
 					</Route>
 					<Route component={canSee(Dashboard, [admin, user])}>
 						<Route path='/dashboard' component={DashboardIndex} />
