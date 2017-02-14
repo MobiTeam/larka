@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-const BASE_URL = 'http://l/api';
+const BASE_URL = `${ location.origin }/api`;
 
 const defaultPost = {
 	method: 'POST',
