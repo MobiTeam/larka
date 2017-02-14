@@ -50,7 +50,7 @@ class SignUpController extends Controller
           );
           // Отправление письма
           Mail::send('emails.registration', $data, function ($message) use ($email) {
-              $message->from('noreply@v-forme.rf', 'В-Форме');
+              $message->from('noreply@xn----ctbk1ajm0a.xn--p1ai', 'В-Форме');
 
               $message->to($email)->subject('Регистрация нового пользователя');
           });
