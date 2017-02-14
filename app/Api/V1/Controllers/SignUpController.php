@@ -9,7 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Api\V1\Requests\SignUpRequest;
 use Dingo\Api\Routing\Helpers;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Illuminate\Support\Facades\Mail;
+
+use Illuminate\Http\Request;
 
 /*
   POST - valid email
@@ -26,7 +29,6 @@ class SignUpController extends Controller
 
     public function signUp(SignUpRequest $request, JWTAuth $JWTAuth)
     {
-
         $email = $request->email;
         $pass  = $this->passGenerate();
         $api_token = password_hash(uniqid(), PASSWORD_BCRYPT);
@@ -71,6 +73,19 @@ class SignUpController extends Controller
           ], 201);*/
 
         }
+    }
+
+    // Активация токена
+    public function activationToken(Request $request) {
+      $activatedToken = $request->token;
+      if (((User::where('activated_token', $activatedToken)->count()) == 0)) {
+          return $this->response->noContent()->setStatusCode(403);
+      }
+      else {
+        User::where('activated_token', $activatedToken)->update(['is_activated' => 1]);
+        return redirect()->to('/login');
+      }
+
     }
 
     // Функция генерации пароля

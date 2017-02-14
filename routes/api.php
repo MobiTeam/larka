@@ -19,7 +19,8 @@ $api->version('v1', function (Router $api) {
         $api->post('reset', 'App\\Api\\V1\\Controllers\\ResetPasswordController@resetPassword');
         // Уничтожить токен(Работает)
         $api->post('destroy', 'App\\Api\\V1\\Controllers\\ForgotTokenController@forgotToken');
-        // Активация токена 
+        // Активация токена
+        $api->get('activated', 'App\\Api\\V1\\Controllers\\SignUpController@activationToken');
     });
 
     // Только авторизованные и с токеном
