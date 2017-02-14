@@ -26,7 +26,7 @@
 				<tr style="height: 25px;"></tr>
 				<tr style="line-height: 1.3em">
 					<td colspan="2">
-						<p style="text-indent: 10px;">Поздравляем Вас с регистрацией на портале<a href="http://в-форме.рф/">В-Форме.рф</a></p>
+						<p style="text-indent: 10px;">Поздравляем Вас с регистрацией на портале<a href="http://bambarm2.beget.tech">В-Форме.рф</a></p>
 						<p style="text-indent: 10px;">Для подтверждения электронного адреса, указанного при регистрации, перейдите по данной <a href="http://bambarm2.beget.tech/auth/activated?token={!! $api_token !!}">ссылке</a></p>
 						<div>
 							<p style="text-indent: 10px;">Для входа на сайт используйте следующие учетные данные:</p>
