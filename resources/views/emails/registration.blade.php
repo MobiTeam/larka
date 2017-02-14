@@ -3,7 +3,6 @@
 	<tr style="min-height: 100px;">
 		<td style="width: 50%">
 			<div class="div" style="padding-left: 1%;">
-				<img src="http://bambarm2.beget.tech/img/ugra-fit-logo.svg" style="float: left" width="60" alt="�-�����" />
 				<h2 style="color: #f66514; display:inline-block; font-size: 28px;">В-Форме.рф</h2>
 			</div>
 		</td>
@@ -22,7 +21,7 @@
 	<tr style="height: 25px;"></tr>
 	<tr style="line-height: 1.3em">
 		<td colspan="2">
-			<p style="text-indent: 10px;">Поздравляем Вас с регистрацией на портале<a href="$HOMELINK">В-Форме.рф</a></p>
+			<p style="text-indent: 10px;">Поздравляем Вас с регистрацией на портале<a href="В-Форме.рф">В-Форме.рф</a></p>
 			<p style="text-indent: 10px;">Для подтверждения электронного адреса, указанного при регистрации, перейдите по данной <a href="http://bambarm2.beget.tech/auth/activated?token={!! $api_token !!}">ссылке</a></p>
 			<div>
 				<p style="text-indent: 10px;">Для входа на сайт используйте следующие учетные данные:</p>
