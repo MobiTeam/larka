@@ -5,7 +5,7 @@ const session = createSession({
 	throttle: 1, // ms
 	selectState (state) {
 		return {
-			user: state.user
+			token: state.user.token
 		};
 	},
 	clearStorage (action) {

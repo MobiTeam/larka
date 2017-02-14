@@ -4,17 +4,33 @@ const isPromise = (val) => {
 	return val && typeof val.then === 'function';
 }
 
-const promiseWorker = ({ dispatch }) => next => action => {
-	action.showPreloader && dispatch(showSpinner());
-	if (!isPromise(action.payload)) return next(action);
-	
-	return action.payload.then((result) => {
-							action.handlers && result.ok ? dispatch(action.handlers.onSuccess(result))
-														 : dispatch(action.handlers.onError(result));	
-
-							action.showPreloader && dispatch(closeSpinner());
-						 });
-						
+const status = (res) => {
+	return res.ok ? Promise.resolve(res) : Promise.reject(new Error(res.statusText));
 }
 
-export default promiseWorker;
+const promiseWorker = ({ dispatch }) => next => action => {
+	if (!isPromise(action.payload)) return next(action);
+	
+	action.showPreloader && dispatch(showSpinner());
+	
+	return action.payload
+					.then((res) => {
+								if (res.ok) {
+									return res.json();
+								} else {
+									dispatch(action.handlers.onError(res));
+									throw new Error(res.statusText);
+								}								
+							})
+					.then(data => {
+						dispatch(action.handlers.onSuccess(data));
+						action.showPreloader && dispatch(closeSpinner());
+						action.redirect && action.redirect();
+					})
+					.catch(error => {
+						// do something
+						action.showPreloader && dispatch(closeSpinner());
+					});								
+}
+
+export default promiseWorker; 

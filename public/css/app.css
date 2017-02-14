@@ -604,6 +604,10 @@ html, body {
 .login-form {
 	margin-top: 20px;
 }
+
+.login-helper {
+	margin-top: 12px;
+}
 .register-form {
 	margin: 20px 0px;
 }

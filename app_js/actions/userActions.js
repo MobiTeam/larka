@@ -1,21 +1,63 @@
-export const logIn = (payload) => {
+import { authFetch, reAuthFetch } from '../api';
+
+export const logIn = (payload, { redirect, showPreloader }) => {
 	return {
 		type: 'LOGIN',
-		payload
+		payload: authFetch(payload),
+		handlers: {
+			'onSuccess': logInSuccess,
+			'onError': logInError
+		},
+		redirect,
+		showPreloader
 	}
 };
+
+export const reLogIn = (payload, { redirect, showPreloader }) => {
+	// TO-DO add authorisation bearer header
+	return {
+		type: 'RELOGIN',
+		payload: reAuthFetch(payload),
+		handlers: {
+			'onSuccess': relogInSuccess,
+			'onError': relogInError
+		},
+		redirect,
+		showPreloader
+	}
+};
+
+export const relogInSuccess = (payload) => {
+	return {
+		type: 'RELOGIN_SUCCESS',
+		payload: {
+			token : payload.token,
+			role : payload.payload.user_group
+		}
+	}
+}
+
+export const relogInError = (payload) => {
+	return {
+		type: 'RELOGIN_ERROR',
+		payload
+	}
+}
 
 export const logInSuccess = (payload) => {
 	return {
 		type: 'LOGIN_SUCCESS',
-		payload
+		payload: {
+			token : payload.token,
+			role : payload.payload.user_group
+		}
 	}
 };
 
 export const logInError = (payload) => {
 	return {
 		type: 'LOGIN_ERROR',
-		payload
+		payload: payload.status
 	}
 };
 
