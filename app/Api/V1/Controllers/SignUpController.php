@@ -49,13 +49,13 @@ class SignUpController extends Controller
               'year'      => date('Y')
           );
           // Отправление письма
-          Mail::send('emails.registration', $data, function ($message) use ($email) {
-              $message->from('noreply@xn----ctbk1ajm0a.xn--p1ai', 'В-Форме');
+          // Mail::send('emails.registration', $data, function ($message) use ($email) {
+          //     $message->from('noreply@xn----ctbk1ajm0a.xn--p1ai', 'В-Форме');
 
-              $message->to($email)->subject('Регистрация нового пользователя');
-          });
+          //     $message->to($email)->subject('Регистрация нового пользователя');
+          // });
 
-          return $this->response->noContent()->setStatusCode(201);
+          return response()->json(['status' => 'ok'], 201);
 
           // В зависимости от статуса sign_up.release_token в конфиге слать просто ответ или сразу с токеном
 /*          if(!Config::get('boilerplate.sign_up.release_token')) {
