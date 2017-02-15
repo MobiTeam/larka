@@ -14,19 +14,17 @@ use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 
-/*
-  POST - valid email
-  response:
-  201 - created (successfull)
-  409 - email exists
-  422 - email not valid
-  500 - error
-*/
-
 class SignUpController extends Controller
 {
     use Helpers;
-
+    /*
+      POST - valid email
+      response:
+      201 - created (successfull)
+      409 - email exists
+      422 - email not valid
+      500 - error
+    */
     public function signUp(SignUpRequest $request, JWTAuth $JWTAuth)
     {
         $email = $request->email;
@@ -76,6 +74,7 @@ class SignUpController extends Controller
     }
 
     // Активация токена
+    // Получаем POST запросом токен и ищим совпадение в базе данных, в случае успеха - активируем и редиректим на страницу логина
     public function activationToken(Request $request) {
       $activatedToken = $request->token;
       if (((User::where('activated_token', $activatedToken)->count()) == 0)) {

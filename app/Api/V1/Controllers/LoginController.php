@@ -11,17 +11,19 @@ use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTFactory;
 
-/*
-  POST - email and password
-  response:
-  200 - ok (successfull)
-  401 - Unauthorized - Not activated
-  403 - Forbidden (incorrect password or email)
-  500 - error
-*/
+
 
 class LoginController extends Controller
 {
+
+    /*
+      POST - email and password
+      response:
+      200 - ok (successfull)
+      401 - Unauthorized - Not activated
+      403 - Forbidden (incorrect password or email)
+      500 - error
+    */
     public function login(LoginRequest $request, JWTAuth $JWTAuth)
     {
         // Получаем данные email и password
@@ -29,11 +31,13 @@ class LoginController extends Controller
 
         try {
             // По email определяем роль пользователя
-            // Проверяем существует ли пользователь с данным email, в случае отсутствия выдаём 403
+
+            // Проверяем существует ли пользователь с данным email, в случае отсутствия выдаём 403 ошибку
             if ((User::where('email', $credentials['email'])->count()) == 0){
                 throw new AccessDeniedHttpException();
             }
-            // Проверяем активирована ли данная почта
+
+            // Проверяем активирована ли данная почта, в случае, если нет выдаём 401 ошибку
             if (((User::where('email', $credentials['email'])->get())[0]['is_activated']) == 0) {
                throw new HttpException(401);
             }
@@ -53,6 +57,7 @@ class LoginController extends Controller
         }
 
         $claims = JWT::getJWTProvider()->decode($token);
+        // Возвращаем 200 код, свежий токен и payload юзера
         return response()
             ->json([
                 'status' => 'ok',
@@ -61,17 +66,26 @@ class LoginController extends Controller
             ]);
     }
 
+    /*
+    В Authorization Bearer{} передаём token
+    Если всё нормально - возвращаем 200 код
+    Если токен просрочен, пользователя нет и т.п. - возвращаем 500
+    */
     public function relogin() {
       try {
           if (! $user = JWT::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
+                return $this->response->noContent()->setStatusCode(500);
+                // return response()->json(['user_not_found'], 500);
           }
       } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-          return response()->json(['token_expired'], $e->getStatusCode());
+          return $this->response->noContent()->setStatusCode(500);
+        //   return response()->json(['token_expired'], $e->getStatusCode());
       } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-          return response()->json(['token_invalid'], $e->getStatusCode());
+          return $this->response->noContent()->setStatusCode(500);
+        //   return response()->json(['token_invalid'], $e->getStatusCode());
       } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-          return response()->json(['token_absent'], $e->getStatusCode());
+          return $this->response->noContent()->setStatusCode(500);
+        //   return response()->json(['token_absent'], $e->getStatusCode());
       }
       $token = JWT::fromUser($user);
       $claims = JWT::getJWTProvider()->decode($token);
@@ -80,6 +94,5 @@ class LoginController extends Controller
               'token' => $token,
               'payload' => $claims,
           ]);
-
     }
 }
