@@ -7,6 +7,10 @@ const getStatusByCode = (code) => {
 
 const user = (state = null, action) => {
 	switch (action.type) {
+	case 'RELOGIN_SUCCESS':
+		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '' };	
+	case 'RELOGIN_ERROR':
+		return { 'role' : 'guest', 'token' : null, 'authMsg' : 'Время сессии истекло. Необходимо произвести повторный вход.' };
 	case 'LOGIN_SUCCESS':
 		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '' };
 	case 'LOGIN_ERROR':

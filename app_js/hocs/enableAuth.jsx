@@ -12,10 +12,13 @@ const enableAuth = (Component, roles) => {
     }
 
     componentWillMount() {
-      const { token } = this.props.user;
-      if (token) this.props.reLogIn(token, {
+      const { token, role } = this.props.user;
+      if (token && (!role || role == "guest")) this.props.reLogIn(token, {
         redirect: false, 
-        showPreloader: true
+        showPreloader: true,
+        additionHeader: {
+          "Authorization": `Bearer{${ token }}`
+        }
       });
     }
 

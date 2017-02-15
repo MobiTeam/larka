@@ -13,17 +13,16 @@ export const logIn = (payload, { redirect, showPreloader }) => {
 	}
 };
 
-export const reLogIn = (payload, { redirect, showPreloader }) => {
-	// TO-DO add authorisation bearer header
+export const reLogIn = (payload, { redirect, showPreloader, additionHeader }) => {
 	return {
 		type: 'RELOGIN',
-		payload: reAuthFetch(payload),
+		payload: reAuthFetch(payload, additionHeader),
 		handlers: {
 			'onSuccess': relogInSuccess,
 			'onError': relogInError
 		},
 		redirect,
-		showPreloader
+		showPreloader,
 	}
 };
 
