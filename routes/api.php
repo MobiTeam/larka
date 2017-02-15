@@ -9,19 +9,19 @@ $api = app(Router::class);
 $api->version('v1', function (Router $api) {
     // добавляется префикс в адресной строке auth/api
     $api->group(['prefix' => 'auth'], function(Router $api) {
-        // Регистрация
+        // Регистрация (Work)
         $api->post('signup', 'App\\Api\\V1\\Controllers\\SignUpController@signUp');
-        // Авторизация(Работает)
+        // Авторизация(Work)
         $api->post('login', 'App\\Api\\V1\\Controllers\\LoginController@login');
-        // Получение данных пользователя и refresh токена
+        // Получение данных пользователя и refresh токена (Work)
         $api->post('relogin', 'App\\Api\\V1\\Controllers\\LoginController@relogin');
-        // Сброс пароля
+        // Сброс пароля (In proccess)
         $api->post('recovery', 'App\\Api\\V1\\Controllers\\ForgotPasswordController@sendResetEmail');
         // Изменение пароля
         $api->post('reset', 'App\\Api\\V1\\Controllers\\ResetPasswordController@resetPassword');
-        // Уничтожить токен(Работает)
+        // Уничтожить токен (Work)
         $api->post('destroy', 'App\\Api\\V1\\Controllers\\ForgotTokenController@forgotToken');
-        // Активация токена
+        // Активация токена (Work)
         $api->get('activated', 'App\\Api\\V1\\Controllers\\SignUpController@activationToken');
     });
 
