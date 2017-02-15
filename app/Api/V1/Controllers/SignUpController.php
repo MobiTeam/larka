@@ -55,7 +55,7 @@ class SignUpController extends Controller
               $message->to($email)->subject('Регистрация нового пользователя');
           });
 
-          return $this->response->noContent()->setStatusCode(201);
+          return response()->json(['status' => 'ok'], 201);
 
           // В зависимости от статуса sign_up.release_token в конфиге слать просто ответ или сразу с токеном
 /*          if(!Config::get('boilerplate.sign_up.release_token')) {
