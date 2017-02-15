@@ -4,6 +4,12 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import fetch from 'isomorphic-fetch'
+import Promise from 'promise-polyfill'
+
+// for old browsers and safari support
+if (!window.Promise) {
+  window.Promise = Promise;
+}
 
 // components
 import App from './containers/App'

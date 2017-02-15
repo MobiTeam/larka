@@ -6,8 +6,8 @@ const Header = (props) => {
 			<div className="header" className="noselect">
 				<div className="col col-xs-12 header_inner">
 					<span className="header_company-logo">
-		 				<img className="logo-image hidden-xs" src="/img/ugra-fit-logo.svg" />
-						{ SITE_NAME }
+						<object className="logo-image hidden-xs" data="/img/ugra-fit-logo.svg"></object>
+		 				{ SITE_NAME }
 					</span>
 					<div className="company-text">
 						Меняйтесь в лучшую сторону вместе с нами!

@@ -26,6 +26,14 @@
     height: 100%;
 } 
 
+/*@media screen and (-webkit-min-device-pixel-ratio:0) { 
+     Safari 5+ ONLY 
+    ::i-block-chrome, .display-table-cell {
+        float: left;
+    }
+}*/
+
+
 .v-align {
 	vertical-align: top;
 }

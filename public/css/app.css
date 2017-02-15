@@ -281,6 +281,14 @@ html, body {
     height: 100%;
 } 
 
+/*@media screen and (-webkit-min-device-pixel-ratio:0) { 
+     Safari 5+ ONLY 
+    ::i-block-chrome, .display-table-cell {
+        float: left;
+    }
+}*/
+
+
 .v-align {
 	vertical-align: top;
 }
@@ -414,6 +422,7 @@ html, body {
 
 .logo {
 	text-align: center;
+    /*max-height: 150px;*/
 }
 
 .logo a, .logo a:hover {
@@ -427,16 +436,27 @@ html, body {
 	font-size: 32px;
 }
 
-.logo img {
+/*.logo img {
     padding: 10px 0 0px;
     width: 20%;
+}*/
+
+.sidebar-logo-img {
+    max-height: 75px;
+    width: 20%;    
+    padding: 10px 0 0px;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-	.logo img {
+	/*.logo img {
     	padding: 10px 0 10px;
    	 	width: 48%;
 	}
+*/
+    .sidebar-logo-img {
+        padding: 10px 0 10px;
+        width: 48%;
+    }
 }
 .buttonBlock {
 	padding: 26px 8px;
@@ -477,6 +497,8 @@ html, body {
 
 .logo-image {
 	width: 80px;
+	height: 113px;
+	vertical-align: middle;
 }
 
 .header_company-logo {

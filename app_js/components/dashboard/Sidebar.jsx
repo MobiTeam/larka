@@ -9,8 +9,8 @@ class Sidebar extends React.Component {
 				<div className="left-sidebar hidden-xs col col-md-2 col-sm-1 display-table-cell v-align">
 					<div className="logo">
 						<Link to="/">
-	                    	<img src="/img/ugra-fit-logo.svg" alt="UGRA-FIT" />
-	                    	<div className="hidden-sm">
+							<object className="sidebar-logo-img" data="/img/ugra-fit-logo.svg"></object>
+							<div className="hidden-sm">
 	                    		<span className="logo-text">{ SITE_NAME }</span>     
 	                    	</div>
                     	</Link>
