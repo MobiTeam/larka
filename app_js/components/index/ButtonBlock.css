@@ -10,10 +10,10 @@
 	border-radius: 4px;    
 }
 
-@media only screen and (max-width: 480px) {
+/*@media only screen and (max-width: 480px) {
 	.register-btn, .login-btn {
 	    display: inline-block;
 	    font-size: 20px;
 	    margin: 10px 6px;
 	}
-}
+}*/
