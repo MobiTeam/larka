@@ -1,7 +1,7 @@
 const defaultState = {
 	'user' : {
 		'role': 'guest',
-		'token': null,
+		'token': JSON.parse(localStorage.token || null),
 		'authMsg' : ''
 	},
 	'registration' : {

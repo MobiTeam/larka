@@ -38,8 +38,7 @@ export const relogInSuccess = (payload) => {
 
 export const relogInError = (payload) => {
 	return {
-		type: 'RELOGIN_ERROR',
-		payload
+		type: 'RELOGIN_ERROR'
 	}
 }
 

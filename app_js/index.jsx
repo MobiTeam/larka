@@ -26,11 +26,14 @@ import checkToken from './hocs/checkToken'
 import configureStore from './store/store'
 import defaultState from './store/defaultState'
 
-// set token to state
-const storeData = JSON.parse(localStorage['fit.root']);
-defaultState.user.token = storeData.token;
-
 const store = configureStore(defaultState);
+
+store.subscribe(() => {
+	localStorage.token = JSON.stringify(store.getState().user.token);
+})
+
+console.log({ ...defaultState });
+console.log(store.getState());
 
 render( 
 		<Provider store={store}>
