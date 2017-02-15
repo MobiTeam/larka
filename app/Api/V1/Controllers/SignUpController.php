@@ -49,11 +49,11 @@ class SignUpController extends Controller
               'year'      => date('Y')
           );
           // Отправление письма
-          // Mail::send('emails.registration', $data, function ($message) use ($email) {
-          //     $message->from('noreply@xn----ctbk1ajm0a.xn--p1ai', 'В-Форме');
+          Mail::send('emails.registration', $data, function ($message) use ($email) {
+              $message->from('noreply@xn----ctbk1ajm0a.xn--p1ai', 'В-Форме');
 
-          //     $message->to($email)->subject('Регистрация нового пользователя');
-          // });
+              $message->to($email)->subject('Регистрация нового пользователя');
+          });
 
           return response()->json(['status' => 'ok'], 201);
 
