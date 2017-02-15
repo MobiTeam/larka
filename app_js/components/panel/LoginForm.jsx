@@ -2,12 +2,13 @@ import React from 'react'
 import DocumentTitle from 'react-document-title'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { logIn } from '../../actions/userActions'
+import { logIn, logInError } from '../../actions/userActions'
 import { SITE_NAME } from '../../constants/conf'
  
 class LoginForm extends React.Component {
 	static propTypes = {
 		logIn: React.PropTypes.func.isRequired,
+		logInError: React.PropTypes.func.isRequired,
 		authMsg: React.PropTypes.string.isRequired
 	}
 	onLoginFormSubmit (e) {
@@ -15,14 +16,19 @@ class LoginForm extends React.Component {
 		const email = this.refs.loginInput.value;
 		const password = this.refs.passInput.value;
 		
-		this.props.logIn({
-			email,
-			password
-		}, {
-			redirect: this.redirectTo.bind(this, '/dashboard'),
-			showPreloader: true
-		});	
-
+		if (email == "" || password == "") {
+			this.props.logInError({
+				status: 422 
+			});
+		} else {
+			this.props.logIn({
+				email,
+				password
+			}, {
+				redirect: this.redirectTo.bind(this, '/dashboard'),
+				showPreloader: true
+			});	
+		}
 		return false;	
 	}
 	redirectTo (link) {
@@ -78,9 +84,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps (dispatch) {
 	return {
-		logIn: (payload, meta) => {
-			dispatch(logIn(payload, meta));
-		}
+		logIn: (payload, meta) => dispatch(logIn(payload, meta)),
+		logInError: (payload) => dispatch(logInError(payload))
 	}
 }
 

@@ -32,9 +32,6 @@ store.subscribe(() => {
 	localStorage.token = JSON.stringify(store.getState().user.token);
 })
 
-console.log({ ...defaultState });
-console.log(store.getState());
-
 render( 
 		<Provider store={store}>
 			<Router history={browserHistory}>
