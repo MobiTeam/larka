@@ -26,8 +26,8 @@
 				<tr style="height: 25px;"></tr>
 				<tr style="line-height: 1.3em">
 					<td colspan="2">
-						<p style="text-indent: 10px;">Поздравляем Вас с регистрацией на портале <a href="http://В-Форме.рф">В-Форме.рф</a></p>
-						<p style="text-indent: 10px;">Для подтверждения электронного адреса, указанного при регистрации, перейдите по данной <a href="http://В-Форме.рф/api/auth/activated?token={!! $api_token !!}">ссылке</a></p>
+						<p style="text-indent: 10px;">Поздравляем Вас с регистрацией на портале <a href="http://xn----ctbk1ajm0a.xn--p1ai">В-Форме.рф</a></p>
+						<p style="text-indent: 10px;">Для подтверждения электронного адреса, указанного при регистрации, перейдите по данной <a href="http://xn----ctbk1ajm0a.xn--p1ai/api/auth/activated?token={!! $api_token !!}">ссылке</a></p>
 						<div>
 							<p style="text-indent: 10px;">Для входа на сайт используйте следующие учетные данные:</p>
 							<div style="background: #e8e8e8; padding: 10px; text-align: center;">
