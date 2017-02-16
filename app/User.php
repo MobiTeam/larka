@@ -5,11 +5,12 @@ namespace App;
 use Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -19,13 +20,17 @@ class User extends Authenticatable
         'name', 'email', 'password','activated_token'
     ];
 
+    //  protected $dateFormat = 'j.n.Y H:i:s';
+
+     protected $dates = ['born_date'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','is_activated', 'activated_token', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**

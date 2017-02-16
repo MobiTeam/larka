@@ -45,6 +45,12 @@ $api->version('v1', function (Router $api) {
         $api->get('book', 'App\Api\V1\Controllers\BookController@index');
         $api->post('book/store', 'App\Api\V1\Controllers\BookController@store');
 
+        $api->group(['prefix' => 'user'], function(Router $api) {
+            $api->get('user', 'App\Api\V1\Controllers\UserController@index');
+            $api->post('update', 'App\Api\V1\Controllers\UserController@update');
+        });
+
+
     });
 
     $api->get('hello', function() {
