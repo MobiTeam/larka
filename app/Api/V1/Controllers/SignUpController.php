@@ -74,7 +74,7 @@ class SignUpController extends Controller
     }
 
     // Активация токена
-    // Получаем POST запросом токен и ищим совпадение в базе данных, в случае успеха - активируем и редиректим на страницу логина
+    // Получаем GET запросом токен и ищим совпадение в базе данных, в случае успеха - активируем и редиректим на страницу логина
     public function activationToken(Request $request) {
       $activatedToken = $request->token;
       if (((User::where('activated_token', $activatedToken)->count()) == 0)) {

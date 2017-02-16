@@ -15,9 +15,9 @@ $api->version('v1', function (Router $api) {
         $api->post('login', 'App\\Api\\V1\\Controllers\\LoginController@login');
         // Получение данных пользователя и refresh токена (Work)
         $api->post('relogin', 'App\\Api\\V1\\Controllers\\LoginController@relogin');
-        // Сброс пароля (In proccess)
+        // Сброс пароля (In process)
         $api->post('recovery', 'App\\Api\\V1\\Controllers\\ForgotPasswordController@sendResetEmail');
-        // Изменение пароля
+        // Изменение пароля (In process)
         $api->post('reset', 'App\\Api\\V1\\Controllers\\ResetPasswordController@resetPassword');
         // Уничтожить токен (Work)
         $api->post('destroy', 'App\\Api\\V1\\Controllers\\ForgotTokenController@forgotToken');
