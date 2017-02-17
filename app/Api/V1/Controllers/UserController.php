@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
          $currentUser = JWTAuth::parseToken()->authenticate();
-         return $currentUser->firstOrFail()->toArray();
+         return $currentUser->toArray();
     }
 
     public function update(Request $request)
