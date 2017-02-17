@@ -87,6 +87,9 @@ class LoginController extends Controller
           return $this->response->noContent()->setStatusCode(500);
         //   return response()->json(['token_absent'], $e->getStatusCode());
       }
+      // Убиваем полученный токен
+      JWT::setToken(JWT::getToken())->invalidate();
+      // Получаем новый токен для юзера
       $token = JWT::fromUser($user);
       $claims = JWT::getJWTProvider()->decode($token);
       return response()
