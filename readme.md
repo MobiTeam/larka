@@ -5,7 +5,12 @@
 
 ##Миграции
 ###Запуск миграций
+php artisan migrate:rollaback
+---
 php artisan migrate
 ### Запуск сидов
 php artisan db:seed
+---
 php artisan db:seed --class=UserGroupTableSeeder
+---
+php artisan db:seed --class=UsersTableSeeder
