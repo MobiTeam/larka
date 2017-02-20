@@ -3,6 +3,7 @@
 namespace App;
 
 use Hash;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +12,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,10 +22,10 @@ class User extends Authenticatable
         'name', 'email', 'password','activated_token'
     ];
 
-    //  protected $dateFormat = 'j.n.Y H:i:s';
 
-     protected $dates = ['born_date'];
+    // protected $dates = ['born_date'];
 
+    // protected $dateFormat = 'j.n.Y H:i:s';
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -42,6 +44,16 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function setBornDateAttribute($date)
+    {
+       $this->attributes['born_date'] = Carbon::createFromFormat('d.m.Y', $date)->format('Y-m-d');
+    }
+
+    public function getBornDateAttribute($date)
+    {
+       return Carbon::createFromFormat('Y-m-d', $date)->format('d.m.Y');
     }
 
     public function books()
