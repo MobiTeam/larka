@@ -37,7 +37,7 @@ class UserController extends Controller
         $currentUser->save();
         return response()
             ->json([
-                'status' => $inputData,
+                'status' => 'ok',
             ]);
 
     }
