@@ -1,9 +1,9 @@
 import React from 'react'
 import DocumentTitle from 'react-document-title'
 import { Link } from 'react-router'
-import { logOut } from '../actions/userActions'
 import { connect } from 'react-redux'
 import Sidebar from './dashboard/Sidebar'
+import Navbar from './dashboard/Navbar'
 import { SITE_NAME } from '../constants/conf'
  
 class Dashboard extends React.Component {
@@ -13,8 +13,16 @@ class Dashboard extends React.Component {
 					<div className="container-fluid display-table">
 						<div className="row display-table-row">
 							<Sidebar userRole={this.props.user.role } />
-							<button onClick={this.props.logOut}>Выход</button>
-							{this.props.children}
+							<div className="dashboard-wrapper col col-md-10 col-sm-11 display-table-cell v-align">
+								<div className="row">
+									<Navbar />
+								</div>
+								<div className="row">
+									<div className="pageContentBox">
+										{this.props.children}
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>					
 				</DocumentTitle>
@@ -22,13 +30,4 @@ class Dashboard extends React.Component {
 	} 
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		logOut: () => {
-			dispatch(logOut());
-		}
-	}
-} 
-
-
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default Dashboard;

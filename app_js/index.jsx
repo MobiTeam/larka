@@ -14,6 +14,7 @@ if (!window.Promise) {
 // components
 import App from './containers/App'
 import Panel from './components/Panel'
+import Logout from './components/Logout'
 import Home from './components/panel/Home'
 import RegistrationForm from './components/panel/RegistrationForm'
 import LoginForm from './components/panel/LoginForm'
@@ -28,14 +29,23 @@ import { all, admin, user, guest } from './constants/acl.js'
 import canSee from './hocs/enableAuth'
 import checkToken from './hocs/checkToken'
 
+// actions
+import { changeTitle } from './actions/titleActions'
+
 // store
 import configureStore from './store/store'
 import defaultState from './store/defaultState'
 
 const store = configureStore(defaultState);
 
+console.log(defaultState);
+
 store.subscribe(() => {
 	localStorage.token = JSON.stringify(store.getState().user.token);
+})
+
+browserHistory.listen((location) => {
+	store.dispatch(changeTitle(location.pathname));
 })
 
 render( 
@@ -50,7 +60,8 @@ render(
 					<Route component={canSee(Dashboard, [admin, user])}>
 						<Route path='/dashboard' component={DashboardIndex} />
 						<Route path='/dashboard/profile' component={Profile} />					
-					</Route>					
+					</Route>
+					<Route path='logout' component={canSee(Logout, [admin, user])} />
 				</Route>
 				<Route path='*' component={NotFound} />
 			</Router>

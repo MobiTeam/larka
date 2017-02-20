@@ -1,3 +1,7 @@
+.dashboard-wrapper {
+    min-width: 280px!important;
+}
+
 .content {
 	height: 100%;
 }
@@ -43,4 +47,8 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+
+.pageContentBox {
+    padding: 20px 20px;
 }
