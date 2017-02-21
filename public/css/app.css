@@ -6,6 +6,7 @@
 html, body {
 	background: #f6f5fa;
 	height: 100%;
+	overflow-x: hidden;
 }
 
 @font-face {
@@ -253,6 +254,10 @@ html, body {
 #root [data-reactroot], #root [data-reactroot] > .authenticated {
 	height: 100% !important; 
 }
+.dashboard-wrapper {
+    min-width: 280px!important;
+}
+
 .content {
 	height: 100%;
 }
@@ -298,6 +303,10 @@ html, body {
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+
+.pageContentBox {
+    padding: 20px 20px;
 }
 .not-found-wrapper {
 	height: 100%;
@@ -379,6 +388,71 @@ html, body {
     top: 50%;  
     margin: -60px 0px 0px -60px; 
 }
+.navbar {
+	height: 70px;
+	margin-bottom: 0px;
+	background: white;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 28px;
+    margin: -3px 2px;
+}
+
+.navbar a:hover, .navbar a:focus {
+    text-decoration: none;
+}
+
+.header-top li {
+    display: inline-block;
+    text-align: center;
+    color: black;
+}
+
+.header-top li i {
+    color: #0e1a35;
+}
+
+.header-top li i:hover {
+    color: #1d3a7d;
+}
+
+.icon-info {
+    position: relative;
+}
+
+
+.icon-info .label {
+    border: 2px solid #ffffff;
+    font-weight: 500;
+    padding: 3px 5px;
+    text-align: center;
+}
+
+.label.label-primary {
+    border-radius: 50%;
+    font-size: 9px;
+    left: 8px;
+    position: absolute;
+    top: -9px;
+}
+
+.pageTitle {
+    font-size: 22px;
+    margin-left: 20px;
+}
+
+@media (max-width: 320px) {
+    .pageTitle {
+        font-size: 18px;
+        margin-left: 16px;
+    }
+}
 .left-sidebar {
 	background: #0e1a35;
 	height: 100%;
@@ -436,23 +510,13 @@ html, body {
 	font-size: 32px;
 }
 
-/*.logo img {
-    padding: 10px 0 0px;
-    width: 20%;
-}*/
-
 .sidebar-logo-img {
     max-height: 75px;
     width: 20%;    
     padding: 10px 0 0px;
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
-	/*.logo img {
-    	padding: 10px 0 10px;
-   	 	width: 48%;
-	}
-*/
+@media (min-width: 0px) and (max-width: 991px) {
     .sidebar-logo-img {
         padding: 10px 0 10px;
         width: 48%;

@@ -55,23 +55,13 @@
 	font-size: 32px;
 }
 
-/*.logo img {
-    padding: 10px 0 0px;
-    width: 20%;
-}*/
-
 .sidebar-logo-img {
     max-height: 75px;
     width: 20%;    
     padding: 10px 0 0px;
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
-	/*.logo img {
-    	padding: 10px 0 10px;
-   	 	width: 48%;
-	}
-*/
+@media (min-width: 0px) and (max-width: 991px) {
     .sidebar-logo-img {
         padding: 10px 0 10px;
         width: 48%;

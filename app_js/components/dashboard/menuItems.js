@@ -14,18 +14,30 @@ const items = [
 				// 	'roles' : [admin],
 				// 	'iconClass' : 'fa fa-tasks'	
 				// },
-				{
-					'title' : 'Результаты',
-					'link' :  baseLink  + "/results",
-					'roles' : authorized,
-					'iconClass' : 'fa fa-tasks'	
-				},
-				{
-					'title' : 'Статистика',
-					'link' :  baseLink + "/stats",
-					'roles' : authorized,
-					'iconClass' : 'fa fa-bar-chart'	
-				},
+				// {
+				// 	'title' : 'Результаты',
+				// 	'link' :  baseLink  + "/results",
+				// 	'roles' : authorized,
+				// 	'iconClass' : 'fa fa-tasks'	
+				// },
+				// {
+				// 	'title' : 'Статистика',
+				// 	'link' :  baseLink + "/stats",
+				// 	'roles' : authorized,
+				// 	'iconClass' : 'fa fa-bar-chart'	
+				// },
+				// {
+				// 	'title' : 'Календарь',
+				// 	'link' :  baseLink + "/calendar",
+				// 	'roles' : authorized,
+				// 	'iconClass' : 'fa fa-calendar'	
+				// },
+				// {
+				// 	'title' : 'Настройки',
+				// 	'link' :  baseLink + "/settings",
+				// 	'roles' : authorized,
+				// 	'iconClass' : 'fa fa-cog'	
+				// }
 				{
 					'title' : 'Профиль',
 					'link' :  baseLink + "/profile",
@@ -33,16 +45,10 @@ const items = [
 					'iconClass' : 'fa fa-user'	
 				},
 				{
-					'title' : 'Календарь',
-					'link' :  baseLink + "/calendar",
+					'title' : 'Выход',
+					'link' :  "/logout",
 					'roles' : authorized,
-					'iconClass' : 'fa fa-calendar'	
-				},
-				{
-					'title' : 'Настройки',
-					'link' :  baseLink + "/settings",
-					'roles' : authorized,
-					'iconClass' : 'fa fa-cog'	
+					'iconClass' : 'fa fa-sign-out'	
 				}
 			];
 

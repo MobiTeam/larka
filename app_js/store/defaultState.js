@@ -1,3 +1,5 @@
+import hashTitle from '../constants/titles'
+
 const defaultState = {
 	'user' : {
 		'role': 'guest',
@@ -10,7 +12,9 @@ const defaultState = {
 		'errorMsg'	 : '',
 		'success'	 : false 
 	},
-	'spinner' : false	
+	'spinner' : false,
+	'hideSidebarOnSmallScr' : true,
+	'currentTitle' : hashTitle[location.pathname] || ''
 }
 
 export default defaultState;

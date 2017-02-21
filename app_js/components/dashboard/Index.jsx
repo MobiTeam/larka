@@ -4,7 +4,7 @@ class Index extends React.Component {
 	render () {
 		return (
 				<div>
-					3245
+					Главная страница в разработке...
 				</div>
 			)
 	}

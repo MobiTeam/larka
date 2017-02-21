@@ -5,31 +5,51 @@ var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var buffer = require('vinyl-buffer');
 var concat = require('gulp-concat');
+var gutil = require('gulp-util');
 
-process.env.NODE_ENV = 'production';
+gutil.env.env === 'prod' ? prodTasks() : devTasks();
 
-gulp.task('build', function () {
-    return browserify({entries: './app_js/index.jsx', extensions: ['.jsx'], debug: false})
-        .transform('babelify', {presets: ['es2017', 'es2016', 'es2015', 'stage-0', 'stage-1', 'stage-2', 'react']})
-        .bundle()
-        .pipe(source('app.js'))
-        .pipe(buffer())
-        .pipe(uglify())
-        .pipe(gulp.dest('public/js/'));
-});
+function devTasks() {
+    
+    gulp.task('build', function () {
+        return browserify({entries: './app_js/index.jsx', extensions: ['.jsx'], debug: true})
+            .transform('babelify', {presets: ['es2017', 'es2016', 'es2015', 'stage-0', 'stage-1', 'stage-2', 'react']})
+            .bundle()
+            .pipe(source('app.js'))
+            .pipe(gulp.dest('public/js/'));
+    });
+
+}
+
+
+function prodTasks() {
+
+    process.env.NODE_ENV = 'production';
+
+    gulp.task('build', function () {
+        return browserify({entries: './app_js/index.jsx', extensions: ['.jsx'], debug: false})
+            .transform('babelify', {presets: ['es2017', 'es2016', 'es2015', 'stage-0', 'stage-1', 'stage-2', 'react']})
+            .bundle()
+            .pipe(source('app.js'))
+            .pipe(buffer())
+            .pipe(uglify())
+            .pipe(gulp.dest('public/js/'));
+    });
+
+}
 
 gulp.task('buildCSS', function() {
-	gulp.src('./app_js/**/*.css')	
-		.pipe(concat('app.css'))
-		.pipe(gulp.dest('public/css/'));
-})
+    gulp.src('./app_js/**/*.css')   
+        .pipe(concat('app.css'))
+        .pipe(gulp.dest('public/css/'));
+});
 
 gulp.task('watch', ['build'], function () {
     gulp.watch(['./app_js/**/*.jsx', './app_js/**/*.js'], ['build']);
 });
 
 gulp.task('watchCSS', ['buildCSS'], function () {
-	gulp.watch('./app_js/**/*.css', ['buildCSS']);
-})
+    gulp.watch('./app_js/**/*.css', ['buildCSS']);
+});
 
 gulp.task('default', ['watch', 'watchCSS']);
