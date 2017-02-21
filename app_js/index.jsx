@@ -22,6 +22,7 @@ import LoginForm from './components/panel/LoginForm'
 import Dashboard from './components/Dashboard'
 import DashboardIndex from './components/dashboard/Index'
 import Profile from './components/dashboard/profile/Profile'
+import ProfileEditor from './components/dashboard/profile/ProfileEditor'
 import NotFound from './components/NotFound'
 
 // acl
@@ -60,6 +61,7 @@ render(
 					<Route component={canSee(Dashboard, [admin, user])}>
 						<Route path='/dashboard' component={DashboardIndex} />
 						<Route path='/dashboard/profile' component={Profile} />					
+						<Route path='/dashboard/profile/edit' component={ProfileEditor} />					
 					</Route>
 					<Route path='logout' component={canSee(Logout, [admin, user])} />
 				</Route>

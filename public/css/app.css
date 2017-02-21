@@ -394,6 +394,7 @@ html, body {
 	background: white;
     padding: 20px;
     font-size: 20px;
+    border-bottom: 2px solid #ededed;
 }
 
 .menu-button {
@@ -447,7 +448,7 @@ html, body {
     margin-left: 20px;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 360px) {
     .pageTitle {
         font-size: 18px;
         margin-left: 16px;
@@ -721,3 +722,75 @@ html, body {
 	margin: 4px;
 }
 
+
+.profile-box {
+	padding-top: 20px;
+	text-align: center;
+}
+
+.profile-box h2 {
+	font-size: 26px;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 16px;
+}
+
+.profile-wrapper {
+	background: white;
+    margin: 5px;
+    padding: 14px;
+    border: 1px solid #e7e7e7;
+    border-bottom: 2px solid #eeeeee;
+}
+
+.profile-edit-btn {
+	padding: 5px;
+	margin: 0px 8px;
+}
+
+.profile-edit-btn-text {
+	padding: 5px;
+	display: none;
+}
+
+.profile-edit-link i {
+	padding: 0px 5px;
+}
+
+.profile-img {
+	margin: 0 auto;
+	margin-bottom: 12px;
+}
+
+.user-photo-box {
+	text-align: center;
+}
+
+.edit-user-profile-bnt {
+	margin-top: 26px;
+}
+
+@media (min-width: 768px) {
+    .profile-box {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+	.table-user-info {
+		text-align: left;
+	}
+}
+
+@media (max-width: 560px) {
+	.profile-edit-btn {
+		margin-top: 10px;
+	}
+	.profile-edit-btn-text {
+		display: inline;
+	}
+}
+
+.table-user-info tr td:first-child {
+	font-weight: bold;
+}

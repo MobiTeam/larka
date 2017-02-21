@@ -4,6 +4,7 @@
 	background: white;
     padding: 20px;
     font-size: 20px;
+    border-bottom: 2px solid #ededed;
 }
 
 .menu-button {
@@ -57,7 +58,7 @@
     margin-left: 20px;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 360px) {
     .pageTitle {
         font-size: 18px;
         margin-left: 16px;
