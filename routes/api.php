@@ -33,6 +33,7 @@ $api->version('v1', function (Router $api) {
             ]);
         });
 
+        // Обновление токена
         $api->get('refresh', [
             'middleware' => 'jwt.refresh',
             function() {
@@ -45,9 +46,19 @@ $api->version('v1', function (Router $api) {
         $api->get('book', 'App\Api\V1\Controllers\BookController@index');
         $api->post('book/store', 'App\Api\V1\Controllers\BookController@store');
 
+        // Профиль пользователя
         $api->group(['prefix' => 'user'], function(Router $api) {
             $api->get('user', 'App\Api\V1\Controllers\UserController@index');
             $api->post('update', 'App\Api\V1\Controllers\UserController@update');
+        });
+
+        // Сезоны
+        $api->group(['prefix' => 'season'], function(Router $api) {
+            $api->get('season', 'App\Api\V1\Controllers\SeasonController@index');
+            $api->post('create', 'App\Api\V1\Controllers\SeasonController@create');
+            $api->get('show/{id}', 'App\Api\V1\Controllers\SeasonController@show');
+            $api->put('update/{id}', 'App\Api\V1\Controllers\SeasonController@update');
+            $api->delete('delete/{id}', 'App\Api\V1\Controllers\SeasonController@destroy');
         });
 
 
