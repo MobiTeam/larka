@@ -6,52 +6,48 @@ class ProfileEditor extends React.Component {
 	render () {
 		return (
 				<DocumentTitle title={ SITE_NAME + ': редактирование профиля' }>
-					<form action="" method="POST" className="table-user-information-form">
-					    <table className="table">
-					    	<tbody>
-					            <tr>
-					                <td>Логин:</td>
-					                <td>
-					                    <input type="text" name="login" value="user" className="form-control" />
-					                </td>
-					            </tr>
-					            <tr>
-					                <td>ФИО:</td>
-					                <td>
-					                    <input type="text" name="fullname" value="Иванов Иван Иванович" className="form-control" />
-					                </td>
-					            </tr>
-					            <tr>
-					                <td>Пол</td>
-					                <td>
-					                    <select name="sex" className="form-control">
-					                        <option value="0">Женский</option>
-					                        <option value="1" selected>Мужской</option>
-					                    </select>
-					                </td>
-					            </tr>
-					            <tr>
-					                <td>Телефон:</td>
-					                <td>
-					                    <input type="text" name="phone" value="+7 999 777 123 34" className="form-control" />                                        
-					                </td>
-					            </tr>
-					            <tr>
-					                <td>Электронная почта:</td>
-					                <td>
-					                    <input type="text" name="mail" value="user@mail.ru" className="form-control" />                                            
-					                </td>
-					            </tr>
-					            <tr>
-					                <td colspan="2">
-					                    <button className="btn btn-success save-user-profile">
-					                        Сохранить изменения
-					                    </button>
-					                </td>
-					            </tr>
-					        </tbody>
-					    </table>
-					</form>				
+					<div className="profile-editor-wrapper row col-md-8">
+						<h4>Форма редактирования профиля</h4>
+						<form action="" method="POST" className="table-user-information-form">
+						    <table className="table profile-editor-table table-hover table-striped">
+						    	<tbody>
+						            <tr>
+						                <td>Имя</td>
+						                <td>
+						                    <input type="text" name="name" placeholder="Иван" className="form-control" />
+						                </td>
+						            </tr>
+						            <tr>
+						                <td>Фамилия</td>
+						                <td>
+						                    <input type="text" name="family_name" placeholder="Иванов" className="form-control" />
+						                </td>
+						            </tr>
+						            <tr>
+						                <td>Телефон</td>
+						                <td>
+						                    <input type="text" name="phone" placeholder="8 900 500 70 77" className="form-control" />                                        
+						                </td>
+						            </tr>
+						            <tr>
+						                <td>Пол</td>
+						                <td>
+						                    <select name="sex" defaultValue="1" className="form-control">
+						                        <option value="0">Женский</option>
+						                        <option value="1">Мужской</option>
+						                    </select>
+						                </td>
+						            </tr>
+						        </tbody>
+						    </table>
+					     	<button type="button" className="btn btn-labeled btn-success save-user-profile">
+					    		<span className="btn-label">
+					    			<i className="fa fa-floppy-o" aria-hidden="true"></i>
+					    		</span>
+					    		Сохранить изменения
+					    	</button>
+						</form>
+					</div>				
 				</DocumentTitle>
 		)		
 	}

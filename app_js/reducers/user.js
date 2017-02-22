@@ -7,16 +7,22 @@ const getStatusByCode = (code) => {
 
 const user = (state = null, action) => {
 	switch (action.type) {
+	case 'FETCH_PROFILE_INFO_SUCCESS':
+		return { ...state, 'profile' : action.payload };
+	case 'FETCH_PROFILE_INFO_ERROR':
+		return { ...state, 'profile' : {} };	
 	case 'RELOGIN_SUCCESS':
 		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '' };	
 	case 'RELOGIN_ERROR':
-		return { 'role' : 'guest', 'token' : null, 'authMsg' : 'Время сессии истекло. Необходимо произвести повторный вход.' };
+		return { ...state, 'role' : 'guest', 'token' : null, 'authMsg' : 'Время сессии истекло. Необходимо произвести повторный вход.' };
 	case 'LOGIN_SUCCESS':
 		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '' };
 	case 'LOGIN_ERROR':
-		return { 'role' : 'guest', 'token' : null, 'authMsg' : getStatusByCode(action.payload) };
+		return { ...state, 'role' : 'guest', 'token' : null, 'authMsg' : getStatusByCode(action.payload) };
+	case 'DROP_TOKEN':
+		return { ...state, 'token' : null }
 	case 'LOGOUT':
-		return { 'role' : 'guest', 'token' : null, 'authMsg' : '' };
+		return { ...state, 'role' : 'guest', 'token' : null, 'authMsg' : '' };
 	default:
 		return state;	
 	}

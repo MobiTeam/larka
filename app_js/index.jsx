@@ -39,8 +39,6 @@ import defaultState from './store/defaultState'
 
 const store = configureStore(defaultState);
 
-console.log(defaultState);
-
 store.subscribe(() => {
 	localStorage.token = JSON.stringify(store.getState().user.token);
 })

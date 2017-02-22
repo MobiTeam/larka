@@ -4,7 +4,16 @@ const defaultState = {
 	'user' : {
 		'role': 'guest',
 		'token': JSON.parse(localStorage.token || null),
-		'authMsg' : ''
+		'authMsg' : '',
+		'profile' : {
+			"id"        : null,
+			"email"     : '-',
+			"name"      : 'Пользователь',
+			"bornDate"  : '-',
+			"sex"       : '-',
+			"phone"     : '-',
+  			"photoLink" : null
+		}
 	},
 	'registration' : {
 		'showHelper' : false,

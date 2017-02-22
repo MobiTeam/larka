@@ -13,13 +13,15 @@ const enableAuth = (Component, roles) => {
 
     componentWillMount() {
       const { token, role } = this.props.user;
-      if (token && (!role || role == "guest")) this.props.reLogIn(token, {
-        redirect: false, 
-        showPreloader: true,
-        additionHeader: {
-          "Authorization": `Bearer{${ token }}`
-        }
-      });
+      if (token && (!role || role == "guest")) {
+          this.props.reLogIn(token, {
+          redirect: false, 
+          showPreloader: true,
+          additionHeader: {
+            "Authorization": `Bearer{${ token }}`
+          }
+        });
+      }    
     }
 
     componentDidMount () {
@@ -58,7 +60,7 @@ const enableAuth = (Component, roles) => {
 
   const mapDispatchToProps = (dispatch) => {
     return {
-      reLogIn: (payload, meta) => dispatch(reLogIn(payload, meta))
+      reLogIn  : (payload, meta) => dispatch(reLogIn(payload, meta))
     }
   }
 

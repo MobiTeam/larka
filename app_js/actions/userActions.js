@@ -1,4 +1,36 @@
-import { authFetch, reAuthFetch } from '../api';
+import { authFetch, reAuthFetch, profileInfoFetch } from '../api';
+
+export const fetchProfileInfo = (payload, { redirect, showPreloader, additionHeader }) => {
+	return {
+		type: 'FETCH_PROFILE_INFO',
+		payload: profileInfoFetch(payload, additionHeader),
+		handlers: {
+			'onSuccess': fetchProfileInfoSuccess,
+			'onError': fetchProfileInfoError
+		},
+		redirect,
+		showPreloader
+	}
+};
+
+export const fetchProfileInfoSuccess = (payload) => {
+	return {
+		type: 'FETCH_PROFILE_INFO_SUCCESS',
+		payload
+	}
+}
+
+export const fetchProfileInfoError = (payload) => {
+	return {
+		type: 'FETCH_PROFILE_INFO_ERROR'
+	}
+}
+
+export const dropToken = (payload) => {
+	return {
+		type: 'DROP_TOKEN'
+	}
+}
 
 export const logIn = (payload, { redirect, showPreloader }) => {
 	return {

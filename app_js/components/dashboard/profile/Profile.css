@@ -55,6 +55,9 @@
 	.table-user-info {
 		text-align: left;
 	}
+	.table-user-info tr td:first-child {
+		width: 40px;
+	}
 }
 
 @media (max-width: 560px) {
@@ -63,9 +66,13 @@
 	}
 	.profile-edit-btn-text {
 		display: inline;
-	}
+	}	
 }
 
 .table-user-info tr td:first-child {
 	font-weight: bold;
+}
+
+.table-user-info i {
+	padding: 5px;
 }
