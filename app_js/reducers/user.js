@@ -14,15 +14,15 @@ const user = (state = null, action) => {
 	case 'RELOGIN_SUCCESS':
 		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '' };	
 	case 'RELOGIN_ERROR':
-		return { ...state, 'role' : 'guest', 'token' : null, 'authMsg' : 'Время сессии истекло. Необходимо произвести повторный вход.' };
+		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : 'Время сессии истекло. Необходимо произвести повторный вход.' };
 	case 'LOGIN_SUCCESS':
 		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '' };
 	case 'LOGIN_ERROR':
-		return { ...state, 'role' : 'guest', 'token' : null, 'authMsg' : getStatusByCode(action.payload) };
+		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : getStatusByCode(action.payload) };
 	case 'DROP_TOKEN':
 		return { ...state, 'token' : null }
 	case 'LOGOUT':
-		return { ...state, 'role' : 'guest', 'token' : null, 'authMsg' : '' };
+		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : '' };
 	default:
 		return state;	
 	}

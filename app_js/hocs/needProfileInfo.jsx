@@ -8,8 +8,15 @@ const needProfileInfo = (Component) => {
       profile : React.PropTypes.object.isRequired,
       fetchProfileInfo : React.PropTypes.func.isRequired
     }
+    componentDidMount() {
+      this.fetchData();
+    }
     componentDidUpdate() {
-      if (!this.props.profile.id && this.props.token) this.props.fetchProfileInfo(null, {
+      this.fetchData();
+    }
+    fetchData() {
+      // информация из профиля не загружена и релогин успешно произошел  
+      if (!this.props.profile.id && this.props.role != "guest") this.props.fetchProfileInfo(null, {
           redirect: false, 
           showPreloader: true,
           additionHeader: {
@@ -23,6 +30,7 @@ const needProfileInfo = (Component) => {
   }
   const mapStateToProps = (state) => {
     return {
+      role : state.user.role,
       token : state.user.token,
       profile : state.user.profile
     }

@@ -14,23 +14,23 @@ const promiseWorker = ({ dispatch }) => next => action => {
 	action.showPreloader && dispatch(showSpinner());
 	
 	return action.payload
-					.then((res) => {
-								if (res.ok) {
-									return res.json();
-								} else {
-									dispatch(action.handlers.onError(res));
-									throw new Error(res.statusText);
-								}								
-							})
-					.then(data => {
-						dispatch(action.handlers.onSuccess(data));
-						action.showPreloader && dispatch(closeSpinner());
-						action.redirect && action.redirect();
+			.then((res) => {
+						if (res.ok) {
+							return res.json();
+						} else {
+							dispatch(action.handlers.onError(res));
+							throw new Error(res.statusText);
+						}								
 					})
-					.catch(error => {
-						// do something
-						action.showPreloader && dispatch(closeSpinner());
-					});								
+			.then(data => {
+				dispatch(action.handlers.onSuccess(data));
+				action.showPreloader && dispatch(closeSpinner());
+				action.redirect && action.redirect();
+			})
+			.catch(error => {
+				// do something
+				action.showPreloader && dispatch(closeSpinner());
+			});	
 }
 
 export default promiseWorker; 
