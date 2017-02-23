@@ -30,6 +30,9 @@ import { all, admin, user, guest } from './constants/acl.js'
 import canSee from './hocs/enableAuth'
 import checkToken from './hocs/checkToken'
 
+// data require
+import needProfileInfo from './hocs/needProfileInfo'
+
 // actions
 import { changeTitle } from './actions/titleActions'
 
@@ -58,8 +61,8 @@ render(
 					</Route>
 					<Route component={canSee(Dashboard, [admin, user])}>
 						<Route path='/dashboard' component={DashboardIndex} />
-						<Route path='/dashboard/profile' component={Profile} />					
-						<Route path='/dashboard/profile/edit' component={ProfileEditor} />					
+						<Route path='/dashboard/profile' component={needProfileInfo(Profile)} />					
+						<Route path='/dashboard/profile/edit' component={needProfileInfo(ProfileEditor)} />					
 					</Route>
 					<Route path='logout' component={canSee(Logout, [admin, user])} />
 				</Route>

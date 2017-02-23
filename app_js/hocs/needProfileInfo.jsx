@@ -1,29 +1,38 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import { fetchProfileInfo } from '../actions/userActions'
 
 const needProfileInfo = (Component) => {
   class userComponent extends React.Component {
-    componentWillMount () {
-      if (this.props.token != null) this.redirectTo('/dashboard');
+    static propTypes = {
+      profile : React.PropTypes.object.isRequired,
+      fetchProfileInfo : React.PropTypes.func.isRequired
     }
-    
-    redirectTo (link) {
-      const { router } = this.props;
-      router.push(link);
+    componentDidUpdate() {
+      if (!this.props.profile.id && this.props.token) this.props.fetchProfileInfo(null, {
+          redirect: false, 
+          showPreloader: true,
+          additionHeader: {
+            "Authorization": `Bearer{${ this.props.token }}`
+          }
+      });
     }
-
     render () {
       return <Component {...this.props} />
     }
   }
-
   const mapStateToProps = (state) => {
     return {
-      token: state.user.token
+      token : state.user.token,
+      profile : state.user.profile
     }
-  };
-
-  return connect(mapStateToProps)(userComponent);
+  }
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      fetchProfileInfo : (payload, meta) => { dispatch(fetchProfileInfo(payload, meta)) }
+    }
+  }
+  return connect(mapStateToProps, mapDispatchToProps)(userComponent);
 }
 
 export default needProfileInfo;

@@ -2,22 +2,11 @@ import React from 'react';
 import DocumentTitle from 'react-document-title'
 import { SITE_NAME } from '../../../constants/conf'
 import { Link } from 'react-router'
-import { connect } from 'react-redux'
-import { fetchProfileInfo } from '../../../actions/userActions'
 
 class Profile extends React.Component {
 	static propTypes = {
 		profile : React.PropTypes.object.isRequired,
 		fetchProfileInfo : React.PropTypes.func.isRequired
-	}
-	componentDidUpdate() {
-		if (!this.props.profile.id && this.props.token) this.props.fetchProfileInfo(null, {
-	        redirect: false, 
-	        showPreloader: true,
-	        additionHeader: {
-	          "Authorization": `Bearer{${ this.props.token }}`
-	        }
-      });
 	}
 	render () {
 		return (
@@ -28,7 +17,7 @@ class Profile extends React.Component {
 		                            <img alt="Ваша фотография" title="Ваша фотография" src="/img/user-logo-256_2.png" className="img-circle img-responsive profile-img" />
 		                        </div>
 		                    	<div className="col-xs-12 col-sm-9">
-		                        	<h2>{ this.props.profile.family_name } { this.props.profile.name }
+		                        	<h2>{ this.props.profile.family_name || "Пользователь" } { this.props.profile.name }
 			                        	<Link to="/dashboard/profile/edit">
 			                        		<button className="btn btn-primary profile-edit-btn">	
 			                        			<i className="fa fa-pencil" aria-hidden="true"></i>
@@ -94,18 +83,5 @@ class Profile extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		token : state.user.token,
-		profile : state.user.profile
-	}
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		fetchProfileInfo : (payload, meta) => { dispatch(fetchProfileInfo(payload, meta)) }
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default Profile;
 

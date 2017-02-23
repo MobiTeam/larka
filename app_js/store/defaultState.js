@@ -5,15 +5,7 @@ const defaultState = {
 		'role': 'guest',
 		'token': JSON.parse(localStorage.token || null),
 		'authMsg' : '',
-		'profile' : {
-			"id"        : null,
-			"email"     : '-',
-			"name"      : 'Пользователь',
-			"bornDate"  : '-',
-			"sex"       : '-',
-			"phone"     : '-',
-  			"photoLink" : null
-		}
+		'profile' : {}
 	},
 	'registration' : {
 		'showHelper' : false,
