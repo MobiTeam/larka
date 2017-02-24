@@ -13,3 +13,17 @@
 .profile-editor-table tr td:first-child {
 	font-weight: bold;
 }	
+
+.checkboxText {
+	width: 200px;
+    float: left;
+    display: block;
+}
+
+.profile-send-btn {
+	margin-top: 20px;
+}
+
+.personal-info-warn {
+	margin: 10px 0px;
+}

@@ -7,6 +7,8 @@ const getStatusByCode = (code) => {
 
 const user = (state = null, action) => {
 	switch (action.type) {
+	case 'LOCAL_UPDATE_PROFILE_INFO':
+		return { ...state, 'profile' : { ...state.profile, ...action.payload } };
 	case 'FETCH_PROFILE_INFO_SUCCESS':
 		return { ...state, 'profile' : action.payload };
 	case 'FETCH_PROFILE_INFO_ERROR':

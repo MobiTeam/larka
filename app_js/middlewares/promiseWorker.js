@@ -13,7 +13,7 @@ const promiseWorker = ({ dispatch }) => next => action => {
 	
 	action.showPreloader && dispatch(showSpinner());
 	
-	return action.payload
+	action.payload
 			.then((res) => {
 						if (res.ok) {
 							return res.json();
@@ -31,6 +31,8 @@ const promiseWorker = ({ dispatch }) => next => action => {
 				// do something
 				action.showPreloader && dispatch(closeSpinner());
 			});	
+			
+	return next(action);
 }
 
 export default promiseWorker; 

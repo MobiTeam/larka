@@ -1,4 +1,37 @@
-import { authFetch, reAuthFetch, profileInfoFetch } from '../api';
+import { authFetch, reAuthFetch, profileInfoFetch, profileInfoUpdate } from '../api';
+
+export const localUpdateProfileInfo = (payload) => {
+	return {
+		type: 'LOCAL_UPDATE_PROFILE_INFO',
+		payload
+	}
+}
+
+export const updateProfileInfo = (payload, { redirect, showPreloader, additionHeader }) => {
+	return {
+		type: 'UPDATE_PROFILE_INFO',
+		payload: profileInfoUpdate(payload, additionHeader),
+		handlers: {
+			'onSuccess': updateProfileInfoSuccess,
+			'onError': updateProfileInfoError
+		},
+		redirect,
+		showPreloader
+	}
+};
+
+export const updateProfileInfoSuccess = (payload) => {
+	return {
+		type: 'UPDATE_PROFILE_INFO_SUCCESS',
+		payload
+	}
+}
+
+export const updateProfileInfoError = (payload) => {
+	return {
+		type: 'UPDATE_PROFILE_INFO_ERROR'
+	}
+}
 
 export const fetchProfileInfo = (payload, { redirect, showPreloader, additionHeader }) => {
 	return {

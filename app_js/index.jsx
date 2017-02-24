@@ -11,6 +11,8 @@ if (!window.Promise) {
   window.Promise = Promise;
 }
 
+import 'polyfill-function-prototype-bind';
+
 // components
 import App from './containers/App'
 import Panel from './components/Panel'
