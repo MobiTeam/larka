@@ -3,7 +3,8 @@
 	text-align: center;
 }
 
-.profile-box h2 {
+.profile-name {
+	display: inline-block;
 	font-size: 26px;
 	padding: 0px;
 	margin: 0px;
@@ -20,7 +21,7 @@
 
 .profile-edit-btn {
 	padding: 5px;
-	margin: 0px 8px;
+	margin: -8px 8px 8px 8px;
 }
 
 .profile-edit-btn-text {

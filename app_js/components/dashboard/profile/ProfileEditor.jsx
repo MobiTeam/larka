@@ -1,15 +1,31 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title'
 import { SITE_NAME } from '../../../constants/conf'
-import { localUpdateProfileInfo } from '../../../actions/userActions'
+import { localUpdateProfileInfo, updateProfileInfo } from '../../../actions/userActions'
 import serialize from 'form-serialize'
 import { connect } from 'react-redux'
-import DatePicker from "react-datepicker";
-import moment from 'moment';
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
+import 'moment/locale/ru'
+moment.lang('ru');
+
 
 class ProfileEditor extends React.Component {
+	static propTypes = {
+		localUpdateProfileInfo: React.PropTypes.func.isRequired,
+		updateProfileInfo: React.PropTypes.func.isRequired
+	}
 	state = {
 		btnDisabled : true
+	}
+	componentDidMount() {
+		this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave.bind(this))
+  	}
+	routerWillLeave() {
+		if (!this.props.isPersist) {
+			return window.confirm('Вы уверены что хотите перейти? Все изменения будут утеряны.');
+		}
+		return true;
 	}
 	onCheckboxChange (event) {
 		this.setState({
@@ -18,17 +34,36 @@ class ProfileEditor extends React.Component {
 	}
 	onFormSubmit (event) {
 		event.preventDefault();
-		console.log(serialize(this.refs.profileInfoForm, { hash: true }))
+		const formData = serialize(this.refs.profileInfoForm, { hash: true });
+		const emptyFields = [];
+		
+		if (!formData.name) emptyFields.push('"Имя"');
+		if (!formData.family_name) emptyFields.push('"Фамилия"');
+		if (emptyFields.length == 0) {
+			if (this.props.token) {
+				this.props.updateProfileInfo(formData, {
+				  redirect: false, 
+				  showPreloader: true,
+				  additionHeader: {
+				    "Authorization": `Bearer{${ this.props.token }}`
+				  }
+				});
+			}  
+		} else {
+			alert(`Пол${ emptyFields.length == 1 ? 'е' : 'я' } ${ emptyFields.join(' и ') } необходимо заполнить`);
+		}
+
 		return false;
 	}
-	updateField (fieldName, event) {
+	updateField (event) {
 		this.props.localUpdateProfileInfo({
 			[event.target.name] : event.target.value
 		});
-		console.log(fieldName, event.target.name, event.target.value);
 	}
-	checkFieldLength () {
-
+	updateDate (date) {
+		this.props.localUpdateProfileInfo({
+			'born_date' : date.format('DD.MM.YYYY')
+		});
 	}
 	extractDate (date) {
 		if (!date) return []; 
@@ -37,38 +72,44 @@ class ProfileEditor extends React.Component {
 		dateChunks[1]--;
 		return dateChunks;
 	}
+	showPersistStatus () {
+		return this.props.persistStatus ? 
+					(<div className={ `alert alert-${ this.props.isPersist ? 'success' : 'danger' }`} >
+						{ this.props.persistStatus }
+					</div>) : null;
+	}
 	render () {
 		const date = this.extractDate(this.props.profile.born_date);
-
 		return (
 				<DocumentTitle title={ SITE_NAME + ': редактирование профиля' }>
 					<div className="profile-editor-wrapper row col-md-8">
 						<h4>Форма редактирования профиля</h4>
+						{ this.showPersistStatus() }
 						<form ref="profileInfoForm" action="" method="POST" className="table-user-information-form" onSubmit={ this.onFormSubmit.bind(this) }>
 						    <table className="table profile-editor-table table-hover table-striped">
 						    	<tbody>
 						            <tr>
 						                <td>Имя</td>
 						                <td>
-						                    <input type="text" name="name" placeholder="Иван" onChange={ this.updateField.bind(this, 'Имя') } value={ this.props.profile.name || '' } className="form-control" />
+						                    <input type="text" name="name" placeholder="Иван" onChange={ this.updateField.bind(this) } value={ this.props.profile.name || '' } className="form-control" />
 						                </td>
 						            </tr>
 						            <tr>
 						                <td>Фамилия</td>
 						                <td>
-						                    <input type="text" name="family_name" placeholder="Иванов" value={ this.props.profile.family_name || '' }  className="form-control" />
+						                    <input type="text" name="family_name" placeholder="Иванов" onChange={ this.updateField.bind(this) } value={ this.props.profile.family_name || '' }  className="form-control" />
 						                </td>
 						            </tr>
 						             <tr>
 						                <td>Дата рождения</td>
 						                <td> 
-						                	<DatePicker dateFormat="DD.MM.YYYY" name="born_date" placeholder="День рождения" selected={ new moment(date) } className="form-control" />
+						                	<DatePicker locale="ru" dateFormat="DD.MM.YYYY" name="born_date" placeholder="День рождения" onChange={ this.updateDate.bind(this) } selected={ new moment(date) } className="form-control" />
 						                </td>
 						            </tr>
 						            <tr>
 						                <td>Пол</td>
 						                <td>
-						                    <select name="sex" defaultValue={ this.props.profile.sex || 1 } className="form-control">
+						                    <select name="sex" value={ this.props.profile.sex == null ? 1 : this.props.profile.sex } onChange={ this.updateField.bind(this) } className="form-control">
 						                        <option value="0">Женский</option>
 						                        <option value="1">Мужской</option>
 						                    </select>
@@ -77,7 +118,7 @@ class ProfileEditor extends React.Component {
 						            <tr>
 						                <td>Телефон</td>
 						                <td>
-						                    <input type="text" name="phone" placeholder="8 900 500 70 77" value={ this.props.profile.phone || '' } className="form-control" />                                        
+						                    <input type="text" name="phone" placeholder="8 900 500 70 77" onChange={ this.updateField.bind(this) } value={ this.props.profile.phone || '' } className="form-control" />                                        
 						                </td>
 						            </tr>
 						        </tbody>
@@ -104,13 +145,22 @@ class ProfileEditor extends React.Component {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
 	return {
-		localUpdateProfileInfo : (payload) => dispatch(localUpdateProfileInfo(payload))
+		isPersist : state.user.isPersist,
+		persistStatus : state.user.persistStatus,
+		token : state.user.token
 	}
 }
 
-export default connect(null, mapDispatchToProps)(ProfileEditor);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		localUpdateProfileInfo : (payload) => dispatch(localUpdateProfileInfo(payload)),
+		updateProfileInfo : (payload, meta) => dispatch(updateProfileInfo(payload, meta))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileEditor);
 
 
 

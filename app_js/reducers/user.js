@@ -7,8 +7,12 @@ const getStatusByCode = (code) => {
 
 const user = (state = null, action) => {
 	switch (action.type) {
+	case 'UPDATE_PROFILE_INFO_SUCCESS':
+		return { ...state, isPersist: true, persistStatus: 'Информация о профиле была успешно изменена.' }	
+	case 'UPDATE_PROFILE_INFO_ERROR':
+		return { ...state, isPersist: false, persistStatus: 'При сохранении данных произошла ошибка, повторите попытку позже!' }
 	case 'LOCAL_UPDATE_PROFILE_INFO':
-		return { ...state, 'profile' : { ...state.profile, ...action.payload } };
+		return { ...state, 'profile' : { ...state.profile, ...action.payload }, isPersist: false, persistStatus: null };
 	case 'FETCH_PROFILE_INFO_SUCCESS':
 		return { ...state, 'profile' : action.payload };
 	case 'FETCH_PROFILE_INFO_ERROR':

@@ -56,7 +56,6 @@
 .pageTitle {
     font-size: 22px;
     padding-left: 52px;
-    min-width: 300px;
     display: block;
     white-space: nowrap;
 }
@@ -70,6 +69,5 @@
 @media (max-width: 360px) {
     .pageTitle {
         font-size: 18px;
-        margin-left: 16px;
     }
 }

@@ -17,14 +17,15 @@ class Profile extends React.Component {
 		                            <img alt="Ваша фотография" title="Ваша фотография" src="/img/user-logo-256_2.png" className="img-circle img-responsive profile-img" />
 		                        </div>
 		                    	<div className="col-xs-12 col-sm-9">
-		                        	<h2>{ this.props.profile.family_name || "Пользователь" } { this.props.profile.name }
-			                        	<Link to="/dashboard/profile/edit">
-			                        		<button className="btn btn-primary profile-edit-btn">	
+		                        	<div className="clearfix">
+			                        	<h2 className="profile-name">{ this.props.profile.family_name || "Пользователь" } { this.props.profile.name } </h2>
+			                        	<Link to="/dashboard/profile/edit" className="profile-edit-btn">
+			                        		<button className="btn btn-primary">	
 			                        			<i className="fa fa-pencil" aria-hidden="true"></i>
 			                        			<span className="profile-edit-btn-text">Редактировать</span>
 								    		</button>	
 								    	</Link>
-							    	</h2>
+							    	</div>
 								</div>
 								<div className="col-xs-12 col-sm-9 col-lg-9">
 		                        	<table className="table table-striped table-hover table-user-info">
@@ -70,7 +71,7 @@ class Profile extends React.Component {
 			                                    	</span>
 			                                    </td>
 			                                    <td>
-			                                    	{ this.props.profile.sex || "(Не заполнено)" }
+			                                    	{ this.props.profile.sex == undefined ? "(Не заполнено)" : this.props.profile.sex == 0 ? 'Женский' : 'Мужской' }
 			                                    </td>
 			                                </tr>
 		                                </tbody>
