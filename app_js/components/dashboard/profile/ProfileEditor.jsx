@@ -103,7 +103,7 @@ class ProfileEditor extends React.Component {
 						             <tr>
 						                <td>Дата рождения</td>
 						                <td> 
-						                	<DatePicker locale="ru" dateFormat="DD.MM.YYYY" name="born_date" placeholder="День рождения" onChange={ this.updateDate.bind(this) } selected={ new moment(date) } className="form-control" />
+						                	<DatePicker locale="ru" dateFormat="DD.MM.YYYY" name="born_date" selected={ moment(date) } onChange={ this.updateDate.bind(this) } className="form-control" disabledKeyboardNavigation/>
 						                </td>
 						            </tr>
 						            <tr>
