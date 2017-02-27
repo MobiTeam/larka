@@ -25,7 +25,7 @@ const needProfileInfo = (Component) => {
               "Authorization": `Bearer{${ this.props.token }}`
             }
           });
-        }
+        } 
       }        
     }
     render () {

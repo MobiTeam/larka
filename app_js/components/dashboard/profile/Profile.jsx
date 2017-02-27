@@ -2,13 +2,24 @@ import React from 'react';
 import DocumentTitle from 'react-document-title'
 import { SITE_NAME } from '../../../constants/conf'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
 
 class Profile extends React.Component {
+	showFetchStatus () {
+		return this.props.statusCode > 300 ? 
+					(<div className='alert alert-danger'>
+						При загрузке информации с сервера произошла ошибка. Повторите попытку позже.
+					</div>) : null;
+	}
 	render () {
 		return (
 				<DocumentTitle title={ SITE_NAME + ': профиль пользователя' }>
+					<div>
+	                    <div>
+	                    	{ this.showFetchStatus() }
+	                    </div>
 	                    <div className="row profile-wrapper">
-							<div className="profile-box">
+	                    	<div className="profile-box">
 		                        <div className="col-xs-12 col-sm-3 user-photo-box">
 		                            <img alt="Ваша фотография" title="Ваша фотография" src="/img/user-logo-256_2.png" className="img-circle img-responsive profile-img" />
 		                        </div>
@@ -34,7 +45,7 @@ class Profile extends React.Component {
 			                                    	</span>
 			                                    </td>
 			                                    <td>
-			                                    	{ this.props.profile.email } 
+			                                    	{ this.props.profile.email || "(Ошибка загрузки)" } 
 			                                    </td>
 			                                </tr>
 			                                <tr>
@@ -75,10 +86,18 @@ class Profile extends React.Component {
 	                        	</div>
 		                    </div>
 	                    </div>
+	                </div>    
 				</DocumentTitle>
 		)		
 	}
 }
 
-export default Profile;
+
+const mapStateToProps = (state) => {
+	return {
+		statusCode : state.user.statusCode
+	}
+}
+
+export default connect(mapStateToProps)(Profile);
 

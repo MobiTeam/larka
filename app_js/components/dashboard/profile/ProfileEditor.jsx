@@ -78,67 +78,77 @@ class ProfileEditor extends React.Component {
 						{ this.props.persistStatus }
 					</div>) : null;
 	}
+	showFetchStatus () {
+		return this.props.statusCode > 300 ? 
+					(<div className='alert alert-danger'>
+						При загрузке информации с сервера произошла ошибка. Повторите попытку позже.
+					</div>) : null;
+	}
 	render () {
 		const date = this.extractDate(this.props.profile.born_date);
 		return (
 				<DocumentTitle title={ SITE_NAME + ': редактирование профиля' }>
-					<div className="profile-editor-wrapper row col-md-8">
-						<h4>Форма редактирования профиля</h4>
-						{ this.showPersistStatus() }
-						<form ref="profileInfoForm" action="" method="POST" className="table-user-information-form" onSubmit={ this.onFormSubmit.bind(this) }>
-						    <table className="table profile-editor-table table-hover table-striped">
-						    	<tbody>
-						            <tr>
-						                <td>Имя</td>
-						                <td>
-						                    <input type="text" name="name" placeholder="Иван" onChange={ this.updateField.bind(this) } value={ this.props.profile.name || '' } className="form-control" />
-						                </td>
-						            </tr>
-						            <tr>
-						                <td>Фамилия</td>
-						                <td>
-						                    <input type="text" name="family_name" placeholder="Иванов" onChange={ this.updateField.bind(this) } value={ this.props.profile.family_name || '' }  className="form-control" />
-						                </td>
-						            </tr>
-						             <tr>
-						                <td>Дата рождения</td>
-						                <td> 
-						                	<DatePicker locale="ru" dateFormat="DD.MM.YYYY" name="born_date" selected={ moment(date) } onChange={ this.updateDate.bind(this) } className="form-control" disabledKeyboardNavigation/>
-						                </td>
-						            </tr>
-						            <tr>
-						                <td>Пол</td>
-						                <td>
-						                    <select name="sex" value={ this.props.profile.sex == null ? '-1' : this.props.profile.sex } onChange={ this.updateField.bind(this) } className="form-control">
-						                        <option value="-1">Не заполнено</option>
-						                        <option value="0">Женский</option>
-						                        <option value="1">Мужской</option>
-						                    </select>
-						                </td>
-						            </tr>
-						            <tr>
-						                <td>Телефон</td>
-						                <td>
-						                    <input type="text" name="phone" placeholder="8 900 500 70 77" onChange={ this.updateField.bind(this) } value={ this.props.profile.phone || '' } className="form-control" />                                        
-						                </td>
-						            </tr>
-						        </tbody>
-						    </table>
-						    <div className="clearfix">
-							    <span className="checkboxText">Даю согласие на обработку персональных данных (*)</span>
-							    <input type="checkbox" defaultChecked={ false } onChange={ this.onCheckboxChange.bind(this) }/>
-						    </div>
-						    <div className="btn-group profile-send-btn">
-						     	<button type="submit" className="btn btn-labeled btn-success save-user-profile" disabled={ this.state.btnDisabled }>
-						    		<span className="btn-label">
-						    			<i className="fa fa-floppy-o" aria-hidden="true"></i>
-						    		</span>
-						    		Сохранить изменения
-						    	</button>
-					    	</div>
-						</form>
-						<div className="alert alert-warning personal-info-warn">
-							(*) При заполнении информации профиля Вы даете согласие на обработку, хранение и публичное использование персональных данных.
+					<div>
+						<div>
+							{ this.showPersistStatus() || this.showFetchStatus() }
+						</div>
+						<div className="profile-editor-wrapper row col-md-8">
+							<h4>Форма редактирования профиля</h4>						
+							<form ref="profileInfoForm" action="" method="POST" className="table-user-information-form" onSubmit={ this.onFormSubmit.bind(this) }>
+							    <table className="table profile-editor-table table-hover table-striped">
+							    	<tbody>
+							            <tr>
+							                <td>Имя</td>
+							                <td>
+							                    <input type="text" name="name" placeholder="Иван" onChange={ this.updateField.bind(this) } value={ this.props.profile.name || '' } className="form-control" />
+							                </td>
+							            </tr>
+							            <tr>
+							                <td>Фамилия</td>
+							                <td>
+							                    <input type="text" name="family_name" placeholder="Иванов" onChange={ this.updateField.bind(this) } value={ this.props.profile.family_name || '' }  className="form-control" />
+							                </td>
+							            </tr>
+							             <tr>
+							                <td>Дата рождения</td>
+							                <td> 
+							                	<DatePicker locale="ru" dateFormat="DD.MM.YYYY" name="born_date" selected={ moment(date) } onChange={ this.updateDate.bind(this) } className="form-control" disabledKeyboardNavigation/>
+							                </td>
+							            </tr>
+							            <tr>
+							                <td>Пол</td>
+							                <td>
+							                    <select name="sex" value={ this.props.profile.sex == null ? '-1' : this.props.profile.sex } onChange={ this.updateField.bind(this) } className="form-control">
+							                        <option value="-1">Не заполнено</option>
+							                        <option value="0">Женский</option>
+							                        <option value="1">Мужской</option>
+							                    </select>
+							                </td>
+							            </tr>
+							            <tr>
+							                <td>Телефон</td>
+							                <td>
+							                    <input type="text" name="phone" placeholder="8 900 500 70 77" onChange={ this.updateField.bind(this) } value={ this.props.profile.phone || '' } className="form-control" />                                        
+							                </td>
+							            </tr>
+							        </tbody>
+							    </table>
+							    <div className="clearfix">
+								    <span className="checkboxText">Даю согласие на обработку персональных данных (*)</span>
+								    <input type="checkbox" defaultChecked={ false } onChange={ this.onCheckboxChange.bind(this) }/>
+							    </div>
+							    <div className="btn-group profile-send-btn">
+							     	<button type="submit" className="btn btn-labeled btn-success save-user-profile" disabled={ this.state.btnDisabled }>
+							    		<span className="btn-label">
+							    			<i className="fa fa-floppy-o" aria-hidden="true"></i>
+							    		</span>
+							    		Сохранить изменения
+							    	</button>
+						    	</div>
+							</form>
+							<div className="alert alert-warning personal-info-warn">
+								(*) При заполнении информации профиля Вы даете согласие на обработку, хранение и публичное использование персональных данных.
+							</div>
 						</div>
 					</div>				
 				</DocumentTitle>
@@ -148,6 +158,7 @@ class ProfileEditor extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
+		statusCode : state.user.statusCode, 
 		isPersist : state.user.isPersist,
 		persistStatus : state.user.persistStatus,
 		token : state.user.token
