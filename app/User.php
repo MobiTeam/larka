@@ -53,7 +53,12 @@ class User extends Authenticatable
 
     public function getBornDateAttribute($date)
     {
-       return Carbon::createFromFormat('Y-m-d', $date)->format('d.m.Y');
+        if (is_null($date)) {
+            return null;
+        }
+        else{
+            return Carbon::createFromFormat('Y-m-d', $date)->format('d.m.Y');
+       }
     }
 
     public function books()
