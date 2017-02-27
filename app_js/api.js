@@ -2,25 +2,23 @@ import fetch from 'isomorphic-fetch'
 
 const BASE_URL = `${ location.origin }/api`;
 
-const defaultPost = {
-	method: 'POST',
-	headers: {
-		"Content-Type": "application/json"
+const createFetchPromise = (link, method = 'POST') => {
+	let query = {
+		method,
+		headers: {
+			"Content-Type": "application/json"
+		}
 	}
-}
-
-const createFetchPromise = (link) => {
-	return (payload) => fetch(`${BASE_URL}${link}`, { body: JSON.stringify(payload), ...defaultPost });
-}
-
-const createAuthFetchPromise = (link) => {
-	return (payload, headers) => {
-		const authPost = { ...defaultPost };
-		authPost.headers = { ...authPost.headers, ...headers }; 
-		return fetch(`${BASE_URL}${link}`, { body: JSON.stringify(payload), ...authPost });
+	return (body, addHeader) => {
+		if (body && method != 'GET') query.body = JSON.stringify(body);
+		if (addHeader) query.headers = { ...query.headers, ...addHeader}; 
+		return fetch(`${BASE_URL}${link}`, query); 
 	}
 }
 
 export const regFetch = createFetchPromise('/auth/signup'); 
 export const authFetch = createFetchPromise('/auth/login'); 
-export const reAuthFetch = createAuthFetchPromise('/auth/relogin'); 
+export const reAuthFetch = createFetchPromise('/auth/relogin'); 
+
+export const profileInfoFetch = createFetchPromise('/user/user', 'GET'); 
+export const profileInfoUpdate = createFetchPromise('/user/update', 'POST'); 

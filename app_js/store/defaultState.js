@@ -4,7 +4,10 @@ const defaultState = {
 	'user' : {
 		'role': 'guest',
 		'token': JSON.parse(localStorage.token || null),
-		'authMsg' : ''
+		'authMsg' : '',
+		'profile' : {},
+		'isPersist' : true,
+		'statusCode' : null
 	},
 	'registration' : {
 		'showHelper' : false,

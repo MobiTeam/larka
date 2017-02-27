@@ -11,6 +11,8 @@ if (!window.Promise) {
   window.Promise = Promise;
 }
 
+import 'polyfill-function-prototype-bind';
+
 // components
 import App from './containers/App'
 import Panel from './components/Panel'
@@ -22,12 +24,16 @@ import LoginForm from './components/panel/LoginForm'
 import Dashboard from './components/Dashboard'
 import DashboardIndex from './components/dashboard/Index'
 import Profile from './components/dashboard/profile/Profile'
+import ProfileEditor from './components/dashboard/profile/ProfileEditor'
 import NotFound from './components/NotFound'
 
 // acl
 import { all, admin, user, guest } from './constants/acl.js'
 import canSee from './hocs/enableAuth'
 import checkToken from './hocs/checkToken'
+
+// data require
+import needProfileInfo from './hocs/needProfileInfo'
 
 // actions
 import { changeTitle } from './actions/titleActions'
@@ -37,8 +43,6 @@ import configureStore from './store/store'
 import defaultState from './store/defaultState'
 
 const store = configureStore(defaultState);
-
-console.log(defaultState);
 
 store.subscribe(() => {
 	localStorage.token = JSON.stringify(store.getState().user.token);
@@ -59,7 +63,8 @@ render(
 					</Route>
 					<Route component={canSee(Dashboard, [admin, user])}>
 						<Route path='/dashboard' component={DashboardIndex} />
-						<Route path='/dashboard/profile' component={Profile} />					
+						<Route path='/dashboard/profile' component={needProfileInfo(Profile)} />					
+						<Route path='/dashboard/profile/edit' component={needProfileInfo(ProfileEditor)} />					
 					</Route>
 					<Route path='logout' component={canSee(Logout, [admin, user])} />
 				</Route>

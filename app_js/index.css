@@ -7,6 +7,10 @@ html, body {
 	background: #f6f5fa;
 	height: 100%;
 	overflow-x: hidden;
+	font-family: "Open Sans", sans-serif;
+    color: #555;
+    font-size: 14px;
+    line-height: 21px;
 }
 
 @font-face {
