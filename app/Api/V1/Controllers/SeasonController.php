@@ -34,7 +34,7 @@ class SeasonController extends Controller
         $inputData = $request->only(['name', 'description', 'date_start', 'date_finish']);
         $season = new Season($inputData);
         $season->save();
-        return response()->json(['status' => 'ok'], 201);
+        return response()->json(['status' => 'created'], 201);
     }
 
     /**
