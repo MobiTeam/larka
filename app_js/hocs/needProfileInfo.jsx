@@ -16,13 +16,17 @@ const needProfileInfo = (Component) => {
     }
     fetchData() {
       // информация из профиля не загружена и релогин успешно произошел  
-      if (!this.props.profile.id && this.props.role != "guest" && this.props.statusCode != 401) this.props.fetchProfileInfo(null, {
-          redirect: false, 
-          showPreloader: true,
-          additionHeader: {
-            "Authorization": `Bearer{${ this.props.token }}`
-          }
-      });
+      if (!this.props.profile.id && this.props.role != "guest") {
+        if (this.props.statusCode < 300) {
+          this.props.fetchProfileInfo(null, {
+            redirect: false, 
+            showPreloader: true,
+            additionHeader: {
+              "Authorization": `Bearer{${ this.props.token }}`
+            }
+          });
+        }
+      }        
     }
     render () {
       return <Component {...this.props} />
