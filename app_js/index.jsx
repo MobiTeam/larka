@@ -23,6 +23,7 @@ import LoginForm from './components/panel/LoginForm'
 
 import Dashboard from './components/Dashboard'
 import DashboardIndex from './components/dashboard/Index'
+import Seasons from './components/dashboard/seasons/Seasons'
 import Profile from './components/dashboard/profile/Profile'
 import ProfileEditor from './components/dashboard/profile/ProfileEditor'
 import NotFound from './components/NotFound'
@@ -44,6 +45,7 @@ import defaultState from './store/defaultState'
 
 const store = configureStore(defaultState);
 
+//  to-do rewrite to middleware
 store.subscribe(() => {
 	localStorage.token = JSON.stringify(store.getState().user.token);
 })
@@ -65,6 +67,9 @@ render(
 						<Route path='/dashboard' component={DashboardIndex} />
 						<Route path='/dashboard/profile' component={needProfileInfo(Profile)} />					
 						<Route path='/dashboard/profile/edit' component={needProfileInfo(ProfileEditor)} />					
+					</Route>
+					<Route component={canSee(Dashboard, [admin])}>										
+						<Route path='/dashboard/seasons' component={ Seasons } />					
 					</Route>
 					<Route path='logout' component={canSee(Logout, [admin, user])} />
 				</Route>

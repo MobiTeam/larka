@@ -8,12 +8,12 @@ const items = [
 					'roles' : authorized,
 					'iconClass' : 'fa fa-home'	
 				},
-				// {
-				// 	'title' : 'Пользователи',
-				// 	'link' :  baseLink + "/users",
-				// 	'roles' : [admin],
-				// 	'iconClass' : 'fa fa-tasks'	
-				// },
+				{
+					'title' : 'Сезоны',
+					'link' :  baseLink + "/seasons",
+					'roles' : [admin],
+					'iconClass' : 'fa fa-clock-o'	
+				},
 				// {
 				// 	'title' : 'Результаты',
 				// 	'link' :  baseLink  + "/results",

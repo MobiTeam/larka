@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import 'moment/locale/ru'
-moment.lang('ru');
+moment.locale('ru');
 
 
 class ProfileEditor extends React.Component {

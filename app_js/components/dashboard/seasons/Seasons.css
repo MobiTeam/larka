@@ -1,0 +1,43 @@
+.season-items {
+	padding: 10px 25px;
+}
+
+.dashboard-item {
+	height: 200px;
+	background: white;
+    padding: 14px;
+    font-size: 22px;
+    margin: 8px 0px;
+    border: 1px solid #e7e7e7;
+    border-bottom: 2px solid #eeeeee;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s;
+    color: white;
+    overflow: hidden;
+}
+
+.dashboard-item i {
+	font-size: 60px;
+	display: block;
+	position: relative;
+	font-size: 115px;
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.6;
+    color: white;
+}
+
+.dashboard-item:hover {
+	opacity: 1;
+}
+
+.actual-seasons-item {
+	background: #607d8b;
+}
+
+.create-seasons-item {
+	background: #673AB7;
+}
