@@ -735,7 +735,7 @@ html, body {
     border: none;
     outline: none;
     font-size: 28px;
-    margin: -3px 2px;
+    margin: -1px 2px;
 }
 
 .navbar a:hover, .navbar a:focus {
@@ -779,6 +779,7 @@ html, body {
 .pageTitle {
     font-size: 22px;
     padding-left: 52px;
+    margin-top: 2px;
     display: block;
     white-space: nowrap;
 }

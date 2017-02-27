@@ -16,7 +16,7 @@ const needProfileInfo = (Component) => {
     }
     fetchData() {
       // информация из профиля не загружена и релогин успешно произошел  
-      if (!this.props.profile.id && this.props.role != "guest") this.props.fetchProfileInfo(null, {
+      if (!this.props.profile.id && this.props.role != "guest" && this.props.statusCode != 401) this.props.fetchProfileInfo(null, {
           redirect: false, 
           showPreloader: true,
           additionHeader: {
@@ -30,6 +30,7 @@ const needProfileInfo = (Component) => {
   }
   const mapStateToProps = (state) => {
     return {
+      statusCode : state.user.statusCode,
       role : state.user.role,
       token : state.user.token,
       profile : state.user.profile

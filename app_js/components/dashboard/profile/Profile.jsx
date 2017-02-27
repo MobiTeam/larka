@@ -4,10 +4,6 @@ import { SITE_NAME } from '../../../constants/conf'
 import { Link } from 'react-router'
 
 class Profile extends React.Component {
-	static propTypes = {
-		profile : React.PropTypes.object.isRequired,
-		fetchProfileInfo : React.PropTypes.func.isRequired
-	}
 	render () {
 		return (
 				<DocumentTitle title={ SITE_NAME + ': профиль пользователя' }>
@@ -71,7 +67,7 @@ class Profile extends React.Component {
 			                                    	</span>
 			                                    </td>
 			                                    <td>
-			                                    	{ this.props.profile.sex == undefined ? "(Не заполнено)" : this.props.profile.sex == 0 ? 'Женский' : 'Мужской' }
+			                                    	{ (this.props.profile.sex == undefined || this.props.profile.sex == -1) ? "(Не заполнено)" : this.props.profile.sex == 0 ? 'Женский' : 'Мужской' }
 			                                    </td>
 			                                </tr>
 		                                </tbody>

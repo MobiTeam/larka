@@ -6,7 +6,8 @@ const defaultState = {
 		'token': JSON.parse(localStorage.token || null),
 		'authMsg' : '',
 		'profile' : {},
-		'isPersist' : true
+		'isPersist' : true,
+		'statusCode' : null
 	},
 	'registration' : {
 		'showHelper' : false,

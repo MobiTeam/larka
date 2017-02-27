@@ -22,7 +22,7 @@ class ProfileEditor extends React.Component {
 		this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave.bind(this))
   	}
 	routerWillLeave() {
-		if (!this.props.isPersist) {
+		if (!this.props.isPersist && this.props.token) {
 			return window.confirm('Вы уверены что хотите перейти? Все изменения будут утеряны.');
 		}
 		return true;
@@ -109,7 +109,8 @@ class ProfileEditor extends React.Component {
 						            <tr>
 						                <td>Пол</td>
 						                <td>
-						                    <select name="sex" value={ this.props.profile.sex == null ? 1 : this.props.profile.sex } onChange={ this.updateField.bind(this) } className="form-control">
+						                    <select name="sex" value={ this.props.profile.sex == null ? '-1' : this.props.profile.sex } onChange={ this.updateField.bind(this) } className="form-control">
+						                        <option value="-1">Не заполнено</option>
 						                        <option value="0">Женский</option>
 						                        <option value="1">Мужской</option>
 						                    </select>

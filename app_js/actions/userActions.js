@@ -55,7 +55,8 @@ export const fetchProfileInfoSuccess = (payload) => {
 
 export const fetchProfileInfoError = (payload) => {
 	return {
-		type: 'FETCH_PROFILE_INFO_ERROR'
+		type: 'FETCH_PROFILE_INFO_ERROR',
+		payload: payload.status
 	}
 }
 
@@ -124,8 +125,9 @@ export const logInError = (payload) => {
 	}
 };
 
-export const logOut = () => {
+export const logOut = (payload) => {
 	return {
-		type: 'LOGOUT'
+		type: 'LOGOUT',
+		payload
 	}
 };

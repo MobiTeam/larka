@@ -1,4 +1,5 @@
 import { showSpinner, closeSpinner } from '../actions/spinnerActions'
+import { logOut } from '../actions/userActions'
 
 const isPromise = (val) => {
 	return val && typeof val.then === 'function';
@@ -19,6 +20,9 @@ const promiseWorker = ({ dispatch }) => next => action => {
 							return res.json();
 						} else {
 							dispatch(action.handlers.onError(res));
+							if (res.status == 401) {
+								dispatch(logOut('Время сессии истекло. Необходимо произвести повторный вход.'));
+							}
 							throw new Error(res.statusText);
 						}								
 					})

@@ -14,9 +14,9 @@ const user = (state = null, action) => {
 	case 'LOCAL_UPDATE_PROFILE_INFO':
 		return { ...state, 'profile' : { ...state.profile, ...action.payload }, isPersist: false, persistStatus: null };
 	case 'FETCH_PROFILE_INFO_SUCCESS':
-		return { ...state, 'profile' : action.payload };
+		return { ...state, 'profile' : action.payload, 'statusCode' : 200 };
 	case 'FETCH_PROFILE_INFO_ERROR':
-		return { ...state, 'profile' : {} };	
+		return { ...state, 'profile' : {}, 'statusCode' : action.payload };	
 	case 'RELOGIN_SUCCESS':
 		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '' };	
 	case 'RELOGIN_ERROR':
@@ -26,9 +26,9 @@ const user = (state = null, action) => {
 	case 'LOGIN_ERROR':
 		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : getStatusByCode(action.payload) };
 	case 'DROP_TOKEN':
-		return { ...state, 'token' : null }
+		return { ...state, 'token' : null, 'authMsg' : 'Время сессии истекло. Необходимо произвести повторный вход.' };
 	case 'LOGOUT':
-		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : '' };
+		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : action.payload || '' };
 	default:
 		return state;	
 	}
