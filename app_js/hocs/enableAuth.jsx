@@ -11,7 +11,9 @@ const enableAuth = (Component, roles) => {
       reLogIn : React.PropTypes.func.isRequired
     }
 
-    componentWillMount() {
+    // перед монтированием компонента проверяем есть ли токен
+    // в противном случае переводим на страницу логина
+    componentWillMount () {
       const { token, role } = this.props.user;
       if (token && (!role || role == "guest")) {
           this.props.reLogIn(token, {
@@ -21,32 +23,36 @@ const enableAuth = (Component, roles) => {
             "Authorization": `Bearer{${ token }}`
           }
         });
+      } else if (!token) {
+        this.redirectTo('/login');
       }    
     }
 
-    componentDidMount () {
-      this._checkAndRedirect();
+    componentDidUpdate (prevProps) {
+      this.checkAndRedirect();
     }
 
-    componentDidUpdate () {
-      this._checkAndRedirect();
-    }
-
-    _checkAndRedirect () {
-      const { role, token } = this.props.user;
+    hasAccess () {
+      const { role } = this.props.user;
       const availRoles = typeof roles === "string" ? [roles] : roles;
-      if (availRoles.indexOf(role) == -1 && token == null) this._redirectTo('/login');
+      return availRoles.indexOf(role) != -1;
     }
 
-    _redirectTo (link) {
+    checkAndRedirect () {
+      const { logOutFlag, fetchIsComplete } = this.props.user;
+      if (logOutFlag) this.redirectTo('/');
+      if (!this.hasAccess() && fetchIsComplete) this.redirectTo('/noaccess');
+    }
+
+    redirectTo (link) {
       const { router } = this.props;
       router.push(link);
     }
 
     render () {
-      return this.props.user ? (
+      return this.hasAccess() ? (
           <div className="authenticated">
-            <Component {...this.props} />
+            { <Component { ...this.props } /> }
           </div>
         ) : null;
     }

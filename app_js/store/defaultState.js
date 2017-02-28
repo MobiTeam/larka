@@ -7,7 +7,9 @@ const defaultState = {
 		'authMsg' : '',
 		'profile' : {},
 		'isPersist' : true,
-		'statusCode' : 200
+		'statusCode' : 200,
+		'logOutFlag' : false,
+		'isAuthorised' : false
 	},
 	'registration' : {
 		'showHelper' : false,

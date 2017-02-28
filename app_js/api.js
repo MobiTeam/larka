@@ -22,3 +22,5 @@ export const reAuthFetch = createFetchPromise('/auth/relogin');
 
 export const profileInfoFetch = createFetchPromise('/user/user', 'GET'); 
 export const profileInfoUpdate = createFetchPromise('/user/update', 'POST'); 
+
+export const newSesonFetch = createFetchPromise('/season/create', 'POST'); 

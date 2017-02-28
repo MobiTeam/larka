@@ -15,6 +15,7 @@ import 'polyfill-function-prototype-bind';
 
 // components
 import App from './containers/App'
+import Wrapper from './components/Wrapper'
 import Panel from './components/Panel'
 import Logout from './components/Logout'
 import Home from './components/panel/Home'
@@ -23,10 +24,16 @@ import LoginForm from './components/panel/LoginForm'
 
 import Dashboard from './components/Dashboard'
 import DashboardIndex from './components/dashboard/Index'
+
 import Seasons from './components/dashboard/seasons/Seasons'
+import CreateSeason from './components/dashboard/seasons/CreateSeason'
+import SeasonsList from './components/dashboard/seasons/SeasonsList'
+
 import Profile from './components/dashboard/profile/Profile'
 import ProfileEditor from './components/dashboard/profile/ProfileEditor'
+
 import NotFound from './components/NotFound'
+import NoAccess from './components/NoAccess'
 
 // acl
 import { all, admin, user, guest } from './constants/acl.js'
@@ -63,15 +70,20 @@ render(
 						<Route path='login' component={checkToken(LoginForm)} />
 						<Route path='registration' component={checkToken(RegistrationForm)} />
 					</Route>
-					<Route component={canSee(Dashboard, [admin, user])}>
-						<Route path='/dashboard' component={DashboardIndex} />
-						<Route path='/dashboard/profile' component={needProfileInfo(Profile)} />					
-						<Route path='/dashboard/profile/edit' component={needProfileInfo(ProfileEditor)} />					
+					<Route component={ Dashboard }>
+						<Route component={canSee(Wrapper, [admin, user])}>
+							<Route path='/dashboard' component={DashboardIndex} />
+							<Route path='/dashboard/profile' component={needProfileInfo(Profile)} />					
+							<Route path='/dashboard/profile/edit' component={needProfileInfo(ProfileEditor)} />
+						</Route>						
+						<Route component={canSee(Wrapper, [admin])}>										
+							<Route path='/dashboard/seasons' component={ Seasons } />					
+							<Route path='/dashboard/seasons/new' component={ CreateSeason } />					
+							<Route path='/dashboard/seasons/list' component={ SeasonsList } />					
+						</Route>	
 					</Route>
-					<Route component={canSee(Dashboard, [admin])}>										
-						<Route path='/dashboard/seasons' component={ Seasons } />					
-					</Route>
-					<Route path='logout' component={canSee(Logout, [admin, user])} />
+					<Route path='logout' component={ canSee(Logout, [admin, user]) } />
+					<Route path='noaccess' component={ NoAccess } />
 				</Route>
 				<Route path='*' component={NotFound} />
 			</Router>

@@ -18,17 +18,17 @@ const user = (state = null, action) => {
 	case 'FETCH_PROFILE_INFO_ERROR':
 		return { ...state, 'profile' : {}, 'statusCode' : action.payload };	
 	case 'RELOGIN_SUCCESS':
-		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '' };	
+		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '', 'fetchIsComplete' : true };	
 	case 'RELOGIN_ERROR':
-		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : 'Время сессии истекло. Необходимо произвести повторный вход.' };
+		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : 'Время сессии истекло. Необходимо произвести повторный вход.', 'fetchIsComplete' : true };
 	case 'LOGIN_SUCCESS':
-		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '' };
+		return { ...state, 'token' : action.payload.token, 'role' : action.payload.role, 'authMsg' : '', logOutFlag: false };
 	case 'LOGIN_ERROR':
-		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : getStatusByCode(action.payload) };
+		return { 'role' : 'guest', profile : {}, 'token' : null, 'statusCode' : 200, 'authMsg' : getStatusByCode(action.payload) };
 	case 'DROP_TOKEN':
 		return { ...state, 'token' : null, 'authMsg' : 'Время сессии истекло. Необходимо произвести повторный вход.' };
 	case 'LOGOUT':
-		return { 'role' : 'guest', profile : {}, 'token' : null, 'authMsg' : action.payload || '' };
+		return { 'role' : 'guest', 'isPersist' : true, 'statusCode' : 200, profile : {}, 'token' : null, 'authMsg' : action.payload || '', logOutFlag: true };
 	default:
 		return state;	
 	}

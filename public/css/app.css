@@ -840,7 +840,7 @@ html, body {
 .logo {
 	text-align: center;
     margin-bottom: 10px;
-    /*max-height: 150px;*/
+    min-height: 77px;
 }
 
 .logo a, .logo a:hover {
@@ -1175,46 +1175,79 @@ html, body {
 .personal-info-warn {
 	margin: 10px 0px;
 }
+.create-season-wrapper {
+	background: white;
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid #e7e7e7;
+    border-bottom: 2px solid #eeeeee;
+}    
+
+.season-date-label {
+	padding-right: 14px;
+}
 .season-items {
 	padding: 10px 25px;
 }
 
+.default-link-style, .default-link-style:hover, .default-link-style:visited {
+  color: inherit; 
+  text-decoration: inherit;
+}
+
 .dashboard-item {
-	height: 200px;
+	min-height: 200px;
 	background: white;
-    padding: 14px;
-    font-size: 22px;
+    padding: 20px;
+    font-size: 20px;
     margin: 8px 0px;
     border: 1px solid #e7e7e7;
     border-bottom: 2px solid #eeeeee;
     cursor: pointer;
-    opacity: 0.6;
+    opacity: 0.8;
     transition: all 0.3s;
-    color: white;
     overflow: hidden;
+    text-align: center;
+}
+
+.dashboard-item a, .dashboard-item a:hover {
+	text-decoration: none;
 }
 
 .dashboard-item i {
-	font-size: 60px;
+	display: inline-block;
+	margin: 10px;
 	display: block;
 	position: relative;
 	font-size: 115px;
-    display: block;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    opacity: 0.6;
-    color: white;
+    opacity: 1;
 }
+
+@media only screen and (min-width: 768px) {
+	.dashboard-item i {
+		font-size: 100px;
+		margin-bottom: 20px;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.dashboard-item i {
+		font-size: 90px;
+		margin-bottom: 20px;
+	}
+}
+
+
 
 .dashboard-item:hover {
 	opacity: 1;
+	background: #fbfeff;
 }
 
-.actual-seasons-item {
-	background: #607d8b;
+.actual-seasons-item i {
+	color: #607d8b;
 }
 
-.create-seasons-item {
-	background: #673AB7;
+.create-seasons-item i {
+	color: #7E57C2;
 }

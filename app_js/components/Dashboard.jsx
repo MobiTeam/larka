@@ -12,7 +12,7 @@ class Dashboard extends React.Component {
 				<DocumentTitle title={ SITE_NAME + ': личный кабинет' }>
 					<div className="container-fluid display-table">
 						<div className="row display-table-row">
-							<Sidebar userRole={this.props.user.role } />
+							<Sidebar userRole={ this.props.role } />
 							<div className="dashboard-wrapper col col-md-10 col-sm-11 display-table-cell v-align">
 								<div className="row">
 									<Navbar />
@@ -30,4 +30,10 @@ class Dashboard extends React.Component {
 	} 
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+	return {
+		role : state.user.role
+	}
+}
+
+export default connect(mapStateToProps)(Dashboard);

@@ -9,17 +9,21 @@ class Seasons extends React.Component {
 		return (
 				<DocumentTitle title={ SITE_NAME + ': управление сезонами' }>
 					<div className='row season-items'>
-						<div className="col-xs-12 col-sm-4 sol-md-3 col-lg-3">
-							<div className='dashboard-item actual-seasons-item'>
-								<span>Действующие сезоны</span>
-								<i className="fa fa-clock-o" aria-hidden="true"></i>
-							</div>
+						<div className="col-xs-12 col-sm-6 sol-md-4 col-lg-3">
+							<Link to='/dashboard/seasons/list' className='default-link-style'>
+								<div className='dashboard-item actual-seasons-item'>
+									<i className="fa fa-clock-o" aria-hidden="true"></i>
+									<span>Действующие сезоны</span>
+								</div>
+							</Link>
 						</div>
-						<div className="col-xs-12 col-sm-4 sol-md-3 col-lg-3">
-							<div className='dashboard-item create-seasons-item'>
-								<span>Создать новый сезон</span>
-								<i className="fa fa-calendar-plus-o" aria-hidden="true"></i>
-							</div>
+						<div className="col-xs-12 col-sm-6 sol-md-4 col-lg-3">
+							<Link to='/dashboard/seasons/new' className='default-link-style'>
+								<div className='dashboard-item create-seasons-item'>
+									<i className="fa fa-calendar-plus-o" aria-hidden="true"></i>
+									<span>Создать новый сезон</span>
+								</div>
+							</Link>
 						</div>
 	                </div>    
 				</DocumentTitle>
