@@ -17,9 +17,9 @@ class Season extends Model
     ];
 
     // Скрытые поля при выводе
-    protected $hidden = [
-        'id'
-    ];
+/*    protected $hidden = [
+
+    ];*/
 
     // Дата начала set
     public function setDateStartAttribute($date)

@@ -12,6 +12,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Dingo\Api\Routing\Helpers;
 
+/*
+    api/season/season (GET) / index - возвращает информацию по всем сезонам (200 код)
+    api/season/create (POST) / create - Создание сезона.получает POST и сохраняет сезоны (201 код и 500 ошибка)
+    api/season/show/ID (GET) / show - по номеру id показывает информацию по сезону. (200 код или 404, если сезона с таким id)
+    api/season/update/ID (PUT) / update - по номеру id обновляет данные по сезону. (200 код или 404, если сезона с таким id)
+    api/season/delete/ID (DELETE) / delete - по номеру id удаляет данные по сезону. (200 код или 404, если сезона с таким id)
+*/
+
 class SeasonController extends Controller
 {
 
@@ -30,7 +38,7 @@ class SeasonController extends Controller
      */
     public function create(Request $request)
     {
-        // Указываем какие переменные получить
+        // Указываем какие переменные получить из POST
         $inputData = $request->only(['name', 'description', 'date_start', 'date_finish']);
         $season = new Season($inputData);
         $season->save();
@@ -83,6 +91,8 @@ class SeasonController extends Controller
     public function update(Request $request, $id)
     {
         $season = Season::find($id);
+        if(!$season)
+            throw new NotFoundHttpException;
         $inputData = $request->only(['name', 'description', 'date_start', 'date_finish']);
         $season->fill($inputData);
         if($season->save())
@@ -101,6 +111,8 @@ class SeasonController extends Controller
     public function destroy($id)
     {
         $season = Season::find($id);
+        if(!$season)
+            throw new NotFoundHttpException;
         if($season->delete())
             return response()->json(['status' => 'deleted'], 200);
         else
