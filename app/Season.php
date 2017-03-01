@@ -43,4 +43,9 @@ class Season extends Model
        return Carbon::createFromFormat('Y-m-d', $date)->format('d.m.Y');
     }
 
+    public function images() {
+        return $this->belongsToMany('App\Image')
+                ->withTimestamps();
+    }
+
 }

@@ -32,7 +32,6 @@ $api->version('v1', function (Router $api) {
                 'message' => 'Access to this item is only for authenticated user. Provide a token in your request!'
             ]);
         });
-
         // Обновление токена
         $api->get('refresh', [
             'middleware' => 'jwt.refresh',

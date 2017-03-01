@@ -13,9 +13,9 @@ class CreateInfoGroupTable extends Migration
      */
     public function up()
     {
-        Schema::table('info_groups', function (Blueprint $table) {
+        Schema::create('info_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('seasons_id')->unsigned();
+            $table->integer('season_id')->unsigned();
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->integer('capacity');
@@ -25,6 +25,10 @@ class CreateInfoGroupTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::table('info_groups', function($table) {
+            $table->foreign('season_id')->references('id')->on('seasons');
+       });
     }
 
     /**

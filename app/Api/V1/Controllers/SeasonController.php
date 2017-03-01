@@ -3,6 +3,7 @@
 namespace App\Api\V1\Controllers;
 
 use App\Season;
+use App\Image;
 use JWTAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -40,8 +41,13 @@ class SeasonController extends Controller
     {
         // Указываем какие переменные получить из POST
         $inputData = $request->only(['name', 'description', 'date_start', 'date_finish']);
+
+        // $sourceFile = $request->only('source');
+        $sourceFile = ['source'=>'23'];
+        $images = new Image($sourceFile);
         $season = new Season($inputData);
         $season->save();
+        // $season->images()->save($images);
         return response()->json(['status' => 'created'], 201);
     }
 
@@ -114,7 +120,7 @@ class SeasonController extends Controller
         if(!$season)
             throw new NotFoundHttpException;
         if($season->delete())
-            return response()->json(['status' => 'deleted'], 200);
+            return response()->json(['status' => 'deleted', 'id'=>$id], 200);
         else
             return $this->response->error('could not delete', 500);
     }
