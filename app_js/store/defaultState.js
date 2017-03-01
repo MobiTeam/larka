@@ -17,9 +17,14 @@ const defaultState = {
 		'errorMsg'	 : '',
 		'success'	 : false 
 	},
+	'season' : {
+		'statusText' : '',
+		'isPersist'  : true
+	},
+	'seasonList' : [],
 	'spinner' : false,
 	'hideSidebarOnSmallScr' : true,
-	'currentTitle' : hashTitle[location.pathname] || ''
+	'currentTitle' : hashTitle[location.pathname] ? hashTitle[location.pathname] : (hashTitle[location.pathname.replace(/(.*)(\/.*)/, '$1')] || '')
 }
 
 export default defaultState;

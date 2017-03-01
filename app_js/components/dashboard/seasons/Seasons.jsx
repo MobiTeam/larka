@@ -13,7 +13,7 @@ class Seasons extends React.Component {
 							<Link to='/dashboard/seasons/list' className='default-link-style'>
 								<div className='dashboard-item actual-seasons-item'>
 									<i className="fa fa-clock-o" aria-hidden="true"></i>
-									<span>Действующие сезоны</span>
+									<span>Список сезонов</span>
 								</div>
 							</Link>
 						</div>
