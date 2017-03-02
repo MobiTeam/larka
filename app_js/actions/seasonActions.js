@@ -25,3 +25,10 @@ export const createNewSeasonError = (payload) => {
 		type: 'CREATE_SEASON_ERROR'
 	}
 }
+
+export const localUpdateSeason = (payload) => {
+	return {
+		type: 'LOCAL_UPDATE_SEASON',
+		payload
+	}
+}

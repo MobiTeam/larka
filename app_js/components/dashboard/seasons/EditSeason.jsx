@@ -4,11 +4,15 @@ import { SITE_NAME } from '../../../constants/conf'
 import { connect } from 'react-redux'
 import EditForm from './EditForm'
 
-class CreateSeason extends React.Component {
-	componentDidMount() {
+class EditSeason extends React.Component {
+	componentWillMount () {
+		console.log(this.props.params.seasonId);
+		// fetch сезона по его ID
+	}
+	componentDidMount () {
 		this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave.bind(this))
   	}
-	routerWillLeave() {
+	routerWillLeave () {
 		if (!this.props.isPersist) {
 			return window.confirm('Вы уверены что хотите перейти? Данный сезон не был сохранен.');
 		}
@@ -34,11 +38,11 @@ class CreateSeason extends React.Component {
 	}
 	render () {
 		return (
-				<DocumentTitle title={ SITE_NAME + ': создать новый сезон' }>
+				<DocumentTitle title={ SITE_NAME + ': редактирование сезона' }>
 					<div className="row col-xs-12 col-md-8 col-lg-7">
 						{ this.printStatusText() }
 						<div className='create-season-wrapper'>
-							<EditForm />
+							<EditForm  />
 						</div>						
 					</div>
 				</DocumentTitle>
@@ -53,5 +57,5 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(CreateSeason);
+export default connect(mapStateToProps)(EditSeason);
 

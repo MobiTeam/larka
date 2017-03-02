@@ -27,6 +27,7 @@ import DashboardIndex from './components/dashboard/Index'
 
 import Seasons from './components/dashboard/seasons/Seasons'
 import CreateSeason from './components/dashboard/seasons/CreateSeason'
+import EditSeason from './components/dashboard/seasons/EditSeason'
 import SeasonsList from './components/dashboard/seasons/SeasonsList'
 
 import Profile from './components/dashboard/profile/Profile'
@@ -79,6 +80,7 @@ render(
 						<Route component={canSee(Wrapper, [admin])}>										
 							<Route path='/dashboard/seasons' component={ Seasons } />					
 							<Route path='/dashboard/seasons/new' component={ CreateSeason } />					
+							<Route path='/dashboard/seasons/edit/:seasonId' component={ EditSeason } />					
 							<Route path='/dashboard/seasons/list' component={ SeasonsList } />					
 						</Route>	
 					</Route>
