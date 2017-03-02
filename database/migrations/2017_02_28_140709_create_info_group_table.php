@@ -16,8 +16,8 @@ class CreateInfoGroupTable extends Migration
         Schema::create('info_groups', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('season_id')->unsigned();
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
+            $table->string('name', 512)->nullable();
+            $table->string('description', 2048)->nullable();
             $table->integer('capacity');
             $table->integer('count_training');
             $table->double('price');

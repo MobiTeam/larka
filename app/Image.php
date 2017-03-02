@@ -8,7 +8,7 @@ class Image extends Model
 {
 
     protected $fillable = [
-        'source',
+        'source','name',
     ];
 
     public function seasons() {

@@ -7,6 +7,7 @@ use App\Image;
 use JWTAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -31,7 +32,10 @@ class SeasonController extends Controller
      */
     public function index()
     {
-        return Season::all();
+        $season = Season::all();
+        if(!$season)
+            return response()->json(['seasons' => []], 200);
+        return $season;
     }
 
     /**
@@ -40,15 +44,54 @@ class SeasonController extends Controller
     public function create(Request $request)
     {
         // Указываем какие переменные получить из POST
+        // Получаем основные данные для сезона
         $inputData = $request->only(['name', 'description', 'date_start', 'date_finish']);
-
-        // $sourceFile = $request->only('source');
-        $sourceFile = ['source'=>'23'];
-        $images = new Image($sourceFile);
         $season = new Season($inputData);
         $season->save();
-        // $season->images()->save($images);
-        return response()->json(['status' => 'created'], 201);
+
+        // Допустимые расширения картинки
+        $availExt = ['jpg', 'jpeg', 'png', 'bmp'];
+        // Проверяем пришла ли картинка
+        $statusMessage = 'created';
+        $badFileName = '';
+        if($request->hasFile('file')){
+            foreach ($request->file('file') as $key=>$value) {
+                // Файл имеет неправильное расширение
+                if (array_search(strtolower($value->getClientOriginalExtension()), $availExt) === false) {
+                    $fileName = $value->getClientOriginalName();
+                    $badFileName .= $fileName.',';
+                    $statusMessage = $badFileName.'';
+                    $statusCode = 206;
+                }
+                // Файл имеет корректное расширение
+                else{
+                    // Новое наименование файла
+                    $imageName = 'season_'.$season['id'].'_'.$key.'_'.date('d.m.Y').'.'.$value->getClientOriginalExtension();
+                    // Оригинальное имя файла
+                    $fileName = $value->getClientOriginalName();
+                    // Путь сохранения файла
+                    $path = $value->move('images/seasons', $imageName);
+                    // Создание нового экземпляра файла
+                    $sourceFile = ['source'=>$path, 'name'=>$fileName];
+                    $images = new Image($sourceFile);
+                    $season->images()->save($images);
+                    $statusCode = 201;
+                }
+            }
+            // Сохраняем стандартную картинку
+            $season->default_image = $path;
+            $season->save();
+        }
+        // Запрос пришел без файлов (204)
+        else {
+            $statusMessage = 'created without files';
+            $statusCode = 201;
+        }
+        /*
+        201 - успешно сохранено и загружено со всеми файлами или сохранено без файлов, т.к. они не пришли
+        206 - сохранено и загружено, но некоторые файлы имели неверное расширение
+        */
+        return response()->json(['message' => $statusMessage], $statusCode);
     }
 
     /**
