@@ -1,0 +1,27 @@
+.reload-span-season {
+	padding: 5px;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.reload-span-season:hover {
+	text-decoration: none;
+}
+
+.photo-drop-zone {
+	transition: all 0.2s;
+	opacity: 0.8;
+	cursor: pointer;
+	background-color: #ffffe5;
+	padding: 10px;
+	height: 80px;
+	width: 100%;
+	border-width: 2px; 
+	border-color: rgb(102, 102, 102); 
+	border-style: dashed; 
+	border-radius: 5px;
+}
+
+.photo-drop-zone:hover {
+	opacity: 1;
+}

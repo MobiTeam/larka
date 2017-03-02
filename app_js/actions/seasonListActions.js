@@ -16,7 +16,7 @@ export const fetchAllSeasons = (payload, { redirect, showPreloader, additionHead
 export const fetchAllSeasonsSuccess = (payload) => {
 	return {
 		type: 'FETCH_SEASONS_SUCCESS',
-		payload: payload.seasons
+		payload: payload.seasons || []
 	}
 }
 

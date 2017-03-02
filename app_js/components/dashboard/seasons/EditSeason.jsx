@@ -1,13 +1,25 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title'
 import { SITE_NAME } from '../../../constants/conf'
+import { fetchSeason } from '../../../actions/seasonActions'
 import { connect } from 'react-redux'
 import EditForm from './EditForm'
 
 class EditSeason extends React.Component {
 	componentWillMount () {
-		console.log(this.props.params.seasonId);
-		// fetch сезона по его ID
+		this.loadSeasonData();
+	}
+	loadSeasonData () {
+		const { seasonId } = this.props.params;
+		if (seasonId) {
+			this.props.fetchSeason({ id : seasonId }, {
+				redirect: false, 
+	            showPreloader: true,
+	            additionHeader: {
+	              "Authorization": `Bearer{${ this.props.token }}`
+	            }
+			})
+		}
 	}
 	componentDidMount () {
 		this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave.bind(this))
@@ -30,22 +42,32 @@ class EditSeason extends React.Component {
 	}
 	printStatusText () {
 		if (this.props.statusText == '') return null;
-		return (
-				<div className={ 'alert alert-' + (this.props.isPersist ? 'success' : 'danger') }>
+		return this.props.errFlag ? this.printErrorMsg() : this.printSuccessMsg(); 		
+	}
+	printSuccessMsg () {
+		return (<div className='alert alert-success'>
 					{ this.props.statusText }
-				</div>
-			)
+				</div>);
+	}
+	printErrorMsg () {
+		return (<div className='alert alert-danger'>
+					{ this.props.statusText }
+					<span className='reload-span-season' onClick={ this.loadSeasonData.bind(this) }>Нажмите для повторной загрузки</span>
+				</div>);
+	}
+	printForm () {
+		return (<div className='create-season-wrapper'>
+					<EditForm formTitle='Форма редактирования сезона' submitBtnTitle='Сохранить изменения' />
+				</div>);
 	}
 	render () {
 		return (
-				<DocumentTitle title={ SITE_NAME + ': редактирование сезона' }>
-					<div className="row col-xs-12 col-md-8 col-lg-7">
-						{ this.printStatusText() }
-						<div className='create-season-wrapper'>
-							<EditForm  />
-						</div>						
-					</div>
-				</DocumentTitle>
+			<DocumentTitle title={ SITE_NAME + ': редактирование сезона' }>
+				<div className="row col-xs-12 col-md-8 col-lg-7">
+					{ this.printStatusText() }
+					{ !this.props.errFlag ? this.printForm() : null }											
+				</div>
+			</DocumentTitle>
 		)		
 	}
 }
@@ -53,9 +75,18 @@ class EditSeason extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		statusText : state.season.statusText,
-		isPersist : state.season.isPersist
+		errFlag    : state.season.errFlag,
+		isPersist  : state.season.isPersist,
+		token      : state.user.token
 	}
 }
 
-export default connect(mapStateToProps)(EditSeason);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		fetchSeason : (payload, meta) => { dispatch(fetchSeason(payload, meta)) }
+	}
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditSeason);
 

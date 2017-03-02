@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import serialize from 'form-serialize'
 import { createNewSeason, localUpdateSeason } from '../../../actions/seasonActions'
+import Dropzone from 'react-dropzone'
 import moment from 'moment'
 import 'moment/locale/ru'
 moment.locale('ru');
@@ -17,7 +18,8 @@ class EditForm extends React.Component {
 		date_finish : moment(),
 		name : '',
 		description : '',
-		formTitle : 'Форма создания сезона'
+		formTitle : 'Форма создания сезона',
+		submitBtnTitle : 'Создать сезон'
 	}
 	onFormSubmit (event) {
 		event.preventDefault();
@@ -40,7 +42,6 @@ class EditForm extends React.Component {
 		} else {
 			alert(`Пол${ emptyFields.length == 1 ? 'е' : 'я' } ${ emptyFields.join(', ') } необходимо заполнить`);
 		}
-
 		return false;
 	}
 	handleFieldChange (event) {
@@ -53,9 +54,27 @@ class EditForm extends React.Component {
 			[key]: date
 		})
 	}
+	createMomentDate (date) {
+		let dateChunks;
+		if (!date) {
+			dateChunks = [];
+		} else if (typeof(date) == "string"){
+			dateChunks = date.split('.').reverse();
+			dateChunks[1]--;
+		} else {
+			return date;
+		}
+		return moment(dateChunks);
+	}
+	onDrop (acceptedFiles, rejectedFiles) {
+    	console.log('Accepted files: ', acceptedFiles);
+    	console.log('Rejected files: ', rejectedFiles);
+    }
 	render () {
+		const sDate = this.createMomentDate(this.props.date_start);
+		const fDate = this.createMomentDate(this.props.date_finish);
 		return (				
-			<form ref="seasonForm" action="" method="POST" onSubmit={ this.onFormSubmit.bind(this) }>
+			<form ref="seasonForm" encType="multipart/form-data" action="" method="POST" onSubmit={ this.onFormSubmit.bind(this) }>
 				<h4>{ this.props.formTitle }</h4>
 				<div className="form-group">
 				    <label htmlFor="sezName">Название сезона</label>
@@ -71,9 +90,9 @@ class EditForm extends React.Component {
 				    	name="date_start"
 				    	className="form-control"
 				    	id="sezDateStart"
-						selected={ this.props.date_start }
-						selectsStart  startDate={ this.props.date_start }
-						endDate={ this.props.date_finish }
+						selected={ sDate }
+						selectsStart  startDate={ sDate }
+						endDate={ fDate }
 						onChange={ this.handleDateChange.bind(this, 'date_start') } 
 						placeholderText="ДД.ММ.ГГГГ"
 						  />
@@ -84,19 +103,25 @@ class EditForm extends React.Component {
 						name="date_finish"
 						className="form-control" 
 						id="sezDateEnd"
-						selected={ this.props.date_finish }
-						selectsEnd  startDate={this.props.date_start}
-						endDate={ this.props.date_finish }
+						selected={ fDate }
+						selectsEnd  startDate={ sDate }
+						endDate={ fDate }
 						onChange={ this.handleDateChange.bind(this, 'date_finish') }
 						placeholderText="ДД.ММ.ГГГГ"
 						 />
+				</div>
+				<div className="form-group">
+					<label className="gallery-label">Фотографии</label>
+					<Dropzone onDrop={this.onDrop} className="photo-drop-zone" accept="image/*">
+              			<div>Для загрузки фотографий переместите их сюда либо кликните внутри пунктирной области</div>
+            		</Dropzone>	
 				</div>
 				<div className="form-group">
 					<button type="submit" className="btn btn-labeled btn-success">
 			    		<span className="btn-label">
 			    			<i className="fa fa-floppy-o" aria-hidden="true"></i>
 			    		</span>
-			    		Создать сезон
+			    		{ this.props.submitBtnTitle } 
 			    	</button>
 				</div>		
 			</form>						
