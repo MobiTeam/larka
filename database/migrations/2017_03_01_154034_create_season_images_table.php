@@ -34,6 +34,6 @@ class CreateSeasonImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('season_images');
+        Schema::dropIfExists('image_season');
     }
 }
