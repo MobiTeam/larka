@@ -1,11 +1,18 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title'
 import { SITE_NAME } from '../../../constants/conf'
+import { dropSeason } from '../../../actions/seasonActions'
 import { connect } from 'react-redux'
 import EditForm from './EditForm'
 
 class CreateSeason extends React.Component {
-	componentDidMount() {
+	static propTypes = {
+		dropSeason : React.PropTypes.func.isRequired
+	}
+	componentWillMount () {
+		this.props.dropSeason();
+	}
+	componentDidMount () {
 		this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave.bind(this))
   	}
 	routerWillLeave() {
@@ -34,14 +41,14 @@ class CreateSeason extends React.Component {
 	}
 	render () {
 		return (
-				<DocumentTitle title={ SITE_NAME + ': создать новый сезон' }>
-					<div className="row col-xs-12 col-md-8 col-lg-7">
-						{ this.printStatusText() }
-						<div className='create-season-wrapper'>
-							<EditForm />
-						</div>						
-					</div>
-				</DocumentTitle>
+			<DocumentTitle title={ SITE_NAME + ': создать новый сезон' }>
+				<div className="row col-xs-12 col-md-8 col-lg-7">
+					{ this.printStatusText() }
+					<div className='create-season-wrapper'>
+						<EditForm />
+					</div>						
+				</div>
+			</DocumentTitle>
 		)		
 	}
 }
@@ -53,5 +60,10 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(CreateSeason);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		dropSeason : () => { dispatch(dropSeason()) }
+	}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSeason);
 

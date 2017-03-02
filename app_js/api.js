@@ -34,4 +34,5 @@ export const profileInfoUpdate = createFetchPromise('/user/update', 'POST');
 
 export const newSesonFetch = createFetchPromise('/season/create', 'POST'); 
 export const allSesonsFetch = createFetchPromise('/season/season', 'GET'); 
+export const seasonFetch = createFetchPromise('/season/show/[:id]', 'GET'); 
 export const deleteSeason = createFetchPromise('/season/delete/[:id]', 'DELETE'); 

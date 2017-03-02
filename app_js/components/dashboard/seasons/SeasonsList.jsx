@@ -75,7 +75,7 @@ class SeasonList extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		token : state.user.token,
-		seasonList : state.seasonList
+		seasonList : state.seasonList.data
 	}
 }
 
