@@ -13,13 +13,18 @@ const insertData = (link, data) => {
 const createFetchPromise = (link, method = 'POST') => {
 	let query = {
 		method,
-		headers: {
-			"Content-Type": "application/json"
-		}
+		headers: {}
 	}
 	return (body, addHeader) => {
 		const dataLink = insertData(link, body);
-		if (body && ['POST', 'PUT'].indexOf(method) != -1) query.body = JSON.stringify(body);
+		if (body && ['POST', 'PUT'].indexOf(method) != -1) {
+			if (Object.prototype.toString.call(body) === "[object FormData]") {
+				query.body = body;
+			} else {
+				query.body = JSON.stringify(body);
+				query.headers["Content-Type"] = "application/json";
+			}
+		} 
 		if (addHeader) query.headers = { ...query.headers, ...addHeader}; 
 		return fetch(`${BASE_URL}${dataLink}`, query); 
 	}

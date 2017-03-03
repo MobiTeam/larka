@@ -8,13 +8,39 @@
 	text-decoration: none;
 }
 
+.image-thumb-wrapper {
+	margin: 8px 0px;
+}
+
+.image-thumb-delete-span {
+	position: absolute;
+    margin: 10px;
+    display: block;
+    border: 1px solid #f22626;
+    padding: 3px;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+    color: #f22626;
+    opacity: 0.8;
+    transition: 0.2s all;
+}
+
+.image-thumb-delete-span:hover {
+	opacity: 1;
+}
+
+.selected-image-span {
+	font-weight: bold;
+}
+
 .photo-drop-zone {
 	transition: all 0.2s;
 	opacity: 0.8;
 	cursor: pointer;
 	background-color: #ffffe5;
 	padding: 10px;
-	height: 80px;
+	min-height: 80px;
 	width: 100%;
 	border-width: 2px; 
 	border-color: rgb(102, 102, 102); 

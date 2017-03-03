@@ -18,9 +18,11 @@ const defaultState = {
 		'success'	 : false 
 	},
 	'season' : {
-		'statusText' : '',
-		'isPersist'  : true,
-		'errFlag'    : false
+		'statusText'    : '',
+		'isPersist'     : true,
+		'errFlag'       : false,
+		'images'        : [],
+		'acceptedFiles' : []
 	},
 	'seasonList' : { 
 		'data' : [],

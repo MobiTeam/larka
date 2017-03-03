@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker'
 import serialize from 'form-serialize'
 import { createNewSeason, localUpdateSeason } from '../../../actions/seasonActions'
 import Dropzone from 'react-dropzone'
+import uniqid from 'uniqid'
 import moment from 'moment'
 import 'moment/locale/ru'
 moment.locale('ru');
@@ -23,13 +24,25 @@ class EditForm extends React.Component {
 	}
 	onFormSubmit (event) {
 		event.preventDefault();
-		const formData = serialize(this.refs.seasonForm, { hash: true });
+
+		// проверка на возможность работы с FormData
+		if (!FormData || !(new FormData().getAll)) {
+			alert('Версия вашего браузера устарела, пожалуйста обновитесь до более новой.');
+			return false;
+		}
+
+		const formData = new FormData(this.refs.seasonForm); 
+
+		for (var obj of this.props.acceptedFiles) {
+			formData.append('file[]', obj.file);
+		}
+
 		const emptyFields = [];
 		
-		if (!formData.name) emptyFields.push('"Название сезона"');
-		if (!formData.description) emptyFields.push('"Краткое описание"');
-		if (!formData.date_start) emptyFields.push('"Начало сезона"');
-		if (!formData.date_finish) emptyFields.push('"Окончание сезона"');
+		if (!formData.get('name')) emptyFields.push('"Название сезона"');
+		if (!formData.get('description')) emptyFields.push('"Краткое описание"');
+		if (!formData.get('date_start')) emptyFields.push('"Начало сезона"');
+		if (!formData.get('date_finish')) emptyFields.push('"Окончание сезона"');
 
 		if (emptyFields.length == 0) {
 			this.props.createNewSeason(formData, {
@@ -67,8 +80,46 @@ class EditForm extends React.Component {
 		return moment(dateChunks);
 	}
 	onDrop (acceptedFiles, rejectedFiles) {
-    	console.log('Accepted files: ', acceptedFiles);
-    	console.log('Rejected files: ', rejectedFiles);
+		this.props.localUpdateSeason({
+			'acceptedFiles' : [...this.props.acceptedFiles, ...acceptedFiles.map(file => { return { file, id: uniqid() } })]
+		})
+    }
+    deleteAcceptedImage (imageId, event) {
+    	this.props.localUpdateSeason({
+			'acceptedFiles' : this.props.acceptedFiles.filter(file => file.id != imageId)
+		})
+    }
+    printThumbImage (obj) {
+    	return (<div className="image-thumb-wrapper" key={ obj.id }>
+	    			<span className="image-thumb-delete-span" onClick={ this.deleteAcceptedImage.bind(this, obj.id) }>
+	    				<i className="fa fa-trash" aria-hidden="true"></i> Удалить
+	    			</span>
+	    			<img className="img-thumbnail img-responsive" alt="Превью-изображение" src={ obj.file.preview } />
+    			</div>);
+    }
+    printAcceptedFiles () {
+    	if (this.props.acceptedFiles.length == 0) return null;
+    	return (
+			<div className="form-group">
+				<span className="selected-image-span">Выбранные фотографии</span>
+				{ this.props.acceptedFiles.map(this.printThumbImage.bind(this)) }
+			</div>
+		)
+    }
+    printLoadedImages () {
+    	if (this.props.images.length == 0) return null;
+    	return (
+    			<div className="form-group">
+					<label className="gallery-label">Загруженные фотографии</label>	
+					{ 
+						this.props.images.map((el) => {
+							return (<div key={ el.id } >
+								<a href={'/' + el.source } target="blank">{ el.name }</a>
+							</div>)
+						}) 
+					}
+				</div>
+    		)
     }
 	render () {
 		const sDate = this.createMomentDate(this.props.date_start);
@@ -110,12 +161,14 @@ class EditForm extends React.Component {
 						placeholderText="ДД.ММ.ГГГГ"
 						 />
 				</div>
+				{ this.printLoadedImages() }
 				<div className="form-group">
-					<label className="gallery-label">Фотографии</label>
-					<Dropzone onDrop={this.onDrop} className="photo-drop-zone" accept="image/*">
+					<label className="gallery-label">Добавить фотографии</label>
+					<Dropzone onDrop={ this.onDrop.bind(this) } className="photo-drop-zone" accept="image/*">
               			<div>Для загрузки фотографий переместите их сюда либо кликните внутри пунктирной области</div>
             		</Dropzone>	
 				</div>
+				{ this.printAcceptedFiles() }
 				<div className="form-group">
 					<button type="submit" className="btn btn-labeled btn-success">
 			    		<span className="btn-label">
@@ -137,7 +190,10 @@ const mapStateToProps = (state) => {
 		date_start : state.season.date_start,
 		date_finish : state.season.date_finish,
 		name : state.season.name,
-		description : state.season.description
+		description : state.season.description,
+		acceptedFiles : state.season.acceptedFiles,
+		loadedFiles : state.season.loadedFiles,
+		images : state.season.images
 	}
 }
 
