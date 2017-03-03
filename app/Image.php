@@ -11,6 +11,11 @@ class Image extends Model
         'source','name',
     ];
 
+    // Скрытые поля при выводе
+    protected $hidden = [
+        'updated_at', 'deleted_at',
+    ];
+
     public function seasons() {
         return $this->belongsToMany('App\Season')
                 ->withTimestamps();

@@ -76,13 +76,14 @@ class SeasonController extends Controller
                     $images = new Image($sourceFile);
                     $season->images()->save($images);
                     $statusCode = 201;
+                    // Сохраняем стандартную картинку
+                    $season->default_image = $path;
+
                 }
             }
-            // Сохраняем стандартную картинку
-            $season->default_image = $path;
             $season->save();
         }
-        // Запрос пришел без файлов (204)
+        // Запрос пришел без файлов (201)
         else {
             $statusMessage = 'created without files';
             $statusCode = 201;
@@ -115,8 +116,10 @@ class SeasonController extends Controller
     {
         $season = Season::find($id);
         if(!$season)
-            throw new NotFoundHttpException;
-        return $season;
+            return response()->json(['seasons' => []], 200);
+         $images = $season->images()->get();
+         return $this->response->array(['season'=>$season->toArray(),'images'=>$images->toArray()]);
+        // return $season;
     }
 
     /**
