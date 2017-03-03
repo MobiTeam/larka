@@ -13,7 +13,7 @@ class Image extends Model
 
     // Скрытые поля при выводе
     protected $hidden = [
-        'updated_at', 'deleted_at',
+        'updated_at', 'deleted_at','pivot'
     ];
 
     public function seasons() {
