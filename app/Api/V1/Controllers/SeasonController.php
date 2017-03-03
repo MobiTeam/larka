@@ -71,14 +71,17 @@ class SeasonController extends Controller
                     $fileName = $value->getClientOriginalName();
                     // Путь сохранения файла
                     $path = $value->move('images/seasons', $imageName);
+                    // Изменяем слеш
+                    $path = str_replace('\\', '/', $path);
                     // Создание нового экземпляра файла
+                    // Местоположение файла и наименование для сохранение в изображения
                     $sourceFile = ['source'=>$path, 'name'=>$fileName];
                     $images = new Image($sourceFile);
                     $season->images()->save($images);
+                    // Возвращаемый код
                     $statusCode = 201;
                     // Сохраняем стандартную картинку
                     $season->default_image = $path;
-
                 }
             }
             $season->save();
