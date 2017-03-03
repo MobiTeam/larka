@@ -96,17 +96,6 @@ class SeasonController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Показать созданный сезон по его id
      *
      * @param  int  $id
@@ -118,8 +107,9 @@ class SeasonController extends Controller
         if(!$season)
             return response()->json(['seasons' => []], 200);
          $images = $season->images()->get();
-         return $this->response->array(['season'=>$season->toArray(),'images'=>$images->toArray()]);
-        // return $season;
+         $seasonData = $season->toArray();
+         $seasonData['images'] = $images;
+         return $this->response->array(['seasons'=> $seasonData]);
     }
 
     /**
