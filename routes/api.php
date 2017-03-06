@@ -56,7 +56,7 @@ $api->version('v1', function (Router $api) {
             $api->get('season', 'App\Api\V1\Controllers\SeasonController@index');
             $api->post('create', 'App\Api\V1\Controllers\SeasonController@create');
             $api->get('show/{id}', 'App\Api\V1\Controllers\SeasonController@show');
-            $api->put('update/{id}', 'App\Api\V1\Controllers\SeasonController@update');
+            $api->post('update/{id}', 'App\Api\V1\Controllers\SeasonController@update');
             $api->delete('delete/{id}', 'App\Api\V1\Controllers\SeasonController@destroy');
         });
 

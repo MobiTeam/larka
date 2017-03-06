@@ -125,19 +125,70 @@ class SeasonController extends Controller
     public function update(Request $request, $id)
     {
         $season = Season::find($id);
+        // Проверка сезона с таким id
         if(!$season)
             throw new NotFoundHttpException;
-        $inputData = $request->only(['name', 'description', 'date_start', 'date_finish']);
+        // Присланные параметры
+        $inputData = $request->only(['name', 'description', 'date_start','date_finish']);
+        // Заменяем аналогичные параметры, которые уже имеются присланными
         $season->fill($inputData);
-        if($season->save())
-            return response()->json(['status' => 'updated'], 200);
-        else
+        // Если сезон сохранился, то продолжаем действия
+        if(!($season->save()))
             return $this->response->error('could not update', 500);
+        else {
+            // Массив удаленных файлов
+            // default image удаление и проверка, что не эта картинка была удалена
+            $receivedIdFiles = explode(",",(implode(",",$request->only(['files_id']))));
+            // Удаление файлов, с теми idшниками, которые прислали
+            foreach ($receivedIdFiles as $key => $value) {
+                $id = $value;
+                Image::destroy($value);
+            }
+            // Сохранение новых присланных файлов, если они есть
+            if($request->hasFile('file')){
+                // Допустимые расширения картинки
+                $availExt = ['jpg', 'jpeg', 'png', 'bmp'];
+                foreach ($request->file('file') as $key=>$value) {
+                    // Файл имеет неправильное расширение
+                    if (array_search(strtolower($value->getClientOriginalExtension()), $availExt) === false) {
+                        $fileName = $value->getClientOriginalName();
+                        $badFileName .= $fileName.',';
+                        $statusMessage = $badFileName.'';
+                        $statusCode = 206;
+                    }
+                    // Файл имеет корректное расширение
+                    else{
+                        // Новое наименование файла
+                        $imageName = 'season_'.$season['id'].'_'.$key.'_'.date('d.m.Y').'.'.$value->getClientOriginalExtension();
+                        // Оригинальное имя файла
+                        $fileName = $value->getClientOriginalName();
+                        // Путь сохранения файла
+                        $path = $value->move('images/seasons', $imageName);
+                        // Изменяем слеш
+                        $path = str_replace('\\', '/', $path);
+                        // Создание нового экземпляра файла
+                        // Местоположение файла и наименование для сохранение в изображения
+                        $sourceFile = ['source'=>$path, 'name'=>$fileName];
+                        $images = new Image($sourceFile);
+                        $season->images()->save($images);
+                        // Возвращаемый код
+                        $statusCode = 200;
+                        // Сохраняем стандартную картинку
+
+                    }
+                }
+            }
+            $defaultImage = $season->images()->select('source')->get()->first();
+            $season->default_image = sizeof($defaultImage) == 0 ? null : $defaultImage['source'];
+            $season->save();
+            return response()->json(['status' => 'updated'], 200);
+        }
 
     }
+    
 
     /**
-     * Remove the specified resource from storage.
+     * Мягкое удаление сезона
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -13,7 +13,7 @@ class Season extends Model
 
     // Поля для мультисохранения
     protected $fillable = [
-        'name', 'description', 'date_start','date_finish'
+        'name', 'description', 'date_start','date_finish',
     ];
 
     // Скрытые поля при выводе
