@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import serialize from 'form-serialize'
-import { createNewSeason, localUpdateSeason } from '../../../actions/seasonActions'
+import { createNewSeason, localUpdateSeason, updateSeason } from '../../../actions/seasonActions'
 import Dropzone from 'react-dropzone'
 import uniqid from 'uniqid'
 import moment from 'moment'
@@ -12,6 +12,7 @@ moment.locale('ru');
 class EditForm extends React.Component {
 	static propTypes = {
 		createNewSeason: React.PropTypes.func.isRequired,		
+		updateSeason: React.PropTypes.func.isRequired,		
 		localUpdateSeason: React.PropTypes.func.isRequired		
 	}
 	static defaultProps = { 
@@ -33,9 +34,19 @@ class EditForm extends React.Component {
 
 		const formData = new FormData(this.refs.seasonForm); 
 
+		let sendMethod;
+		if (this.props.id == undefined) {
+			sendMethod = this.props.createNewSeason;
+		} else {
+			sendMethod = this.props.updateSeason;
+			formData.append('id', this.props.id);
+		}
+
 		for (var obj of this.props.acceptedFiles) {
 			formData.append('file[]', obj.file);
 		}
+
+		formData.append('files_id', this.props.deletedImages);
 
 		const emptyFields = [];
 		
@@ -45,7 +56,7 @@ class EditForm extends React.Component {
 		if (!formData.get('date_finish')) emptyFields.push('"Окончание сезона"');
 
 		if (emptyFields.length == 0) {
-			this.props.createNewSeason(formData, {
+			sendMethod(formData, {
 				redirect: false, 
 			    showPreloader: true,
 			    additionHeader: {
@@ -80,7 +91,13 @@ class EditForm extends React.Component {
 		return moment(dateChunks);
 	}
 	onDrop (acceptedFiles, rejectedFiles) {
+		const errorStatus = {};
+		if (rejectedFiles.length != 0) {
+			errorStatus.errFlag = true;
+			errorStatus.statusText = `Загрузка файла(ов) ${ rejectedFiles.map(el => el.name).join(',') } не будет выполнена, т.к. они имеют недопустимое расширение или их размер превышает 2 MB`;
+		}
 		this.props.localUpdateSeason({
+			...errorStatus,
 			'acceptedFiles' : [...this.props.acceptedFiles, ...acceptedFiles.map(file => { return { file, id: uniqid() } })]
 		})
     }
@@ -106,6 +123,12 @@ class EditForm extends React.Component {
 			</div>
 		)
     }
+    deleteLoadedImage (id, event) {
+    	this.props.localUpdateSeason({
+    		'deletedImages' : [...this.props.deletedImages, id],
+			'images' : this.props.images.filter(img => img.id != id)
+		})
+    }
     printLoadedImages () {
     	if (this.props.images.length == 0) return null;
     	return (
@@ -115,6 +138,9 @@ class EditForm extends React.Component {
 						this.props.images.map((el) => {
 							return (<div key={ el.id } >
 								<a href={'/' + el.source } target="blank">{ el.name }</a>
+								<span className='delete-img-span' title='Удалить фото' onClick={ this.deleteLoadedImage.bind(this, el.id) }>
+									<i className="fa fa-trash" aria-hidden="true"></i>
+								</span>
 							</div>)
 						}) 
 					}
@@ -192,14 +218,16 @@ const mapStateToProps = (state) => {
 		name : state.season.name,
 		description : state.season.description,
 		acceptedFiles : state.season.acceptedFiles,
-		loadedFiles : state.season.loadedFiles,
-		images : state.season.images
+		images : state.season.images,
+		deletedImages : state.season.deletedImages,
+		id : state.season.id
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		createNewSeason   : (payload, meta) => { dispatch(createNewSeason(payload, meta)) },	
+		updateSeason      : (payload, meta) => { dispatch(updateSeason(payload, meta)) },	
 		localUpdateSeason : (payload) => { dispatch(localUpdateSeason(payload)) }	
 	}
 }

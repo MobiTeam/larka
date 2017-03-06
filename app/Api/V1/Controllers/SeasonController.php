@@ -108,7 +108,7 @@ class SeasonController extends Controller
     {
         $season = Season::find($id);
         if(!$season)
-            return response()->json(['seasons' => []], 200);
+            return response()->json(['season' => []], 200);
          $images = $season->images()->get();
          $seasonData = $season->toArray();
          $seasonData['images'] = $images;
@@ -119,12 +119,12 @@ class SeasonController extends Controller
      * Обновление сезона
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $season_id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $season_id)
     {
-        $season = Season::find($id);
+        $season = Season::find($season_id);
         // Проверка сезона с таким id
         if(!$season)
             throw new NotFoundHttpException;
@@ -184,7 +184,8 @@ class SeasonController extends Controller
             $defaultImage = $season->images()->select('source')->get()->first();
             $season->default_image = sizeof($defaultImage) == 0 ? null : $defaultImage['source'];
             $season->save();
-            return response()->json(['status' => 'updated'], 200);
+            // return response()->json(['status' => 'updated'], 200);
+            return $this->show($season_id);
         }
 
     }

@@ -1,4 +1,4 @@
-import { newSesonFetch, seasonFetch } from '../api';
+import { newSesonFetch, seasonFetch, seasonUpdate } from '../api';
 
 export const fetchSeason = (payload, { redirect, showPreloader, additionHeader }) => {
 	return {
@@ -34,6 +34,32 @@ export const dropSeason = (payload) => {
 	}
 }
 
+export const updateSeason = (payload, { redirect, showPreloader, additionHeader }) => {
+	return {
+		type: 'UPDATE_SEASON',
+		payload: seasonUpdate(payload, additionHeader),
+		handlers: {
+			'onSuccess': updateSeasonSuccess,
+			'onError': updateSeasonError
+		},
+		redirect,
+		showPreloader
+	}
+}
+
+export const updateSeasonSuccess = (payload) => {
+	return {
+		type: 'UPDATE_SEASON_SUCCESS',
+		payload: payload.season
+	}
+}
+
+export const updateSeasonError = (payload) => {
+	return {
+		type: 'UPDATE_SEASON_ERROR'
+	}
+}
+
 export const createNewSeason = (payload, { redirect, showPreloader, additionHeader }) => {
 	return {
 		type: 'CREATE_SEASON',
@@ -48,6 +74,7 @@ export const createNewSeason = (payload, { redirect, showPreloader, additionHead
 };
 
 export const createNewSeasonSuccess = (payload) => {
+	console.log(payload);
 	return {
 		type: 'CREATE_SEASON_SUCCESS',
 		payload

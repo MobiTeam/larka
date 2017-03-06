@@ -8,6 +8,18 @@
 	text-decoration: none;
 }
 
+.delete-img-span {
+	color: #f22626;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 5px;
+	opacity: 0.9;
+}
+
+.delete-img-span:hover {
+	opacity: 1;
+}
+
 .image-thumb-wrapper {
 	margin: 8px 0px;
 }

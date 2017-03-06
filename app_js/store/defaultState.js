@@ -22,7 +22,8 @@ const defaultState = {
 		'isPersist'     : true,
 		'errFlag'       : false,
 		'images'        : [],
-		'acceptedFiles' : []
+		'acceptedFiles' : [],
+		'deletedImages' : []
 	},
 	'seasonList' : { 
 		'data' : [],

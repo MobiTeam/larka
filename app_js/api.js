@@ -4,11 +4,27 @@ const BASE_URL = `${ location.origin }/api`;
 
 const insertData = (link, data) => {
 	if (!data) return link;
+	if (Object.prototype.toString.call(data) === "[object FormData]") {
+		link = insertDataFromFormData(link, data);
+	} else {
+		link = insertDataFromObj(link, data);
+	}
+	return link;
+} 
+
+const insertDataFromFormData = (link, data) => {
+	for (var pair of data.entries()) {
+		link = link.replace('[:' + pair[0] + ']', pair[1]);
+   	}
+	return link;
+}
+
+const insertDataFromObj = (link, data) => {
 	for (var key in data) {
 		link = link.replace('[:' + key + ']', data[key]);
 	}
 	return link;
-} 
+}
 
 const createFetchPromise = (link, method = 'POST') => {
 	let query = {
@@ -40,4 +56,5 @@ export const profileInfoUpdate = createFetchPromise('/user/update', 'POST');
 export const newSesonFetch = createFetchPromise('/season/create', 'POST'); 
 export const allSesonsFetch = createFetchPromise('/season/season', 'GET'); 
 export const seasonFetch = createFetchPromise('/season/show/[:id]', 'GET'); 
+export const seasonUpdate = createFetchPromise('/season/update/[:id]', 'POST'); 
 export const deleteSeason = createFetchPromise('/season/delete/[:id]', 'DELETE'); 
