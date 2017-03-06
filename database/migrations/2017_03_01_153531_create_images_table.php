@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->string('source', 512);
             $table->string('name', 512)->nullable();
+            $table->string('index')->nullable();
             $table->string('description', 1024)->nullable();
             $table->timestamps();
         });

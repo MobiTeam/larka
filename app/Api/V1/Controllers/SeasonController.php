@@ -64,7 +64,7 @@ class SeasonController extends Controller
                     $statusCode = 206;
                 }
                 // Файл имеет корректное расширение
-                else{
+                else {
                     // Новое наименование файла
                     $imageName = 'season_'.$season['id'].'_'.$key.'_'.date('d.m.Y').'.'.$value->getClientOriginalExtension();
                     // Оригинальное имя файла
@@ -75,7 +75,7 @@ class SeasonController extends Controller
                     $path = str_replace('\\', '/', $path);
                     // Создание нового экземпляра файла
                     // Местоположение файла и наименование для сохранение в изображения
-                    $sourceFile = ['source'=>$path, 'name'=>$fileName];
+                    $sourceFile = ['source' => $path, 'name' => $fileName, 'index' => $key];
                     $images = new Image($sourceFile);
                     $season->images()->save($images);
                     // Возвращаемый код
@@ -145,6 +145,8 @@ class SeasonController extends Controller
                 Image::destroy($value);
             }
             // Сохранение новых присланных файлов, если они есть
+            $maxIndexImage = $season->images()->select('index')->get()->max('index');
+            $maxIndexForImage =  $maxIndexImage;
             if($request->hasFile('file')){
                 // Допустимые расширения картинки
                 $availExt = ['jpg', 'jpeg', 'png', 'bmp'];
@@ -159,7 +161,8 @@ class SeasonController extends Controller
                     // Файл имеет корректное расширение
                     else{
                         // Новое наименование файла
-                        $imageName = 'season_'.$season['id'].'_'.$key.'_'.date('d.m.Y').'.'.$value->getClientOriginalExtension();
+                        $maxIndexForImage++;    
+                        $imageName = 'season_'.$season['id'].'_'.$maxIndexForImage.'_'.date('d.m.Y').'.'.$value->getClientOriginalExtension();
                         // Оригинальное имя файла
                         $fileName = $value->getClientOriginalName();
                         // Путь сохранения файла
@@ -168,7 +171,7 @@ class SeasonController extends Controller
                         $path = str_replace('\\', '/', $path);
                         // Создание нового экземпляра файла
                         // Местоположение файла и наименование для сохранение в изображения
-                        $sourceFile = ['source'=>$path, 'name'=>$fileName];
+                        $sourceFile = ['source'=>$path, 'name'=>$fileName, 'index' => $maxIndexForImage];
                         $images = new Image($sourceFile);
                         $season->images()->save($images);
                         // Возвращаемый код
@@ -185,7 +188,7 @@ class SeasonController extends Controller
         }
 
     }
-    
+
 
     /**
      * Мягкое удаление сезона

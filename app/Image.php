@@ -8,7 +8,7 @@ class Image extends Model
 {
 
     protected $fillable = [
-        'source','name',
+        'source', 'name', 'index',
     ];
 
     // Скрытые поля при выводе
