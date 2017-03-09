@@ -18,7 +18,7 @@ use Dingo\Api\Routing\Helpers;
     api/season/season (GET) / index - возвращает информацию по всем сезонам (200 код)
     api/season/create (POST) / create - Создание сезона.получает POST и сохраняет сезоны (201 код и 500 ошибка)
     api/season/show/ID (GET) / show - по номеру id показывает информацию по сезону. (200 код или 404, если сезона с таким id)
-    api/season/update/ID (PUT) / update - по номеру id обновляет данные по сезону. (200 код или 404, если сезона с таким id)
+    api/season/update/ID (POST) / update - по номеру id обновляет данные по сезону. (200 код или 404, если сезона с таким id)
     api/season/delete/ID (DELETE) / delete - по номеру id удаляет данные по сезону. (200 код или 404, если сезона с таким id)
 */
 
@@ -161,7 +161,7 @@ class SeasonController extends Controller
                     // Файл имеет корректное расширение
                     else{
                         // Новое наименование файла
-                        $maxIndexForImage++;    
+                        $maxIndexForImage++;
                         $imageName = 'season_'.$season['id'].'_'.$maxIndexForImage.'_'.date('d.m.Y').'.'.$value->getClientOriginalExtension();
                         // Оригинальное имя файла
                         $fileName = $value->getClientOriginalName();
@@ -176,11 +176,10 @@ class SeasonController extends Controller
                         $season->images()->save($images);
                         // Возвращаемый код
                         $statusCode = 200;
-                        // Сохраняем стандартную картинку
-
                     }
                 }
             }
+            // Сохраняем стандартную картинку
             $defaultImage = $season->images()->select('source')->get()->first();
             $season->default_image = sizeof($defaultImage) == 0 ? null : $defaultImage['source'];
             $season->save();
@@ -189,7 +188,6 @@ class SeasonController extends Controller
         }
 
     }
-
 
     /**
      * Мягкое удаление сезона

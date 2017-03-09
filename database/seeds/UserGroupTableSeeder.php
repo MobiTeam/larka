@@ -22,5 +22,9 @@ class UserGroupTableSeeder extends Seeder
       DB::table('user_groups')->insert([
               'name' => 'guest',
               'description' => 'Гости']);
+
+      DB::table('user_groups')->insert([
+              'name' => 'trainer',
+              'description' => 'Тренер']);
     }
 }
