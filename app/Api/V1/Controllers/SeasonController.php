@@ -5,6 +5,7 @@ namespace App\Api\V1\Controllers;
 use App\Season;
 use App\Image;
 use JWTAuth;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -33,6 +34,17 @@ class SeasonController extends Controller
     public function index()
     {
         $season = Season::all();
+        if(!$season)
+            return response()->json(['seasons' => []], 200);
+        return $season;
+    }
+
+    /**
+     * Отображаем все действующие сезоны в упрощенном виде для групп
+     */
+    public function brief_index()
+    {
+        $season = Season::where('date_finish', '>=', \DB::raw('CURRENT_DATE'))->get();
         if(!$season)
             return response()->json(['seasons' => []], 200);
         return $season;

@@ -54,10 +54,20 @@ $api->version('v1', function (Router $api) {
         // Сезоны (Work)
         $api->group(['prefix' => 'season'], function(Router $api) {
             $api->get('season', 'App\Api\V1\Controllers\SeasonController@index');
+            $api->get('brief_index', 'App\Api\V1\Controllers\SeasonController@brief_index');
             $api->post('create', 'App\Api\V1\Controllers\SeasonController@create');
             $api->get('show/{id}', 'App\Api\V1\Controllers\SeasonController@show');
             $api->post('update/{id}', 'App\Api\V1\Controllers\SeasonController@update');
             $api->delete('delete/{id}', 'App\Api\V1\Controllers\SeasonController@destroy');
+        });
+
+        // Группы (In process)
+        $api->group(['prefix' => 'group'], function(Router $api) {
+            $api->get('group', 'App\Api\V1\Controllers\InfoGroupController@index');
+            $api->post('create', 'App\Api\V1\Controllers\InfoGroupController@create');
+            $api->get('show/{id}', 'App\Api\V1\Controllers\InfoGroupController@show');
+            $api->post('update/{id}', 'App\Api\V1\Controllers\InfoGroupController@update');
+            $api->delete('delete/{id}', 'App\Api\V1\Controllers\InfoGroupController@destroy');
         });
 
 
