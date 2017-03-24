@@ -29,6 +29,9 @@ import Seasons from './components/dashboard/seasons/Seasons'
 import CreateSeason from './components/dashboard/seasons/CreateSeason'
 import EditSeason from './components/dashboard/seasons/EditSeason'
 import SeasonsList from './components/dashboard/seasons/SeasonsList'
+import GroupManage from './components/dashboard/seasons/GroupManage'
+import EditGroup from './components/dashboard/seasons/EditGroup'
+import CreateGroup from './components/dashboard/seasons/CreateGroup'
 
 import Profile from './components/dashboard/profile/Profile'
 import ProfileEditor from './components/dashboard/profile/ProfileEditor'
@@ -81,7 +84,10 @@ render(
 							<Route path='/dashboard/seasons' component={ Seasons } />					
 							<Route path='/dashboard/seasons/new' component={ CreateSeason } />					
 							<Route path='/dashboard/seasons/edit/:seasonId' component={ EditSeason } />					
-							<Route path='/dashboard/seasons/list' component={ SeasonsList } />					
+							<Route path='/dashboard/seasons/list' component={ SeasonsList } />	
+							<Route path='/dashboard/seasons/groups' component={ GroupManage } />					
+							<Route path='/dashboard/seasons/groups/new' component={ CreateGroup } />					
+							<Route path='/dashboard/seasons/groups/edit/:groupId' component={ EditGroup } />					
 						</Route>	
 					</Route>
 					<Route path='logout' component={ canSee(Logout, [admin, user]) } />

@@ -25,6 +25,14 @@ class Seasons extends React.Component {
 								</div>
 							</Link>
 						</div>
+						<div className="col-xs-12 col-sm-6 sol-md-4 col-lg-3">
+							<Link to='/dashboard/seasons/groups' className='default-link-style'>
+								<div className='dashboard-item manage-group-item'>
+									<i className="fa fa-users" aria-hidden="true"></i>
+									<span>Работа с группами</span>
+								</div>
+							</Link>
+						</div>
 	                </div>    
 				</DocumentTitle>
 		)		
