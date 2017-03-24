@@ -81,10 +81,10 @@
                 <div class="col-xs-12 footer-social">
                     <span class="text-center footer-social-text">Присоединяйся к нам в социальных сетях:</span>
                     <br>
-                    <a href="https://vk.com/vforme_hm">
+                    <a href="https://vk.com/vforme_hm" target="_blank">
                         <img class="footer-social-vk" src="base/img/social/vk.png" alt="">
                     </a>
-                    <a href="https://www.instagram.com/irina_vforme">
+                    <a href="https://www.instagram.com/irina_vforme" target="_blank">
                         <img class="footer-social-insta" src="base/img/social/instagram.png" alt="">
                     </a>
                 </div>
