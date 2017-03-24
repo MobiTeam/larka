@@ -69,8 +69,6 @@ $api->version('v1', function (Router $api) {
             $api->post('update/{id}', 'App\Api\V1\Controllers\InfoGroupController@update');
             $api->delete('delete/{id}', 'App\Api\V1\Controllers\InfoGroupController@destroy');
         });
-
-
     });
 
     $api->get('hello', function() {

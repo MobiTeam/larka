@@ -11,26 +11,28 @@
 |
 */
 
+// Главная страница
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+// Фотогаллерея
+Route::get('photogallery', function () {
+    return view('photogallery');
+});
+// Новости
+Route::get('news', function () {
+    return view('news');
+});
+// Контакты
+Route::get('contact', function () {
+    return view('contact');
+});
+// О нас
+Route::get('about', function () {
+    return view('about');
 });
 
-Route::get('sendemail', function () {
-
-    $data = array(
-        'email' => "Viking0607@mail.ru",
-        'password' => "123",
-        'api_token' => "Блабла"
-    );
-
-    Mail::send('emails.registration', $data, function ($message) {
-
-        $message->from('ugrafitness@gmail.com', 'Learning Laravel');
-
-        $message->to('Viking0607@mail.ru')->subject('Learning Laravel test email');
-
-    });
-
-    return "Your email has been sent successfully";
-
-});
+// Все роутинги, которых нет здесь и на странице api.php, шлем на view react
+Route::get('{any?}', function ($any = null) {
+    return view('react');
+})->where('any', '.*');

@@ -91,7 +91,17 @@ class InfoGroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $group = Info_group::find($id);
+        if(!$group)
+            throw new NotFoundHttpException;
+        // Получаем данные
+        $inputData = $request->only(['season_id', 'name','description', 'capacity', 'count_training', 'price', 'day_price']);
+        // Заменяем аналогичные параметры, которые уже имеются присланными
+        $group->fill($inputData);
+        if($group->save())
+            return response()->json(['status' => 'updated', 'id'=>$id], 200);
+        else
+            return $this->response->error('could not update', 500);
     }
 
     /**

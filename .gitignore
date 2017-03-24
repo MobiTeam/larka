@@ -8,4 +8,4 @@ Homestead.json
 Homestead.yaml
 .env
 node_modules
-/public/test/img/carousel/
+public/base/img/carousel
