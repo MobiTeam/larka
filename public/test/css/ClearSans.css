@@ -1,0 +1,70 @@
+/* font-family: "ClearSansRegular"; */
+@font-face {
+    font-family: "ClearSansRegular";
+    src: url("../fonts/ClearSans/ClearSansRegular/ClearSansRegular.eot");
+    src: url("../fonts/ClearSans/ClearSansRegular/ClearSansRegular.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/ClearSans/ClearSansRegular/ClearSansRegular.woff") format("woff"),
+    url("../fonts/ClearSans/ClearSansRegular/ClearSansRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "ClearSansBold"; */
+@font-face {
+    font-family: "ClearSansBold";
+    src: url("../fonts/ClearSans/ClearSansBold/ClearSansBold.eot");
+    src: url("../fonts/ClearSans/ClearSansBold/ClearSansBold.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/ClearSans/ClearSansBold/ClearSansBold.woff") format("woff"),
+    url("../fonts/ClearSans/ClearSansBold/ClearSansBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "ClearSansItalic"; */
+@font-face {
+    font-family: "ClearSansItalic";
+    src: url("../fonts/ClearSans/ClearSansItalic/ClearSansItalic.eot");
+    src: url("../fonts/ClearSans/ClearSansItalic/ClearSansItalic.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/ClearSans/ClearSansItalic/ClearSansItalic.woff") format("woff"),
+    url("../fonts/ClearSans/ClearSansItalic/ClearSansItalic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "ClearSansLight"; */
+@font-face {
+    font-family: "ClearSansLight";
+    src: url("../fonts/ClearSans/ClearSansLight/ClearSansLight.eot");
+    src: url("../fonts/ClearSans/ClearSansLight/ClearSansLight.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/ClearSans/ClearSansLight/ClearSansLight.woff") format("woff"),
+    url("../fonts/ClearSans/ClearSansLight/ClearSansLight.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "ClearSansMedium"; */
+@font-face {
+    font-family: "ClearSansMedium";
+    src: url("../fonts/ClearSans/ClearSansMedium/ClearSansMedium.eot");
+    src: url("../fonts/ClearSans/ClearSansMedium/ClearSansMedium.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/ClearSans/ClearSansMedium/ClearSansMedium.woff") format("woff"),
+    url("../fonts/ClearSans/ClearSansMedium/ClearSansMedium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "ClearSansBoldItalic"; */
+@font-face {
+    font-family: "ClearSansBoldItalic";
+    src: url("../fonts/ClearSans/ClearSansBoldItalic/ClearSansBoldItalic.eot");
+    src: url("../fonts/ClearSans/ClearSansBoldItalic/ClearSansBoldItalic.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/ClearSans/ClearSansBoldItalic/ClearSansBoldItalic.woff") format("woff"),
+    url("../fonts/ClearSans/ClearSansBoldItalic/ClearSansBoldItalic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "ClearSansMediumItalic"; */
+@font-face {
+    font-family: "ClearSansMediumItalic";
+    src: url("../fonts/ClearSans/ClearSansMediumItalic/ClearSansMediumItalic.eot");
+    src: url("../fonts/ClearSans/ClearSansMediumItalic/ClearSansMediumItalic.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/ClearSans/ClearSansMediumItalic/ClearSansMediumItalic.woff") format("woff"),
+    url("../fonts/ClearSans/ClearSansMediumItalic/ClearSansMediumItalic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
