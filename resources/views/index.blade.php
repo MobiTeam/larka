@@ -19,16 +19,18 @@
   <div class="carousel-inner" role="listbox">
 
     <div class="item active content-carousel-img">
-      <img src="base/img/carousel/1.jpg" alt="Картинка">
+      <img src="base/img/carousel/5.jpg" alt="Картинка">
     </div>
 
     <div class="item content-carousel-img">
       <img src="base/img/carousel/2.jpg" alt="...">
     </div>
 
+
     <div class="item content-carousel-img">
-      <img src="base/img/carousel/3.jpg" alt="...">
+      <img src="base/img/carousel/6.jpg" alt="...">
     </div>
+
 
     <div class="item content-carousel-img">
       <img src="base/img/carousel/4.jpg" alt="...">
@@ -66,9 +68,9 @@
     </p>
         <p class="motivation-text-head text-center">НАЧИНАЙ ПАХАТЬ ПРЯМО СЕЙЧАС!</p>
 </div>
-<div class="separate"></div>
+<!-- <div class="separate"></div> -->
 <!-- Про нас -->
-<div class="about-text container">
+<!--<div class="about-text container">
     <div class="col-xs-12 col-sm-4">
         <p class="about-text-head">Наш инстаграмм</p>
         <a href="">
@@ -92,5 +94,5 @@
         </a>
         <p class="about-text-footer">Записывайте к нам...</p>
     </div>
-</div>
+</div>-->
 @endsection

@@ -15,16 +15,75 @@
         <div class="container center-block main-container">
             <!-- Шапка -->
             <div class="main-header row">
-                <div class="col-xs-4 main-header-img text-center hidden-xs">
+                <div class="col-xs-4 col-md-4 main-header-img text-center hidden-xs">
                     <a href="/">
                         <img class="main-header-logo" src="base/img/logo.png" alt="">
                     </a>
                 </div>
-                <div class="col-xs-8 main-header-nav">
-                    <nav class="navbar">
+                <div class="col-xs-12 col-md-8 main-header-nav">
+                    <!-- Меню navbar -->
+                            <nav class="navbar navbar-default navbar-custom">
+
+                              <!-- Бренд и переключатель, который вызывает меню на мобильных устройствах -->
+                              <div class="navbar-header">
+                                <!-- Кнопка с полосочками, которая открывает меню на мобильных устройствах -->
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                                  <span class="sr-only">Toggle navigation</span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                </button>
+                              </div>
+
+                              <!-- Содержимое меню (коллекция навигационных ссылок, формы и др.) -->
+                              <div class="collapse navbar-collapse" id="main-menu" >
+                                  <!-- Список ссылок, расположенных слева -->
+                                  <ul class="nav navbar-nav navbar-center">
+                                      <li>
+                                          <a href="/photogallery" class="main-nav-a">
+                                                <img class="main-nav-logo" src="base/img/photo.png" alt="">
+                                                <br>
+                                                Фотогаллерея
+                                          </a>
+                                      </li>
+
+                                      <li>
+                                          <a href="/news" class="main-nav-a">
+                                                <img class="main-nav-logo" src="base/img/news.png" alt="">
+                                                <br>
+                                                Новости
+                                          </a>
+                                      </li>
+
+                                    <li>
+                                        <a href="/dashboard" class="main-nav-a">
+                                              <img class="main-nav-logo" src="base/img/lk.png" alt="">
+                                              <br>
+                                              Личный кабинет
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/contact" class="main-nav-a">
+                                              <img class="main-nav-logo" src="base/img/contacts.png" alt="">
+                                              <br>
+                                              Контакты
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/about" class="main-nav-a">
+                                              <img class="main-nav-logo" src="base/img/about_season.png" alt="">
+                                              <br>
+                                              Про сезон
+                                        </a>
+                                    </li>
+                                  </ul>
+                              </div>
+                            </nav>
+<!--                    <nav class="navbar"  role="navigation">
                       <div class="container-fluid main-nav">
                         <ul class="nav navbar-nav navbar-center">
-
                             <li>
                                 <a href="/photogallery" class="main-nav-a">
                                       <img class="main-nav-logo" src="base/img/photo.png" alt="">
@@ -66,7 +125,7 @@
                           </li>
                         </ul>
                       </div>
-                    </nav>
+                    </nav>-->
                 </div>
             </div>
 

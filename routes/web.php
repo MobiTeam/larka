@@ -27,6 +27,9 @@ Route::get('news', function () {
 Route::get('contact', function () {
     return view('contact');
 });
+// Контакты
+Route::post('feedback', 'FeedbacksController@store');
+
 // О нас
 Route::get('about', function () {
     return view('about');
