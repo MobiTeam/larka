@@ -7,6 +7,10 @@ body{
     border: 1px solid #FBE9E7;
 }
 
+.main-content{
+    padding: 0 10px;
+}
+
 .navbar-custom{
     background-color: white;
     border-color: white;
@@ -50,7 +54,7 @@ body{
 .main-nav-a:hover{
     text-decoration: none;
     background-color: white!important;
-    color:#FF6F00;
+    color:#FF6F00!important;
 }
 
 .main-header-nav{
@@ -100,6 +104,12 @@ body{
     font-weight: 500;
     text-indent: 20px;
 }
+
+.post-scriptum-text{
+    font-family: 'ClearSansRegular';
+    color:#E57373;
+}
+
 .about-text{
     /*margin-bottom: 30px;*/
 }
@@ -157,5 +167,46 @@ body{
 
 .about-description-text{
     text-align: justify;
-    padding: 0 10px;;
+    padding: 0 10px;
+    font-size: 15px;
+}
+
+.news{
+    height: 100%
+    width: 1100px;
+    align-items: center;
+}
+
+.news-single{
+    background-image: linear-gradient(to bottom,#FFFFFF 0,#F8F8F7 100%)!important;
+}
+
+.news-img{
+    height: 320px;
+    width: 320px;
+}
+
+.about-trainer-img{
+    height: 320px;
+}
+
+.about-trainer-text-head{
+    font-family: 'ClearSansRegular';
+    margin-top: 0;
+}
+
+.thumb img {
+    filter: none; /* IE6-9 */
+    -webkit-filter: grayscale(0);
+    border-radius:5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding:5px;
+}
+.thumb img:hover {
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1);
+}
+.thumb {
+    padding:5px;
 }

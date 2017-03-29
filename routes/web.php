@@ -16,9 +16,7 @@ Route::get('/', function () {
     return view('index');
 });
 // Фотогаллерея
-Route::get('photogallery', function () {
-    return view('photogallery');
-});
+Route::get('photogallery', 'PhotogalleryBaseController@index');
 // Новости
 Route::get('news', function () {
     return view('news');
@@ -27,7 +25,7 @@ Route::get('news', function () {
 Route::get('contact', function () {
     return view('contact');
 });
-// Контакты
+// Обратная связь в контактах
 Route::post('feedback', 'FeedbacksController@store');
 
 // О нас

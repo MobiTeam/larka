@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="base/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="base/css/ClearSans.css">
         <link rel="stylesheet" href="base/css/main.css">
+         <link rel="stylesheet" href="base/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
         <script src="base/js/jquery.min.js"></script>
         <script src="base/js/bootstrap.min.js"></script>
     </head>
@@ -81,51 +82,6 @@
                                   </ul>
                               </div>
                             </nav>
-<!--                    <nav class="navbar"  role="navigation">
-                      <div class="container-fluid main-nav">
-                        <ul class="nav navbar-nav navbar-center">
-                            <li>
-                                <a href="/photogallery" class="main-nav-a">
-                                      <img class="main-nav-logo" src="base/img/photo.png" alt="">
-                                      <br>
-                                      Фотогаллерея
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/news" class="main-nav-a">
-                                      <img class="main-nav-logo" src="base/img/news.png" alt="">
-                                      <br>
-                                      Новости
-                                </a>
-                            </li>
-
-                          <li>
-                              <a href="/dashboard" class="main-nav-a">
-                                    <img class="main-nav-logo" src="base/img/lk.png" alt="">
-                                    <br>
-                                    Личный кабинет
-                              </a>
-                          </li>
-
-                          <li>
-                              <a href="/contact" class="main-nav-a">
-                                    <img class="main-nav-logo" src="base/img/contacts.png" alt="">
-                                    <br>
-                                    Контакты
-                              </a>
-                          </li>
-
-                          <li>
-                              <a href="/about" class="main-nav-a">
-                                    <img class="main-nav-logo" src="base/img/about_season.png" alt="">
-                                    <br>
-                                    Про сезон
-                              </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </nav>-->
                 </div>
             </div>
 
@@ -151,12 +107,13 @@
             </div>
 
         </div>
-
+<script type="text/javascript" src="base/fancybox/jquery.fancybox.pack.js"></script> 
 <script type="text/javascript">
         $(document).ready(function(){
             $('#carousel').carousel({
               interval: 3500
-            })
+          });
+          $("a.fancyimage").fancybox();
         });
 </script>
     </body>
