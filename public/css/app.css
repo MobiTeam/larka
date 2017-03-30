@@ -1175,6 +1175,14 @@ html, body {
 .personal-info-warn {
 	margin: 10px 0px;
 }
+.group-form-wrapper {
+	background: white;
+    margin: 5px;
+    padding: 24px;
+    border: 1px solid #e7e7e7;
+    border-bottom: 2px solid #eeeeee;
+}
+
 .create-season-wrapper {
 	background: white;
     margin: 5px;
@@ -1186,6 +1194,14 @@ html, body {
 .season-date-label {
 	padding-right: 14px;
 }
+.group-form-wrapper {
+	background: white;
+    margin: 5px;
+    padding: 24px;
+    border: 1px solid #e7e7e7;
+    border-bottom: 2px solid #eeeeee;
+}
+
 .reload-span-season {
 	padding: 5px;
 	text-decoration: underline;
@@ -1251,6 +1267,7 @@ html, body {
 .photo-drop-zone:hover {
 	opacity: 1;
 }
+
 
 .season-items {
 	padding: 10px 25px;

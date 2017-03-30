@@ -7,12 +7,14 @@ import sidebar from '../reducers/sidebar'
 import title from '../reducers/title'
 import season from '../reducers/season'
 import seasonList from '../reducers/seasonList'
+import group from '../reducers/group'
 
 function rootReducer (state = {}, action) {
     return {
     	'user'                  : user(state.user, action),
     	'season'                : season(state.season, action),
     	'spinner'               : spinner(state.spinner, action),
+    	'group'					: group(state.group, action),
     	'registration'	        : registration(state.registration, action),
     	'hideSidebarOnSmallScr'	: sidebar(state.hideSidebarOnSmallScr, action),
     	'currentTitle' 			: title(state.currentTitle, action),

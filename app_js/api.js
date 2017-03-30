@@ -53,8 +53,12 @@ export const reAuthFetch = createFetchPromise('/auth/relogin');
 export const profileInfoFetch = createFetchPromise('/user/user', 'GET'); 
 export const profileInfoUpdate = createFetchPromise('/user/update', 'POST'); 
 
+
+export const allSesonsBriefFetch = createFetchPromise('/season/brief_index', 'GET'); 
 export const newSesonFetch = createFetchPromise('/season/create', 'POST'); 
 export const allSesonsFetch = createFetchPromise('/season/season', 'GET'); 
 export const seasonFetch = createFetchPromise('/season/show/[:id]', 'GET'); 
 export const seasonUpdate = createFetchPromise('/season/update/[:id]', 'POST'); 
 export const deleteSeason = createFetchPromise('/season/delete/[:id]', 'DELETE'); 
+export const createGroup = createFetchPromise('/group/create', 'POST'); 
+

@@ -39,9 +39,9 @@ class GroupList extends React.Component {
 	createGroupList (data) {
 		if (data == null) return null;
 		if (data.length == 0) return (<tr><td colSpan="8">Нет ни одной активной группы. <Link to="/dashboard/seasons/groups/new">Нажмите, чтобы создать.</Link></td></tr>);
-		return data.map((el) => {
-			return <SeasonItem { ...el } key={ el.id } onDelBtnClick={ this.onDelBtnClick.bind(this, el.id) } />
-		}) 
+		// return data.map((el) => {
+		// 	return <SeasonItem { ...el } key={ el.id } onDelBtnClick={ this.onDelBtnClick.bind(this, el.id) } />
+		// }) 
 	}
 	render () {
 		return (

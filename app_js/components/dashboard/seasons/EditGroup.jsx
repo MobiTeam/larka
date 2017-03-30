@@ -3,6 +3,7 @@ import DocumentTitle from 'react-document-title'
 import { SITE_NAME } from '../../../constants/conf'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import { GroupEditForm } from './GroupEditForm'
 
 class EditGroup extends React.Component {
 	// static propTypes = {
@@ -44,26 +45,8 @@ class EditGroup extends React.Component {
 	render () {
 		return (
 				<DocumentTitle title={ SITE_NAME + ': редактирование группы' }>
-					<div className="row col-xs-12 col-lg-9">
-						// { this.printFetchStatus() }
-						// <div className="season-list-wrapper">
-						// 	<table className="table table-striped table-hover season-list-table">
-						// 		<thead>
-						// 			<tr>
-						// 				<th>Название</th>
-						// 				<th>Краткое описание</th>
-						// 				<th>Дата начала</th>
-						// 				<th>Дата окончания</th>
-						// 				<th>Создан</th>
-						// 				<th></th>
-						// 				<th></th>
-						// 			</tr>
-						// 		</thead>
-						// 		<tbody>
-						// 			{ this.createSeasonList(this.props.seasonList) }
-						// 		</tbody>
-						// 	</table>	
-						// </div>
+					<div className="row col-xs-12 col-lg-9 group-form-wrapper">
+						<GroupEditForm />
 					</div>
 				</DocumentTitle>
 		)		
