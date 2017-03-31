@@ -67,6 +67,12 @@
         Не ищи отмазок для собственной совести: на улице прохладно, и потому бегать пойду завтра; день был сложный – отменю-ка я тренировку; нервничала много – дай-ка кусочек крохотной печеньки ...
     </p>
         <p class="motivation-text-head text-center">НАЧИНАЙ ПАХАТЬ ПРЯМО СЕЙЧАС!</p>
+        <p class="motivation-text-head text-center">Успей записаться<span class="post-scriptum-text">*</span> к следующему занятию, которое начнется через:</p>
+        <script src="http://megatimer.ru/s/5ab985c7e0f85e911d8c313824212987.js"></script>
+</div>
+<hr>
+<div class="container">
+    <p class="post-scriptum-text">*Запись производится через личный кабинет</p>
 </div>
 <!-- <div class="separate"></div> -->
 <!-- Про нас -->
