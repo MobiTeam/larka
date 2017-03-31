@@ -42,7 +42,6 @@ class GroupEditForm extends React.Component {
 	}
 
 	render () {	
-		
 		return (		
 			<div>		
 				<form ref="groupForm" action="" method="POST" onSubmit={ this.onSubmit.bind(this) }>

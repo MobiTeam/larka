@@ -22,11 +22,21 @@ class CreateGroup extends React.Component {
 		});		
 	}
 
+	printStatus () {
+		if (this.props.group.statusText) {
+			return (<div className={ (this.props.group.err ? 'alert-danger' : 'alert-success') + ' alert'}>{ this.props.group.statusText }</div>)
+		}
+		return null; 
+	}
+
 	render () {
 		return (
 				<DocumentTitle title={ SITE_NAME + ': создание группы' }>
-					<div className="row col-xs-12 col-lg-9 group-form-wrapper">
-						<GroupEditForm formTitle="Создание группы" submitBtnTitle="Создать" data={ this.props.group } dispatchAction={ this.sendGroupData.bind(this) } />
+					<div>
+						{ this.printStatus() }
+						<div className="row col-xs-12 col-lg-9 group-form-wrapper">
+							<GroupEditForm formTitle="Создание группы" submitBtnTitle="Создать" data={ this.props.group } dispatchAction={ this.sendGroupData.bind(this) } />
+						</div>
 					</div>
 				</DocumentTitle>
 		)		
