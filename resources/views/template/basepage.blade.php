@@ -44,7 +44,7 @@
                                           <a href="/photogallery" class="main-nav-a">
                                                 <img class="main-nav-logo" src="base/img/photo.png" alt="">
                                                 <br>
-                                                Фотогаллерея
+                                                Архив похудизма
                                           </a>
                                       </li>
 
@@ -60,7 +60,7 @@
                                         <a href="/dashboard" class="main-nav-a">
                                               <img class="main-nav-logo" src="base/img/lk.png" alt="">
                                               <br>
-                                              Личный кабинет
+                                              Нужный кабинет
                                         </a>
                                     </li>
 
@@ -68,7 +68,7 @@
                                         <a href="/contact" class="main-nav-a">
                                               <img class="main-nav-logo" src="base/img/contacts.png" alt="">
                                               <br>
-                                              Контакты
+                                              Жиросжигатели
                                         </a>
                                     </li>
 
@@ -107,7 +107,7 @@
             </div>
 
         </div>
-<script type="text/javascript" src="base/fancybox/jquery.fancybox.pack.js"></script> 
+<script type="text/javascript" src="base/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
         $(document).ready(function(){
             $('#carousel').carousel({

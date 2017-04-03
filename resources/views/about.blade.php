@@ -2,7 +2,7 @@
 @extends('template.basepage')
 <!-- Подключаем базову страницу -->
 
-@section('title', 'О Нас')
+@section('title', 'Про сезон')
 
 @section('content')
     <h1 class="clear-sans text-center"><b>Про сезон</b></h1>
