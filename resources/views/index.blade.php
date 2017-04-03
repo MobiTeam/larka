@@ -76,7 +76,7 @@
     </p>
 
         <p class="motivation-text-head text-center">Как найти кассу и приобрести билет?!</p>
-        <p class="motivation-text-head text-center">Никуда не сворачивай! Ты на правильном пути! Вот <a href="/about">НУЖНЫЙ КАБИНЕТ</a>.</p>
+        <p class="motivation-text-head text-center">Никуда не сворачивай! Ты на правильном пути! Вот <a href="/dashboard">НУЖНЫЙ КАБИНЕТ</a>.</p>
         <p class="motivation-text-head text-center">Успей записаться<span class="post-scriptum-text">*</span> к следующему занятию, которое начнется через:</p>
         <script src="http://megatimer.ru/s/5ab985c7e0f85e911d8c313824212987.js"></script>
 </div>
