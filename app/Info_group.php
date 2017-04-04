@@ -14,9 +14,9 @@ class Info_group extends Model
     protected $fillable = [
         'season_id', 'name','description', 'capacity', 'count_training', 'price', 'day_price',
     ];
-
+    
     protected $hidden = [
-    'deleted_at'    
+    'deleted_at'
     ];
 
     public function season()
