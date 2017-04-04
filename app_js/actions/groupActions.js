@@ -1,31 +1,63 @@
-import { allSesonsBriefFetch, createGroup } from '../api';
+import { allSesonsBriefFetch, createGroup, groupShow, groupUpdate } from '../api';
 
-// export const fetchGroup = (payload, { redirect, showPreloader, additionHeader }) => {
-// 	return {
-// 		type: 'FETCH_SEASON',
-// 		payload: seasonFetch(payload, additionHeader),
-// 		handlers: {
-// 			'onSuccess': fetchGroupSuccess,
-// 			'onError': fetchGroupError
-// 		},
-// 		redirect,
-// 		showPreloader
-// 	}
-// }
+export const dropGroup = () => {
+	return {
+		type: 'DROP_GROUP'
+	}
+}
 
-// export const fetchGroupSuccess = (payload) => {
-// 	return {
-// 		type: 'FETCH_SEASON_SUCCESS',
-// 		payload: payload.group
-// 	}
-// }
+export const updateGroup = (payload, { redirect, showPreloader, additionHeader }) => {
+	return {
+		type: 'UPDATE_GROUP',
+		payload: groupUpdate(payload, additionHeader),
+		handlers: {
+			'onSuccess': groupUpdateSuccess,
+			'onError': groupUpdateError
+		},
+		redirect,
+		showPreloader
+	}
+}
 
-// export const fetchGroupError = (payload) => {
-// 	return {
-// 		type: 'FETCH_SEASON_ERROR',
-// 		payload
-// 	}
-// }
+export const groupUpdateSuccess = (payload) => {
+	return {
+		type: 'UPDATE_GROUP_SUCCESS',
+		payload: payload
+	}
+}
+
+export const groupUpdateError = (payload) => {
+	return {
+		type: 'UPDATE_GROUP_ERROR'
+	}
+}
+
+export const fetchGroup = (payload, { redirect, showPreloader, additionHeader }) => {
+	return {
+		type: 'FETCH_GROUP',
+		payload: groupShow(payload, additionHeader),
+		handlers: {
+			'onSuccess': fetchGroupSuccess,
+			'onError': fetchGroupError
+		},
+		redirect,
+		showPreloader
+	}
+}
+
+export const fetchGroupSuccess = (payload) => {
+	return {
+		type: 'FETCH_GROUP_SUCCESS',
+		payload: payload.group
+	}
+}
+
+export const fetchGroupError = (payload) => {
+	return {
+		type: 'FETCH_GROUP_ERROR',
+		payload
+	}
+}
 
 export const groupCreate = (payload, { redirect, showPreloader, additionHeader }) => {
 	return {

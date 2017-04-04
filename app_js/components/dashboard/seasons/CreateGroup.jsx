@@ -4,12 +4,17 @@ import { SITE_NAME } from '../../../constants/conf'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import GroupEditForm from './GroupEditForm'
-import { groupCreate } from '../../../actions/groupActions'
+import { groupCreate, dropGroup } from '../../../actions/groupActions'
 
 class CreateGroup extends React.Component {
-
+		
 	static propTypes = {
-		groupCreate : React.PropTypes.func.isRequired
+		groupCreate : React.PropTypes.func.isRequired,
+		dropGroup : React.PropTypes.func.isRequired	
+	}
+
+	componentWillMount () {
+		this.props.dropGroup();
 	}
 
 	sendGroupData (data) {
@@ -52,7 +57,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		groupCreate : (data, props) => dispatch(groupCreate(data, props))	
+		groupCreate : (data, props) => dispatch(groupCreate(data, props)),	
+		dropGroup : () => dispatch(dropGroup())	
 	}		
 }
 

@@ -28,7 +28,13 @@ class InfoGroupController extends Controller
      */
     public function index()
     {
-        return Info_group::all();
+        $allGroups = Info_group::all();
+        $groups=[];
+        foreach ($allGroups as $key => $value) {
+            $groups[$key]=$value;
+            $groups[$key]['season_name'] = Info_group::find($value['id'])->season()->get()->first()->toArray()['name'];
+        }
+        return $groups;
     }
 
     /**
@@ -47,17 +53,6 @@ class InfoGroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -66,20 +61,11 @@ class InfoGroupController extends Controller
     public function show($id)
     {
         $group = Info_group::find($id);
+        $season = $group->season()->get()->first()->toArray();
+        $group['season_name'] = $season['name'];
         if(!$group)
             return response()->json(['group' => []], 200);
          return response()->json(['group' => $group->toArray()], 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

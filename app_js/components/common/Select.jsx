@@ -19,7 +19,7 @@ class SelectEl extends React.Component {
 
 	render () {
 		return (
-			<select name={ this.props.name } id={ this.props.id } defaultValue={ this.props.selValue } className={ this.props.className } onChange={ this.props.onChange } >
+			<select name={ this.props.name } id={ this.props.id } value={ this.props.selValue } className={ this.props.className } onChange={ this.props.onChange } >
 				{ this.printOptions(this.props.data) }
 			</select>
 		)		

@@ -60,5 +60,10 @@ export const allSesonsFetch = createFetchPromise('/season/season', 'GET');
 export const seasonFetch = createFetchPromise('/season/show/[:id]', 'GET'); 
 export const seasonUpdate = createFetchPromise('/season/update/[:id]', 'POST'); 
 export const deleteSeason = createFetchPromise('/season/delete/[:id]', 'DELETE'); 
+
 export const createGroup = createFetchPromise('/group/create', 'POST'); 
+export const groupFetch = createFetchPromise('/group/group', 'GET'); 
+export const groupShow = createFetchPromise('/group/show/[:id]', 'GET'); 
+export const groupUpdate = createFetchPromise('/group/update/[:id]', 'POST'); 
+export const groupDelete = createFetchPromise('/group/delete/[:id]', 'DELETE'); 
 

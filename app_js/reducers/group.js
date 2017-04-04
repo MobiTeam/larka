@@ -10,6 +10,16 @@ const defGroupState = {
 
 const group = (state = null, action) => {
 	switch (action.type) {
+	case 'DROP_GROUP':
+		return { ...state, ...defGroupState }
+	case 'FETCH_GROUP_SUCCESS':
+		return { ...state, ...action.payload, 'statusText' : '', isPersist: true, 'errFlag': false }
+	case 'UPDATE_GROUP_SUCCESS':
+		return { ...state, 'statusText' : 'Группа была успешно обновлена.', isPersist: true, errFlag: false }	
+	case 'UPDATE_GROUP_ERROR':
+		return { ...state, 'statusText' : 'При обновлении группы произошла ошибка.', isPersist: false, errFlag: false }	
+	case 'FETCH_GROUP_ERROR':
+		return { 'statusText' : 'При загрузке данных произошла ошибка, повторите попытку позже.', isPersist: true, errFlag: true }
 	case 'LOCAL_UPDATE_GROUP':
 		return { ...state, ...action.payload, statusText : '', isPersist: false, err: false }
 	case 'FETCH_SEASON_BRIEF_SUCCESS':
