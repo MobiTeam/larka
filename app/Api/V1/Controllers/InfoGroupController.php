@@ -34,7 +34,7 @@ class InfoGroupController extends Controller
             $groups[$key]=$value;
             $groups[$key]['season_name'] = Info_group::find($value['id'])->season()->get()->first()->toArray()['name'];
         }
-        return $groups;
+        return response()->json(['info_groups' => $groups], 200);
     }
 
     /**

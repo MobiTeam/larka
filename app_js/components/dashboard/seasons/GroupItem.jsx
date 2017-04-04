@@ -6,6 +6,7 @@ class GroupItem extends React.Component {
 		return (
 			<tr>
 				<td>{ this.props.name }</td>
+				<td>{ this.props.season_name }</td>
 				<td>{ this.props.description }</td>
 				<td>{ this.props.capacity }</td>
 				<td>{ this.props.count_training }</td>

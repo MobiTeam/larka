@@ -11,7 +11,7 @@ const defGroupState = {
 const group = (state = null, action) => {
 	switch (action.type) {
 	case 'DROP_GROUP':
-		return { ...state, ...defGroupState }
+		return { ...state, ...defGroupState, 'statusText' : '', isPersist: false, errFlag: false }
 	case 'FETCH_GROUP_SUCCESS':
 		return { ...state, ...action.payload, 'statusText' : '', isPersist: true, 'errFlag': false }
 	case 'UPDATE_GROUP_SUCCESS':

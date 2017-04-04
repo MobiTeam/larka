@@ -36,15 +36,6 @@ class GroupManage extends React.Component {
 		});		
 	}
 
-
-	// printFetchStatus () {
-	// 	return this.props.seasonList == null ? (
-	// 			<div className="alert alert-danger">
-	// 				При загрузке списка сезонов произошла ошибка, повторите попытку позже.
-	// 			</div>
-	// 		) : null;
-	// }
-	
 	render () {
 		return (
 			<DocumentTitle title={ SITE_NAME + ': управление группами' }>

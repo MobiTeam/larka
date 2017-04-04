@@ -35,6 +35,7 @@ class GroupList extends React.Component {
 					<thead>
 						<tr>
 							<th>Название</th>
+							<th>Сезон</th>
 							<th>Краткое описание</th>
 							<th>Количество человек</th>
 							<th>Количество тренировок</th>
