@@ -19,8 +19,7 @@ class InfoGroupController extends Controller
 
     use Helpers;
 
-    // Описание групп в сезоне
-
+    // Отображаем все группы во всех сезонах и выводим наименование сезона
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +37,7 @@ class InfoGroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Создаём новую группу
      *
      * @return \Illuminate\Http\Response
      */
@@ -53,7 +52,7 @@ class InfoGroupController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Отображаем созданную группу
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -69,7 +68,7 @@ class InfoGroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновляем группу
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -91,7 +90,7 @@ class InfoGroupController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаляем группу
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

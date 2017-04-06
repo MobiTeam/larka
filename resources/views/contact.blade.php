@@ -18,7 +18,7 @@
                 <h4 class="clear-sans"><b>Наши фитнес инструкторы:</b></h4>
                 <!-- Первый тренер -->
                 <div class="col-xs-12 col-md-6 col-lg-5">
-                    <img class="media-object about-trainer-img" src="base/img/trainer/Irina.jpg" alt="">
+                    <img class="media-object about-trainer-img" src="base/img/trainer/Irina2.jpg" alt="">
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-7">
                     <h3 class="text-center clear-sans about-trainer-text-head">Ирина</h3>
@@ -53,7 +53,7 @@
                     <p class="clear-sans about-description-text"><b>Телефон:</b><a href="tel:89044662777"> +7 904 466-27-77 </a></p>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-5">
-                    <img class="media-object about-trainer-img" src="base/img/trainer/Masha.jpg" alt="">
+                    <img class="media-object about-trainer-img" src="base/img/trainer/Masha2.jpg" alt="">
                 </div>
             </div>
         <hr>
