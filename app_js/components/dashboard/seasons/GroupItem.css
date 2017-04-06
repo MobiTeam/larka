@@ -1,0 +1,12 @@
+.groups-item-edit-link, .groups-item-delete-link {	
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.groups-item-delete-link {
+	color: #C62828;
+}
+
+.groups-item-delete-link:hover, .groups-item-delete-link:focus {
+	color: #B71C1C;
+}

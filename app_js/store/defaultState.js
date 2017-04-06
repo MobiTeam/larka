@@ -29,6 +29,16 @@ const defaultState = {
 		'data' : [],
 		'statusCode' : 200
 	},
+	'group' : {
+		'statusText'    : '',
+		'isPersist'     : true,
+		'err'           : false,
+		'seasonsBrief'	: []
+	},
+	'groupList' : { 
+		'data' : [],
+		'statusCode' : 200
+	},
 	'spinner' : false,
 	'hideSidebarOnSmallScr' : true,
 	'currentTitle' : hashTitle[location.pathname] ? hashTitle[location.pathname] : (hashTitle[location.pathname.replace(/(.*)(\/.*)/, '$1')] || '')

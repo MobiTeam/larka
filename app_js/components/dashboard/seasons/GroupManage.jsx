@@ -4,67 +4,60 @@ import { SITE_NAME } from '../../../constants/conf'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import GroupList from './GroupList'
-// import { fetchAllSeasons, seasonDelete } from '../../../actions/seasonListActions'
+import { fetchAllGroups, deleteGroup } from '../../../actions/groupListActions'
 
 class GroupManage extends React.Component {
-	// static propTypes = {
-	// 	fetchAllSeasons : React.PropTypes.func.isRequired,
-	// 	seasonDelete : React.PropTypes.func.isRequired
-	// }
-	// componentWillMount () {
-	// 	this.props.fetchAllSeasons(this.props.token, {
-	// 		redirect: false, 
- //            showPreloader: true,
- //            additionHeader: {
- //              "Authorization": `Bearer{${ this.props.token }}`
- //            }
-	// 	})
-	// }
-	// printFetchStatus () {
-	// 	return this.props.seasonList == null ? (
-	// 			<div className="alert alert-danger">
-	// 				При загрузке списка сезонов произошла ошибка, повторите попытку позже.
-	// 			</div>
-	// 		) : null;
-	// }
-	// onDelBtnClick (idSeason) {		
-	// 	this.props.seasonDelete({ id : idSeason }, {
-	// 			redirect: false, 
-	// 		    showPreloader: true,
-	//             additionHeader: {
-	//               "Authorization": `Bearer{${ this.props.token }}`
-	//             }
-	// 		});		
-	// }
-	// createSeasonList (data) {
-	// 	if (data == null) return null;
-	// 	if (data.length == 0) return (<tr><td colSpan="7">Вы не создали еще ни одного сезона.</td></tr>);
-	// 	return data.map((el) => {
-	// 		return <SeasonItem { ...el } key={ el.id } onDelBtnClick={ this.onDelBtnClick.bind(this, el.id) } />
-	// 	}) 
-	// }
+	
+	static propTypes = {
+		fetchAllGroups : React.PropTypes.func.isRequired
+	}
+
+	static defaultProps = {
+		groups : []
+	}
+
+	componentWillMount () {
+		this.props.fetchAllGroups(this.props.token, {
+			redirect: false, 
+            showPreloader: true,
+            additionHeader: {
+              "Authorization": `Bearer{${ this.props.token }}`
+            }
+		})
+	}
+
+	onDelBtnClick (idGroup) {		
+		this.props.deleteGroup({ id : idGroup }, {
+			redirect: false, 
+		    showPreloader: true,
+            additionHeader: {
+              "Authorization": `Bearer{${ this.props.token }}`
+            }
+		});		
+	}
+
 	render () {
 		return (
-				<DocumentTitle title={ SITE_NAME + ': управление группами' }>
-					<div className="row col-xs-12">
-						<GroupList />					
-					</div>
-				</DocumentTitle>
+			<DocumentTitle title={ SITE_NAME + ': управление группами' }>
+				<div className="row col-xs-12">
+					<GroupList data={ this.props.groups } deleteGroupBtnClick={ this.onDelBtnClick.bind(this) } />					
+				</div>
+			</DocumentTitle>
 		)		
 	}
 }
 
 const mapStateToProps = (state) => {
 	return {
-		// token : state.user.token,
-		// seasonList : state.seasonList.data
+		token : state.user.token,
+		groups : state.groupList.data
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// fetchAllSeasons : (payload, meta) => { dispatch(fetchAllSeasons(payload, meta)) },
-		// seasonDelete    : (payload, meta) => { dispatch(seasonDelete(payload, meta)) }
+		fetchAllGroups : (payload, meta) => { dispatch(fetchAllGroups(payload, meta)) },
+		deleteGroup : (payload, meta) => { dispatch(deleteGroup(payload, meta)) }
 	}
 }
 

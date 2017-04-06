@@ -3,49 +3,45 @@ import DocumentTitle from 'react-document-title'
 import { SITE_NAME } from '../../../constants/conf'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import GroupEditForm from './GroupEditForm'
+import { groupCreate, dropGroup } from '../../../actions/groupActions'
 
 class CreateGroup extends React.Component {
-	// static propTypes = {
-	// 	fetchAllSeasons : React.PropTypes.func.isRequired,
-	// 	seasonDelete : React.PropTypes.func.isRequired
-	// }
-	// componentWillMount () {
-	// 	this.props.fetchAllSeasons(this.props.token, {
-	// 		redirect: false, 
- //            showPreloader: true,
- //            additionHeader: {
- //              "Authorization": `Bearer{${ this.props.token }}`
- //            }
-	// 	})
-	// }
-	// printFetchStatus () {
-	// 	return this.props.seasonList == null ? (
-	// 			<div className="alert alert-danger">
-	// 				При загрузке списка сезонов произошла ошибка, повторите попытку позже.
-	// 			</div>
-	// 		) : null;
-	// }
-	// onDelBtnClick (idSeason) {		
-	// 	this.props.seasonDelete({ id : idSeason }, {
-	// 			redirect: false, 
-	// 		    showPreloader: true,
-	//             additionHeader: {
-	//               "Authorization": `Bearer{${ this.props.token }}`
-	//             }
-	// 		});		
-	// }
-	// createSeasonList (data) {
-	// 	if (data == null) return null;
-	// 	if (data.length == 0) return (<tr><td colSpan="7">Вы не создали еще ни одного сезона.</td></tr>);
-	// 	return data.map((el) => {
-	// 		return <SeasonItem { ...el } key={ el.id } onDelBtnClick={ this.onDelBtnClick.bind(this, el.id) } />
-	// 	}) 
-	// }
+		
+	static propTypes = {
+		groupCreate : React.PropTypes.func.isRequired,
+		dropGroup : React.PropTypes.func.isRequired	
+	}
+
+	componentWillMount () {
+		this.props.dropGroup();
+	}
+
+	sendGroupData (data) {
+		this.props.groupCreate(data, {
+			redirect: false, 
+            showPreloader: true,
+            additionHeader: {
+              "Authorization": `Bearer{${ this.props.token }}`
+            }
+		});		
+	}
+
+	printStatus () {
+		if (this.props.group.statusText) {
+			return (<div className={ (this.props.group.err ? 'alert-danger' : 'alert-success') + ' alert'}>{ this.props.group.statusText }</div>)
+		}
+		return null; 
+	}
+
 	render () {
 		return (
-				<DocumentTitle title={ SITE_NAME + ': редактирование группы' }>
-					<div className="row col-xs-12 col-lg-9">
-						Создание новой группы.	
+				<DocumentTitle title={ SITE_NAME + ': создание группы' }>
+					<div>
+						{ this.printStatus() }
+						<div className="row col-xs-12 col-lg-9 group-form-wrapper">
+							<GroupEditForm formTitle="Создание группы" submitBtnTitle="Создать" data={ this.props.group } dispatchAction={ this.sendGroupData.bind(this) } />
+						</div>
 					</div>
 				</DocumentTitle>
 		)		
@@ -53,38 +49,18 @@ class CreateGroup extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	return {
-		// token : state.user.token,
-		// seasonList : state.seasonList.data
+	return {	
+		token : state.user.token,	
+		group : state.group				
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// fetchAllSeasons : (payload, meta) => { dispatch(fetchAllSeasons(payload, meta)) },
-		// seasonDelete    : (payload, meta) => { dispatch(seasonDelete(payload, meta)) }
-	}
+		groupCreate : (data, props) => dispatch(groupCreate(data, props)),	
+		dropGroup : () => dispatch(dropGroup())	
+	}		
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateGroup);
 
-// { this.printFetchStatus() }
-						// <div className="season-list-wrapper">
-						// 	<table className="table table-striped table-hover season-list-table">
-						// 		<thead>
-						// 			<tr>
-						// 				<th>Название</th>
-						// 				<th>Краткое описание</th>
-						// 				<th>Дата начала</th>
-						// 				<th>Дата окончания</th>
-						// 				<th>Создан</th>
-						// 				<th></th>
-						// 				<th></th>
-						// 			</tr>
-						// 		</thead>
-						// 		<tbody>
-						// 			{ this.createSeasonList(this.props.seasonList) }
-						// 		</tbody>
-						// 	</table>	
-						// </div>
