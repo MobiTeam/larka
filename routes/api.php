@@ -73,8 +73,8 @@ $api->version('v1', function (Router $api) {
         // Работа со сбербанком
         $api->group(['prefix' => 'sberbank'], function(Router $api){
             // Все произведенные оплаты пользователя
-            $api->post('index', 'App\Api\V1\Controllers\SberbankController@index');
-            // Создание оплаты
+            $api->get('index', 'App\Api\V1\Controllers\SberbankController@index');
+            // Создание оплаты, посылается только amount и token
             $api->post('create', 'App\Api\V1\Controllers\SberbankController@create');
 
         });
