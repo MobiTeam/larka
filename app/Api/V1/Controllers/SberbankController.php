@@ -117,4 +117,13 @@ class SberbankController extends Controller
         ], 200);
     }
 
+    // Проверить статус оплаты
+    public function statusOrder(Request $request)
+    {
+        $paymentOrderId = $request->input(['orderId']);
+        $client = new Client([ 'userName' => \Config::get('sberbank.login'), 'password' => \Config::get('sberbank.password'), 'apiUri' => Client::API_URI_TEST ]);
+        $result = $client->getOrderStatusExtended($paymentOrderId);
+        return $result;
+    }
+
 }

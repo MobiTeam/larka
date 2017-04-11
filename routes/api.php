@@ -76,6 +76,9 @@ $api->version('v1', function (Router $api) {
             $api->get('index', 'App\Api\V1\Controllers\SberbankController@index');
             // Создание оплаты, посылается только amount и token
             $api->post('create', 'App\Api\V1\Controllers\SberbankController@create');
+            // Получение статуса заказа
+            $api->post('status', 'App\Api\V1\Controllers\SberbankController@statusOrder');
+            
 
         });
     });
