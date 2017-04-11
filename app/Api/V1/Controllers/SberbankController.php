@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\library\Sberbank\CreatePayments;
 use App\library\Sberbank\Currency;
 use App\User_payments;
+use App\Log_payments;
 use App\User;
 use App\library\Sber\SberbankAcquiring\Client;
 use App\library\Sber\SberbankAcquiring\OrderStatus;
@@ -20,7 +21,7 @@ class SberbankController extends Controller
         $token = JWTAuth::getToken();
         $user = JWTAuth::toUser($token);
         $userPayments = User::find($user['id'])->user_payments()->get();
-        return $userPayments;
+        return response()->json(['userPayments' => $userPayments], 200);
     }
 
     // Создать форму для оплаты
@@ -70,13 +71,23 @@ class SberbankController extends Controller
         $payments = User_payments::where('payments_id', $paymentOrderId)->first();
         $payments->isApproved = 1;
         $payments->save();
+
         // Получаем текущий баланс пользователя
         $user = User::find($payments['user_id'])->first();
         $currentUserBalance = $user->balance;
+
         // Прибавляем к текущему балансу одобренную сумму
         $balance = $currentUserBalance + $payments->amount;
         $user->balance = $balance;
         $user->save();
+
+        // Заносим данные по оплате в логи
+        $log = new Log_payments();
+        $log->user_id = $payments['user_id'];
+        $log->payments_id = $payments->payments_id;
+        $log->amount = $payments->amount;
+        $log->type = 1;
+        $log->save();
 
         return response()->json([
             'status' => 'ok'

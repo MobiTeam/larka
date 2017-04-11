@@ -75,4 +75,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\User_payments', 'user_id', 'id');
     }
+    // Связь пользователя с его логами по оплате
+    public function log_payments()
+    {
+        return $this->hasMany('App\Log_payments', 'user_id', 'id');
+    }
 }
