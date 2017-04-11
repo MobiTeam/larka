@@ -61,16 +61,16 @@ class User extends Authenticatable
        }
     }
 
-    public function books()
+/*    public function books()
     {
         return $this->hasMany('App\Book');
-    }
-
+    }*/
+    // Связь пользователя с группой
     public function user_group()
     {
         return $this->hasMany('App\User_group', 'id', 'user_groups_id');
     }
-
+    // Связь пользователя с проведенными оплатами
     public function user_payments()
     {
         return $this->hasMany('App\User_payments', 'user_id', 'id');

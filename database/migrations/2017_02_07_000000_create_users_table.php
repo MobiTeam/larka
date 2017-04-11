@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique()->nullable();
             $table->string('photo_link')->nullable();
             $table->integer('is_activated')->default('0');
+            $table->double('balance')->default(0);
             $table->string('activated_token', 60)->unique()->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -8,19 +8,22 @@ use App\Http\Controllers\Controller;
 use App\library\Sberbank\CreatePayments;
 use App\library\Sberbank\Currency;
 use App\User_payments;
+use App\User;
 use App\library\Sber\SberbankAcquiring\Client;
 use App\library\Sber\SberbankAcquiring\OrderStatus;
 
 class SberbankController extends Controller
 {
-
+    // Получаем все данные по оплатам пользователя
     public function index()
     {
-        $currentUser = JWTAuth::parseToken()->authenticate();
-        $userPayments = $currentUser
+        $token = JWTAuth::getToken();
+        $user = JWTAuth::toUser($token);
+        $userPayments = User::find($user['id'])->user_payments()->get();
+        return $userPayments;
     }
 
-    // POST amount
+    // Создать форму для оплаты
     public function create(Request $request)
     {
         // Получаем данные
@@ -58,6 +61,7 @@ class SberbankController extends Controller
         // Возвращаем результат на клиент
         return $result;
     }
+
     // Успешная оплата
     public function createSuccess(Request $request)
     {
@@ -66,8 +70,19 @@ class SberbankController extends Controller
         $payments = User_payments::where('payments_id', $paymentOrderId)->first();
         $payments->isApproved = 1;
         $payments->save();
-        return $payments;
+        // Получаем текущий баланс пользователя
+        $user = User::find($payments['user_id'])->first();
+        $currentUserBalance = $user->balance;
+        // Прибавляем к текущему балансу одобренную сумму
+        $balance = $currentUserBalance + $payments->amount;
+        $user->balance = $balance;
+        $user->save();
+
+        return response()->json([
+            'status' => 'ok'
+        ], 200);
     }
+
     // Оплата не прошла
     public function createFail()
     {

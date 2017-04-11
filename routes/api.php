@@ -72,20 +72,19 @@ $api->version('v1', function (Router $api) {
 
         // Работа со сбербанком
         $api->group(['prefix' => 'sberbank'], function(Router $api){
+            // Все произведенные оплаты пользователя
+            $api->post('index', 'App\Api\V1\Controllers\SberbankController@index');
             // Создание оплаты
             $api->post('create', 'App\Api\V1\Controllers\SberbankController@create');
-            $api->post('create-success', 'App\Api\V1\Controllers\SberbankController@createSuccess');
-            $api->post('create-fail', 'App\Api\V1\Controllers\SberbankController@createFail');
 
         });
     });
 
     // Работа с ответами сбербанка
     $api->group(['prefix' => 'response-sberbank'], function(Router $api){
-        // Создание оплаты
+        // Обработка ответов от сбербанка
         $api->any('create-success', 'App\Api\V1\Controllers\SberbankController@createSuccess');
         $api->any('create-fail', 'App\Api\V1\Controllers\SberbankController@createFail');
-
     });
 
     $api->get('hello', function() {
