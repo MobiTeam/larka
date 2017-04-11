@@ -1,5 +1,6 @@
 export default {
 					"/dashboard"                	 : "Главная страница",
+					"/dashboard/balance"             : "Баланс",
 					"/dashboard/profile"        	 : "Профиль",
 					"/dashboard/profile/edit"   	 : "Редактирование профиля",
 					"/dashboard/seasons"        	 : "Управление сезонами",

@@ -258,6 +258,18 @@ html, body {
 #root [data-reactroot], #root [data-reactroot] > .authenticated {
 	height: 100% !important; 
 }
+
+.white-wrapper {
+	background: white;
+    padding: 14px;
+    margin: 10px 0px;
+    border: 1px solid #e7e7e7;
+    border-bottom: 2px solid #eeeeee;
+}
+
+.white-wrapper h3 {
+	margin-top: 0px;
+}
 .dashboard-wrapper {
     min-width: 280px!important;
 }
@@ -778,22 +790,90 @@ html, body {
 
 .pageTitle {
     font-size: 22px;
-    padding-left: 52px;
+    padding-left: 20px;
     margin-top: 2px;
     display: block;
     white-space: nowrap;
+    float: left;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 460px) {
     .pageTitle {
-        padding-left: 20px;
+        font-size: 18px;        
     }
 }
 
-@media (max-width: 360px) {
-    .pageTitle {
-        font-size: 18px;
-    }
+.dropdown__content {
+  z-index: 100;
+  display: none;
+  position: absolute;
+  min-width: 260px;
+  right: 0px;
+}
+
+.dropdown--active .dropdown__content {
+  display: block;
+}
+
+.account-dropdown__avatar {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px 0 0;
+  border-radius: 3px;
+}
+
+.account-dropdown .dropdown__trigger {
+  line-height: 20px;
+}
+
+.account-dropdown__avatar,
+.account-dropdown__name {
+  vertical-align: middle;
+}
+
+.account-dropdown .dropdown__content {
+  margin-top: 5px;
+  border-top: rgba(0, 0, 0, 0.05) 1px solid;
+  background: #ffffff;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+}
+
+.account-dropdown__quick-links,
+.account-dropdown__management-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.account-dropdown__segment {
+  padding: 10px 15px;
+  border-bottom: #e1e1e1 1px solid;
+}
+
+.account-dropdown__quick-links {
+  padding: 0px;
+}
+
+.account-dropdown__link {
+  padding: 10px 15px;
+}
+
+.account-dropdown__link:hover {
+  background-color: #f0f0f0;
+}
+
+.dashboard-email {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.entry-money-btn {
+    margin: 6px 0px;
+}
+
+.entry-text {
+    padding: 0px 5px;
 }
 .left-sidebar {
 	background: #0e1a35;
@@ -1067,6 +1147,9 @@ html, body {
 }
 
 
+.balance-wrapper {
+	/*padding: 20px;*/
+}
 .profile-box {
 	padding-top: 20px;
 	text-align: center;

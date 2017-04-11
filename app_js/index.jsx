@@ -25,6 +25,7 @@ import LoginForm from './components/panel/LoginForm'
 import Dashboard from './components/Dashboard'
 import DashboardIndex from './components/dashboard/Index'
 
+import Balance from './components/dashboard/balance/Balance'
 import Seasons from './components/dashboard/seasons/Seasons'
 import CreateSeason from './components/dashboard/seasons/CreateSeason'
 import EditSeason from './components/dashboard/seasons/EditSeason'
@@ -77,6 +78,7 @@ render(
 					<Route component={ Dashboard }>
 						<Route component={canSee(Wrapper, [admin, user])}>
 							<Route path='/dashboard' component={DashboardIndex} />
+							<Route path='/dashboard/balance' component={Balance} />
 							<Route path='/dashboard/profile' component={needProfileInfo(Profile)} />					
 							<Route path='/dashboard/profile/edit' component={needProfileInfo(ProfileEditor)} />
 						</Route>						

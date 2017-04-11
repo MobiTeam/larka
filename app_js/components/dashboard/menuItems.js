@@ -14,12 +14,12 @@ const items = [
 					'roles' : [admin],
 					'iconClass' : 'fa fa-clock-o'	
 				},
-				// {
-				// 	'title' : 'Результаты',
-				// 	'link' :  baseLink  + "/results",
-				// 	'roles' : authorized,
-				// 	'iconClass' : 'fa fa-tasks'	
-				// },
+				{
+					'title' : 'Баланс',
+					'link' :  baseLink  + "/balance",
+					'roles' : authorized,
+					'iconClass' : 'fa fa-credit-card'	
+				},
 				// {
 				// 	'title' : 'Статистика',
 				// 	'link' :  baseLink + "/stats",

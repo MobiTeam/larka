@@ -4,7 +4,10 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import Sidebar from './dashboard/Sidebar'
 import Navbar from './dashboard/Navbar'
+import needProfileInfo from '../hocs/needProfileInfo'
 import { SITE_NAME } from '../constants/conf'
+ 
+const WrappedNavbar = needProfileInfo(Navbar);
  
 class Dashboard extends React.Component {
 	render () {
@@ -15,7 +18,7 @@ class Dashboard extends React.Component {
 							<Sidebar userRole={ this.props.role } />
 							<div className="dashboard-wrapper col col-md-10 col-sm-11 display-table-cell v-align">
 								<div className="row">
-									<Navbar />
+									<WrappedNavbar />
 								</div>
 								<div className="row">
 									<div className="pageContentBox">

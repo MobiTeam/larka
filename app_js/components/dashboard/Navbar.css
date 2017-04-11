@@ -55,20 +55,15 @@
 
 .pageTitle {
     font-size: 22px;
-    padding-left: 52px;
+    padding-left: 20px;
     margin-top: 2px;
     display: block;
     white-space: nowrap;
+    float: left;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 460px) {
     .pageTitle {
-        padding-left: 20px;
-    }
-}
-
-@media (max-width: 360px) {
-    .pageTitle {
-        font-size: 18px;
+        font-size: 18px;        
     }
 }

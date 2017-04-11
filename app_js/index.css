@@ -258,3 +258,15 @@ html, body {
 #root [data-reactroot], #root [data-reactroot] > .authenticated {
 	height: 100% !important; 
 }
+
+.white-wrapper {
+	background: white;
+    padding: 14px;
+    margin: 10px 0px;
+    border: 1px solid #e7e7e7;
+    border-bottom: 2px solid #eeeeee;
+}
+
+.white-wrapper h3 {
+	margin-top: 0px;
+}
