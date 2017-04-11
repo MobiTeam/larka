@@ -61,7 +61,7 @@ $api->version('v1', function (Router $api) {
             $api->delete('delete/{id}', 'App\Api\V1\Controllers\SeasonController@destroy');
         });
 
-        // Группы (In process)
+        // Группы (Work)
         $api->group(['prefix' => 'group'], function(Router $api) {
             $api->get('group', 'App\Api\V1\Controllers\InfoGroupController@index');
             $api->post('create', 'App\Api\V1\Controllers\InfoGroupController@create');
@@ -69,7 +69,17 @@ $api->version('v1', function (Router $api) {
             $api->post('update/{id}', 'App\Api\V1\Controllers\InfoGroupController@update');
             $api->delete('delete/{id}', 'App\Api\V1\Controllers\InfoGroupController@destroy');
         });
+
+        // Работа со сбербанком
+        $api->group(['prefix' => 'sberbank'], function(Router $api){
+            // Создание оплаты
+            $api->post('create', 'App\Api\V1\Controllers\SberbankController@create');
+            $api->post('create-success', 'App\Api\V1\Controllers\SberbankController@createSuccess');
+            $api->post('create-fail', 'App\Api\V1\Controllers\SberbankController@createFail');
+
+        });
     });
+
 
     $api->get('hello', function() {
         return response()->json([
@@ -77,9 +87,9 @@ $api->version('v1', function (Router $api) {
         ]);
     });
 
-    $api->group(['prefix' => 'sberbank'], function(Router $api) {
-        $api->post('index', 'App\Api\V1\Controllers\SberbankController@index');
-    });
+    // $api->group(['prefix' => 'sberbank'], function(Router $api) {
+    //     $api->post('index', 'App\Api\V1\Controllers\SberbankController@index');
+    // });
 
 
 });
