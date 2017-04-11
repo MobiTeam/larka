@@ -18,8 +18,10 @@ class LogPayments extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('payments_id')->nullable();
             $table->double('amount');
-            // Если isApproved 1 - Доход, а 2 - Расход
+            // Если тип 1 - Доход, а 2 - Расход
             $table->integer('type')->nullable();
+            // Если isApproved 0 - то оплата отклонена, а 1 - оплата прошла успешно
+            $table->integer('isApproved')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

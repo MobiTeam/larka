@@ -87,6 +87,7 @@ class SberbankController extends Controller
         $log->payments_id = $payments->payments_id;
         $log->amount = $payments->amount;
         $log->type = 1;
+        $log->isApproved = 1;
         $log->save();
 
         return response()->json([
@@ -95,13 +96,25 @@ class SberbankController extends Controller
     }
 
     // Оплата не прошла
-    public function createFail()
+    public function createFail(Request $request)
     {
         $paymentOrderId = $request->input(['orderId']);
         $payments = User_payments::where('payments_id', $paymentOrderId)->first();
         $payments->isApproved = 0;
         $payments->save();
-        return $payments;
+
+        // Заносим данные по ошибочной оплатев логи
+        $log = new Log_payments();
+        $log->user_id = $payments['user_id'];
+        $log->payments_id = $payments->payments_id;
+        $log->amount = $payments->amount;
+        $log->type = 1;
+        $log->isApproved = 0;
+        $log->save();
+
+        return response()->json([
+            'status' => 'fail'
+        ], 200);
     }
 
 }
