@@ -310,6 +310,7 @@ class Client
 
         $headers = array(
             'Cache-Control: no-cache',
+            'Proxy-Authorization: Basic QV9ZYWtpbWNodWs6WWF2NDcy',
         );
 
         $data['userName'] = $this->userName;

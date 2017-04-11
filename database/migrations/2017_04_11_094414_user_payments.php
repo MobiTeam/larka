@@ -17,6 +17,7 @@ class UserPayments extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('payments_id')->nullable();
             $table->double('amount')->unsigned();
+            $table->integer('isApproved')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

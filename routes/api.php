@@ -80,16 +80,18 @@ $api->version('v1', function (Router $api) {
         });
     });
 
+    // Работа с ответами сбербанка
+    $api->group(['prefix' => 'response-sberbank'], function(Router $api){
+        // Создание оплаты
+        $api->get('create-success', 'App\Api\V1\Controllers\SberbankController@createSuccess');
+        $api->post('create-fail', 'App\Api\V1\Controllers\SberbankController@createFail');
+
+    });
 
     $api->get('hello', function() {
         return response()->json([
             'message' => 'This is a simple example of item returned by your APIs. Everyone can see it.'
         ]);
     });
-
-    // $api->group(['prefix' => 'sberbank'], function(Router $api) {
-    //     $api->post('index', 'App\Api\V1\Controllers\SberbankController@index');
-    // });
-
 
 });

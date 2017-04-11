@@ -2,7 +2,7 @@
 
 namespace App\library\Sber\SberbankAcquiring\HttpClient;
 
-use App\Sber\SberbankAcquiring\Exception\NetworkException;
+use App\library\Sber\SberbankAcquiring\Exception\NetworkException;
 
 /**
  * Simple HTTP client interface.
