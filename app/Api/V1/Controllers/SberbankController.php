@@ -16,7 +16,8 @@ class SberbankController extends Controller
 
     public function index()
     {
-        return Currency::RUB;
+        $currentUser = JWTAuth::parseToken()->authenticate();
+        $userPayments = $currentUser
     }
 
     // POST amount
@@ -57,17 +58,24 @@ class SberbankController extends Controller
         // Возвращаем результат на клиент
         return $result;
     }
-
+    // Успешная оплата
     public function createSuccess(Request $request)
     {
-        echo "1";
-        // return $request->all();
+        // Получаем ID заказа и ставим статус оплачено для заказа
+        $paymentOrderId = $request->input(['orderId']);
+        $payments = User_payments::where('payments_id', $paymentOrderId)->first();
+        $payments->isApproved = 1;
+        $payments->save();
+        return $payments;
     }
-
+    // Оплата не прошла
     public function createFail()
     {
-        echo "2";
-        return $request->all();
+        $paymentOrderId = $request->input(['orderId']);
+        $payments = User_payments::where('payments_id', $paymentOrderId)->first();
+        $payments->isApproved = 0;
+        $payments->save();
+        return $payments;
     }
 
 }

@@ -71,7 +71,7 @@ class User extends Authenticatable
         return $this->hasMany('App\User_group', 'id', 'user_groups_id');
     }
 
-    public function user__payments()
+    public function user_payments()
     {
         return $this->hasMany('App\User_payments', 'user_id', 'id');
     }

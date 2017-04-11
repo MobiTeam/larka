@@ -83,8 +83,8 @@ $api->version('v1', function (Router $api) {
     // Работа с ответами сбербанка
     $api->group(['prefix' => 'response-sberbank'], function(Router $api){
         // Создание оплаты
-        $api->get('create-success', 'App\Api\V1\Controllers\SberbankController@createSuccess');
-        $api->post('create-fail', 'App\Api\V1\Controllers\SberbankController@createFail');
+        $api->any('create-success', 'App\Api\V1\Controllers\SberbankController@createSuccess');
+        $api->any('create-fail', 'App\Api\V1\Controllers\SberbankController@createFail');
 
     });
 
