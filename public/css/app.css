@@ -831,6 +831,10 @@ html, body {
   vertical-align: middle;
 }
 
+.account-dropdown {
+  cursor: pointer;
+}
+
 .account-dropdown .dropdown__content {
   margin-top: 5px;
   border-top: rgba(0, 0, 0, 0.05) 1px solid;

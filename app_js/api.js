@@ -67,3 +67,4 @@ export const groupShow = createFetchPromise('/group/show/[:id]', 'GET');
 export const groupUpdate = createFetchPromise('/group/update/[:id]', 'POST'); 
 export const groupDelete = createFetchPromise('/group/delete/[:id]', 'DELETE'); 
 
+export const fetchBankOperations = createFetchPromise('/sberbank/index', 'GET');

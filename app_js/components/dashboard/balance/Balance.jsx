@@ -1,5 +1,6 @@
 import React from 'react'
 import BalanceForm from './BalanceForm'
+import BalanceOperationList from './BalanceOperationList'
 
 class Balance extends React.Component {
 
@@ -44,6 +45,7 @@ class Balance extends React.Component {
 						<div className="col col-xs-12 col-sm-8">
 							<div className="white-wrapper">
 								<h3>Просмотр истории операций</h3>
+								<BalanceOperationList />
 							</div>
 						</div>
 					</div>

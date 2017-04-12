@@ -11,6 +11,10 @@ const defaultState = {
 		'logOutFlag' : false,
 		'isAuthorised' : false
 	},
+	'operationList' : {
+		'data' : [],
+		'err' : false
+	}, 
 	'registration' : {
 		'showHelper' : false,
 		'errorFlag'  : false,
