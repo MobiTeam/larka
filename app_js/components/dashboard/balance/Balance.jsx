@@ -1,6 +1,8 @@
 import React from 'react'
 import BalanceForm from './BalanceForm'
 import BalanceOperationList from './BalanceOperationList'
+import queryString from 'query-string'
+import { connect } from 'react-redux'
 
 class Balance extends React.Component {
 
@@ -10,6 +12,16 @@ class Balance extends React.Component {
 			operationStatusText: '',
 			err: false
 		}
+	}
+
+	componentDidMount() {
+		const search = queryString.parse(location.search);
+		if (!search.status) return; 
+		if (search.status == "success") {
+			this.setOperationStatus("Операция прошла успешно.", false);
+		} else {
+			this.setOperationStatus("При выполнении операции произошла ошибка.", true);
+		}		
 	}
 
 	setOperationStatus(operationStatusText, err = false) {
@@ -31,9 +43,12 @@ class Balance extends React.Component {
 				<div className="balance-wrapper">
 					<div>
 						{ this.printStatusMsg() }
-					</div>
+					</div>					
 					<div className="row">
 						<div className="col col-xs-12 col-sm-4">
+							<div className="white-wrapper">
+								<h3>На балансе: { this.props.profile.balance || '' } RUB</h3>
+							</div>
 							<div className="white-wrapper">
 								<h3>Пополнение баланса</h3>
 								<BalanceForm setStatus={ this.setOperationStatus.bind(this) } />
@@ -54,4 +69,11 @@ class Balance extends React.Component {
 	}	
 }
 
-export default Balance;
+const mapStateToProps = (state) => {
+	return {		
+		profile : state.user.profile
+	}
+}
+
+export default connect(mapStateToProps)(Balance);
+

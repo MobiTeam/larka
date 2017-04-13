@@ -1,0 +1,20 @@
+.operation-list {
+	max-height: 500px;
+    overflow-y: scroll;
+}
+
+.success-tr {
+	background-color: #d7fae2;
+}
+
+.success-tr:hover {
+	background-color: #ecfef1!important;
+}
+
+.error-tr {
+	background-color: #fad9d7;
+}
+
+.error-tr:hover {
+	background-color: #fceae9!important;
+}

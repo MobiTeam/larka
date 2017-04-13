@@ -30,7 +30,7 @@ class BalanceOperationList extends React.Component {
 						{  
 							this.props.operationList.data.map((operation) => {
 								return (
-									<tr key={ operation.id }>
+									<tr key={ operation.id } className={ operation.isApproved === 0 ? 'error-tr' : 'success-tr' } >
 										<td>{ operation.id }</td>
 										<td>{ operation.amount }</td>
 										<td>{ statuses[operation.isApproved] }</td>
@@ -47,7 +47,7 @@ class BalanceOperationList extends React.Component {
 
 	render() {		
 		return (
-			<div>
+			<div className="operation-list">
 				{ this.printOperationsList() }
 			</div>
 		)

@@ -41,8 +41,9 @@ class BalanceForm extends React.Component {
 		return false;
 	}
 
-	isNumber(value) {
-		return !isNaN(parseFloat(value));
+	isNumber(number) {
+		const value = parseFloat(number);
+		return !isNaN(value) && value > 0;
 	}
 
 	summChange(event) {
