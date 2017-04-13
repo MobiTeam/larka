@@ -20,7 +20,7 @@ class SberbankController extends Controller
     {
         $token = JWTAuth::getToken();
         $user = JWTAuth::toUser($token);
-        $userPayments = User::find($user['id'])->user_payments()->get();
+        $userPayments = User::find($user['id'])->user_payments()->orderBy('created_at','desc')->get();
         return response()->json(['userPayments' => $userPayments], 200);
     }
 
@@ -35,36 +35,41 @@ class SberbankController extends Controller
         $inputData = $request->only(['amount']);
         $amount = str_replace(',', '.', $inputData['amount']);
 
-        // Сохраняем запись с пустым payments_id, для отправки заказа в сбербанк
-        $currentUserId = $currentUser['id'];
-        $userPayments = new User_payments();
-        $userPayments->user_id = $currentUserId;
-        $userPayments->amount = $amount;
-        $userPayments->save();
-        // Получаем id записи для отправки в сбербанк
-        $userPaymentsId = $userPayments->id;
+        if ($amount > 0 ){
+            // Сохраняем запись с пустым payments_id, для отправки заказа в сбербанк
+            $currentUserId = $currentUser['id'];
+            $userPayments = new User_payments();
+            $userPayments->user_id = $currentUserId;
+            $userPayments->amount = $amount;
+            $userPayments->save();
+            // Получаем id записи для отправки в сбербанк
+            $userPaymentsId = $userPayments->id;
 
-        // Создаём нового клиента
-        $client = new Client([ 'userName' => \Config::get('sberbank.login'), 'password' => \Config::get('sberbank.password'), 'apiUri' => Client::API_URI_TEST ]);
+            // Создаём нового клиента
+            $client = new Client([ 'userName' => \Config::get('sberbank.login'), 'password' => \Config::get('sberbank.password'), 'apiUri' => Client::API_URI_TEST ]);
 
-        // Обязательные параметры
-        $orderId     = $userPayments->id;
-        // Переводим в копейки
-        $orderAmount = $amount * 100;
-        $returnUrl   = \Config::get('app.url').'api/response-sberbank/create-success';
+            // Обязательные параметры
+            $orderId     = $userPayments->id;
+            // Переводим в копейки
+            $orderAmount = $amount * 100;
+            $returnUrl   = \Config::get('app.url').'api/response-sberbank/create-success';
 
-        // Необязательные параметры
-        $params['failUrl']  = \Config::get('app.url').'api/response-sberbank/create-fail';
-        // Отправляем запрос в сбербанк для получения формы и номера оплаты
-        $result = $client->registerOrder($orderId, $orderAmount, $returnUrl, $params);
+            // Необязательные параметры
+            $params['failUrl']  = \Config::get('app.url').'api/response-sberbank/create-fail';
+            // Отправляем запрос в сбербанк для получения формы и номера оплаты
+            $result = $client->registerOrder($orderId, $orderAmount, $returnUrl, $params);
 
-        $paymentOrderId = $result['orderId'];
-        $paymentFormUrl = $result['formUrl'];
-        // Сохраняем номер оплаты
-        $userPayments->payments_id = $paymentOrderId;
-        $userPayments->save();
-        // Возвращаем результат на клиент
-        return $result;
+            $paymentOrderId = $result['orderId'];
+            $paymentFormUrl = $result['formUrl'];
+            // Сохраняем номер оплаты
+            $userPayments->payments_id = $paymentOrderId;
+            $userPayments->save();
+            // Возвращаем результат на клиент
+            return $result;
+        }
+        else{
+            return redirect()->to('/dashboard/balance?status=error');
+        }
     }
 
     // Успешная оплата
@@ -94,7 +99,7 @@ class SberbankController extends Controller
         $log->isApproved = 1;
         $log->save();
 
-        return redirect()->to('/dashboard/balance?status=success');        
+        return redirect()->to('/dashboard/balance?status=success');
     }
 
     // Оплата не прошла
@@ -114,7 +119,7 @@ class SberbankController extends Controller
         $log->isApproved = 0;
         $log->save();
 
-        return redirect()->to('/dashboard/balance?status=error'); 
+        return redirect()->to('/dashboard/balance?status=error');
     }
 
     // Проверить статус оплаты
