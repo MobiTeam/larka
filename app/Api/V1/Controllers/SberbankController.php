@@ -27,10 +27,14 @@ class SberbankController extends Controller
     // Создать форму для оплаты
     public function create(Request $request)
     {
+        if (env('APP_ENV') == "local") return response()->json(["orderId" => "3fd45d40-01bc-45b7-92cb-1fab8266f559",
+                                                                "formUrl" => "https://3dsec.sberbank.ru/payment/merchants/v_forme/payment_ru.html?mdOrder=3fd45d40-01bc-45b7-92cb-1fab8266f559"], 200);
+
         // Получаем данные
         $currentUser = JWTAuth::parseToken()->authenticate();
         $inputData = $request->only(['amount']);
         $amount = str_replace(',', '.', $inputData['amount']);
+
         // Сохраняем запись с пустым payments_id, для отправки заказа в сбербанк
         $currentUserId = $currentUser['id'];
         $userPayments = new User_payments();
@@ -90,9 +94,7 @@ class SberbankController extends Controller
         $log->isApproved = 1;
         $log->save();
 
-        return response()->json([
-            'status' => 'ok'
-        ], 200);
+        return redirect()->to('/dashboard/balance?status=success');        
     }
 
     // Оплата не прошла
@@ -112,9 +114,7 @@ class SberbankController extends Controller
         $log->isApproved = 0;
         $log->save();
 
-        return response()->json([
-            'status' => 'fail'
-        ], 200);
+        return redirect()->to('/dashboard/balance?status=error'); 
     }
 
     // Проверить статус оплаты

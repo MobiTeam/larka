@@ -16,8 +16,7 @@ class BalanceOperationList extends React.Component {
 
 	printOperationsList () {
 		if (this.props.operationList.data.length == 0) return 'Вы не производили ни одной операции.'
-		const statuses = ['Отклонена', 'Утверждена'];
-		console.log(this.props);
+		const statuses = ['Отклонена', 'Успешно'];
 		return (<table className="table table-hover">
 					<thead>
 						<tr>
@@ -31,7 +30,7 @@ class BalanceOperationList extends React.Component {
 						{  
 							this.props.operationList.data.map((operation) => {
 								return (
-									<tr>
+									<tr key={ operation.id }>
 										<td>{ operation.id }</td>
 										<td>{ operation.amount }</td>
 										<td>{ statuses[operation.isApproved] }</td>

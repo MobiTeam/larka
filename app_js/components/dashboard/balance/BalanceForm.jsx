@@ -1,4 +1,7 @@
 import React from 'react'
+import { createBankOrder } from '../../../api.js'
+import { connect } from 'react-redux'
+import { showSpinner, closeSpinner } from '../../../actions/spinnerActions'
 
 class BalanceForm extends React.Component {
 
@@ -20,7 +23,21 @@ class BalanceForm extends React.Component {
 		 	return;	
 		}
 
-		this.props.setStatus('Сумма успешно зачислена.');
+		this.props.showSpinner();
+		createBankOrder({
+			amount: this.state.summ,
+		},{
+            "Authorization": `Bearer{${ this.props.token }}`
+		}).then((result) => result.json())
+		  .then((order) => {
+		  	if (order.error || !order.formUrl) {
+				this.props.setStatus('При генерации заказа произошла ошибка, повторите попытку позже.', true);
+			} else {
+				location.href = order.formUrl;
+			} 
+			this.props.closeSpinner();
+		  });
+
 		return false;
 	}
 
@@ -51,4 +68,18 @@ class BalanceForm extends React.Component {
 	}	
 }
 
-export default BalanceForm;
+const mapStateToProps = (state) => {
+	return {
+		token : state.user.token
+	}
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		showSpinner : () => dispatch(showSpinner()),
+		closeSpinner : () => dispatch(closeSpinner())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BalanceForm);
