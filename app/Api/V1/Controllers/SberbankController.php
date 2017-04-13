@@ -82,7 +82,7 @@ class SberbankController extends Controller
         $payments->save();
 
         // Получаем текущий баланс пользователя
-        $user = User::find($payments['user_id'])->first();
+        $user = User::find($payments['user_id']);
         $currentUserBalance = $user->balance;
 
         // Прибавляем к текущему балансу одобренную сумму
