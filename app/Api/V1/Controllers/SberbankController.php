@@ -68,7 +68,7 @@ class SberbankController extends Controller
             return $result;
         }
         else{
-            return return response()->json(['error' => 'Во время выполнения операции произошла ошибка'], 200);
+            return response()->json(['error' => 'Во время выполнения операции произошла ошибка'], 200);
         }
     }
 
