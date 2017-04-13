@@ -13,13 +13,14 @@
     <li data-target="#carousel" data-slide-to="1"></li>
     <li data-target="#carousel" data-slide-to="2"></li>
     <li data-target="#carousel" data-slide-to="3"></li>
+    <li data-target="#carousel" data-slide-to="4"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
 
     <div class="item active content-carousel-img">
-      <img src="base/img/carousel/5.jpg" alt="Картинка">
+      <img src="base/img/carousel/1.jpg" alt="Картинка">
     </div>
 
     <div class="item content-carousel-img">
@@ -28,12 +29,16 @@
 
 
     <div class="item content-carousel-img">
-      <img src="base/img/carousel/6.jpg" alt="...">
+      <img src="base/img/carousel/3.jpg" alt="...">
     </div>
 
 
     <div class="item content-carousel-img">
       <img src="base/img/carousel/4.jpg" alt="...">
+    </div>
+
+    <div class="item content-carousel-img">
+      <img src="base/img/carousel/5.jpg" alt="...">
     </div>
 
   </div>

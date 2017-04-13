@@ -10,7 +10,7 @@
         <h4 class="clear-sans"><b>Классические группы</b></h4>
         <p class="clear-sans about-description-text">Классические группы - группы, в которые можно придти разово, а также приобрести абонемент на 12 занятий.</p>
         <p class="clear-sans about-description-text">Классические группы занимаются 3 раза в неделю, дополнительных наполнений у данных групп нет. Придти может любой желающий (при наличии свободных мест)</p>
-        <img class="about-description-img" src="base/img/carousel/1.jpg" alt="">
+        <img class="about-description-img" src="base/img/carousel/season_1.jpg" alt="">
         <hr>
         <h4 class="clear-sans"><b>Что такое СЕЗОН?</b></h4>
         <ul>
@@ -51,7 +51,7 @@
             </li>
         </ul>
 
-        <img class="about-description-img" src="base/img/carousel/3.jpg" alt="...">
+        <img class="about-description-img" src="base/img/carousel/season_2.jpg" alt="...">
     </div>
 
 @endsection

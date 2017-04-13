@@ -2,7 +2,7 @@
 @extends('template.basepage')
 <!-- Подключаем базову страницу -->
 
-@section('title', 'Контакты')
+@section('title', 'Жиросжигатели')
 
 @section('content')
 
@@ -92,11 +92,5 @@
             </form>
 
         </div>
-
-
-
-
-
-
 
 @endsection

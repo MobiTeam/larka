@@ -18,7 +18,7 @@
             <div class="main-header row">
                 <div class="col-xs-4 col-md-4 main-header-img text-center hidden-xs">
                     <a href="/">
-                        <img class="main-header-logo" src="base/img/logo.png" alt="">
+                        <img class="main-header-logo" src="base/img/logo2.png" alt="">
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-8 main-header-nav">
@@ -41,7 +41,7 @@
                                   <!-- Список ссылок, расположенных слева -->
                                   <ul class="nav navbar-nav navbar-center">
                                       <li>
-                                          <a href="/photogallery" class="main-nav-a">
+                                          <a href="/photogallery" class="main-nav-a {{ Request::segment(1) === 'photogallery' ? 'active' : null }}">
                                                 <img class="main-nav-logo" src="base/img/photo.png" alt="">
                                                 <br>
                                                 Архив похудизма
@@ -49,7 +49,7 @@
                                       </li>
 
                                       <li>
-                                          <a href="/news" class="main-nav-a">
+                                          <a href="/news" class="main-nav-a {{ Request::segment(1) === 'news' ? 'active' : null }}">
                                                 <img class="main-nav-logo" src="base/img/news.png" alt="">
                                                 <br>
                                                 Новости
@@ -57,7 +57,7 @@
                                       </li>
 
                                     <li>
-                                        <a href="/dashboard" class="main-nav-a">
+                                        <a href="/dashboard" class="main-nav-a {{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
                                               <img class="main-nav-logo" src="base/img/lk.png" alt="">
                                               <br>
                                               Нужный кабинет
@@ -65,7 +65,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="/contact" class="main-nav-a">
+                                        <a href="/contact" class="main-nav-a {{ Request::segment(1) === 'contact' ? 'active' : null }}">
                                               <img class="main-nav-logo" src="base/img/contacts.png" alt="">
                                               <br>
                                               Жиросжигатели
@@ -73,10 +73,17 @@
                                     </li>
 
                                     <li>
-                                        <a href="/about" class="main-nav-a">
+                                        <a href="/about" class="main-nav-a {{ Request::segment(1) === 'about' ? 'active' : null }}">
                                               <img class="main-nav-logo" src="base/img/about_season.png" alt="">
                                               <br>
                                               Про сезон
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/justify" class="main-nav-a {{ Request::segment(1) === 'justify' ? 'active' : null }}">
+                                              <img class="main-nav-logo" src="base/img/justify.png" alt="">
+                                              <br>
+                                              Контакты
                                         </a>
                                     </li>
                                   </ul>

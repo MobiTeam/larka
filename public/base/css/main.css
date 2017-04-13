@@ -64,6 +64,11 @@ body{
 
 .main-nav-logo{
     text-align: center;
+    height: 48px;
+}
+
+.active{
+    color:#FF5722!important;
 }
 
 .main-nav-logo:hover{
@@ -71,13 +76,13 @@ body{
 }
 
 .content-carousel-img{
-    max-height: 500px;
     max-width: 1200px;
+    max-height: 600px;
 }
 
 #carousel{
     margin-bottom: 20px;
-    height: 500px;
+    height: 600px;
 }
 
 .carousel-control{
@@ -210,4 +215,13 @@ body{
 }
 .thumb {
     padding:5px;
+}
+
+.table-justify{
+    font-family: 'ClearSansRegular';
+    font-size: 18px;
+}
+
+.table-justify-tr-info{
+    text-align: center;
 }

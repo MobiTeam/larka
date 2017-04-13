@@ -2,7 +2,7 @@
 @extends('template.basepage')
 <!-- Подключаем базову страницу -->
 
-@section('title', 'Фотогаллерея')
+@section('title', 'Архив похудизма')
 
 @section('content')
     <h1 class="clear-sans text-center"><b>Фотогаллерея</b></h1>

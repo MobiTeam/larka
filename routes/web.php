@@ -33,6 +33,10 @@ Route::get('about', function () {
     return view('about');
 });
 
+Route::get('justify', function () {
+    return view('justify');
+});
+
 // Все роутинги, которых нет здесь и на странице api.php, шлем на view react
 Route::get('{any?}', function ($any = null) {
     return view('react');

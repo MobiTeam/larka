@@ -30,6 +30,7 @@ class UsersTableSeeder extends Seeder
                 'family_name'    => 'Петроченко',
                 'name'           => 'Владислав',
                 'born_date'      => '1994-04-29',
+                'is_activated'   => '1',
                 'balance'        => 0,
                 'activated_token'   => '$2y$10$w015QAPhVuodd3v2uc1O2uXr6OiCJ05X1k8mmjEmSirC6iXgjt3Pe',
         ]);
@@ -41,6 +42,7 @@ class UsersTableSeeder extends Seeder
                 'family_name'    => 'Администратор',
                 'name'           => 'Четкий',
                 'born_date'      => '1994-08-12',
+                'is_activated'   => '1',
                 'balance'        => 0,
                 'activated_token'   => '$2y$10$w015QAPhVuodd3v3uc1OluXr6OiCJ05X1k8mmjEmSirC6iXgjt3Pe',
         ]);
@@ -52,6 +54,7 @@ class UsersTableSeeder extends Seeder
                 'family_name'    => 'Юзер',
                 'name'           => 'Нечеткий',
                 'born_date'      => '1994-10-19',
+                'is_activated'   => '1',
                 'balance'        => 0,
                 'activated_token'   => '$2y$10$w015QAPhVuodd4v2uc1OluXr6OiCJ05X1k8mmjEmSirC6iXgjt3Pe',
         ]);
