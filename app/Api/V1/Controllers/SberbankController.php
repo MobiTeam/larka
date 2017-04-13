@@ -34,7 +34,7 @@ class SberbankController extends Controller
         $currentUser = JWTAuth::parseToken()->authenticate();
         $inputData = $request->only(['amount']);
         $amount = str_replace(',', '.', $inputData['amount']);
-
+        // Проверяем сумму
         if ($amount > 0 ){
             // Сохраняем запись с пустым payments_id, для отправки заказа в сбербанк
             $currentUserId = $currentUser['id'];
@@ -68,7 +68,7 @@ class SberbankController extends Controller
             return $result;
         }
         else{
-            return redirect()->to('/dashboard/balance?status=error');
+            return return response()->json(['error' => 'Во время выполнения операции произошла ошибка'], 200);
         }
     }
 
