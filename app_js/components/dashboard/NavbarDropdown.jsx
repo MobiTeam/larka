@@ -21,7 +21,7 @@ class NavbarDropdown extends React.Component {
         </DropdownTrigger>        
         <DropdownContent>
           <div className="account-dropdown__identity account-dropdown__segment">
-            <div>На балансе { this.props.profile.balance || '' } RUB</div>
+            <div>На балансе { this.props.profile.balance || '0' } RUB</div>
             <div>
               <Link to="/dashboard/balance">
                 <button className="btn btn-success entry-money-btn">

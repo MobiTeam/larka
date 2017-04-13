@@ -47,7 +47,7 @@ class Balance extends React.Component {
 					<div className="row">
 						<div className="col col-xs-12 col-sm-4">
 							<div className="white-wrapper">
-								<h3>На балансе: { this.props.profile.balance || '' } RUB</h3>
+								<h3>На балансе: { this.props.profile.balance || '0' } RUB</h3>
 							</div>
 							<div className="white-wrapper">
 								<h3>Пополнение баланса</h3>
