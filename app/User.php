@@ -80,4 +80,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Log_payments', 'user_id', 'id');
     }
+    // Связь многие со многим с группами сезонов, в которых принимает участие пользователь
+    public function tsgroup() {
+        return $this->belongsToMany('App\Info_group', 'user_tsgroups')
+                ->withTimestamps();
+    }
+
 }

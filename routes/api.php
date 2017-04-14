@@ -80,9 +80,9 @@ $api->version('v1', function (Router $api) {
         });
 
         // Работа с привязкой пользователей к сезонам
-        $api->group(['prefix' => 'tgroup_season'], function(Router $api){
-            $api->get('index', 'App\Api\V1\Controllers\TgroupSeasonController@index');
-            $api->post('create', 'App\Api\V1\Controllers\TgroupSeasonController@create_relation');
+        $api->group(['prefix' => 'tsgroup'], function(Router $api){
+            $api->get('index', 'App\Api\V1\Controllers\UserTsgroupController@index');
+            $api->post('create', 'App\Api\V1\Controllers\UserTsgroupController@create_relation');
 
         });
     });
