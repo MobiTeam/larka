@@ -40,7 +40,6 @@ class GroupList extends React.Component {
 							<th>Количество человек</th>
 							<th>Количество тренировок</th>
 							<th>Стоимость за сезон</th>
-							<th>Стоимость за занятие</th>
 							<th></th>
 							<th></th>
 						</tr>

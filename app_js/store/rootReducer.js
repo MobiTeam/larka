@@ -10,6 +10,7 @@ import seasonList from '../reducers/seasonList'
 import group from '../reducers/group'
 import groupList from '../reducers/groupList'
 import operationList from '../reducers/operationList'
+import activeSeasons from '../reducers/activeSeasons'
 
 function rootReducer (state = {}, action) {
     return {
@@ -22,7 +23,8 @@ function rootReducer (state = {}, action) {
     	'currentTitle' 			: title(state.currentTitle, action),
     	'seasonList' 			: seasonList(state.seasonList, action),
     	'groupList' 			: groupList(state.groupList, action),
-    	'operationList' 		: operationList(state.operationList, action)
+    	'operationList' 		: operationList(state.operationList, action),
+    	'activeSeasons' 		: activeSeasons(state.activeSeasons, action)
     }
 };
 

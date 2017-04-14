@@ -1,13 +1,55 @@
-import React from 'react'
+import React from 'react';
+import ActiveSeasons from './dashboard_index/ActiveSeasons.jsx';
+import UserSeasons from './dashboard_index/UserSeasons.jsx';
+import { connect } from 'react-redux';
+import { fetchActiveSeasons } from '../../actions/activeSeasonsActions.js'
 
 class Index extends React.Component {
+
+	componentWillMount() {
+		this.props.fetchActiveSeasons(null, {
+			redirect: false, 
+            showPreloader: true,
+            additionHeader: {
+              "Authorization": `Bearer{${ this.props.token }}`
+            }
+		});
+	}
+
 	render () {
 		return (
 				<div>
-					Главная страница в разработке...
+					<div className="row"></div>
+					<div className="row">
+						<div className="col col-xs-12 col-sm-7">
+							<div className="white-wrapper">
+								<UserSeasons />
+							</div>
+							<div className="white-wrapper">
+								<ActiveSeasons data={ this.props.seasons.data } />
+							</div>
+						</div>
+						<div className="col col-xs-12 col-sm-7">
+						</div>
+					</div>
 				</div>
 			)
 	}
 }
 
-export default Index;
+
+const mapStateToProps = (state) => {
+	return {
+		token   : state.user.token,
+		profile : state.user.profile,
+		seasons : state.activeSeasons
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		fetchActiveSeasons : (payload, meta) => dispatch(fetchActiveSeasons(payload, meta))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

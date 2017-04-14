@@ -29,6 +29,9 @@ const defaultState = {
 		'acceptedFiles' : [],
 		'deletedImages' : []
 	},
+	'activeSeasons' : {
+		'data' : []
+	},
 	'seasonList' : { 
 		'data' : [],
 		'statusCode' : 200

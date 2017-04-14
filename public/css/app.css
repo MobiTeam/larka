@@ -1174,6 +1174,19 @@ html, body {
 .error-tr:hover {
 	background-color: #fceae9!important;
 }
+.active-season-image {
+	/*max-height: 200px;*/
+	margin: 0 auto;
+}
+
+.active-season-description {
+	margin-top: 10px;
+}
+
+.active-season-shedule {
+	padding: 5px;
+	color: #f35637;
+}
 .profile-box {
 	padding-top: 20px;
 	text-align: center;

@@ -10,8 +10,7 @@ class GroupItem extends React.Component {
 				<td>{ this.props.description }</td>
 				<td>{ this.props.capacity }</td>
 				<td>{ this.props.count_training }</td>
-				<td>{ this.props.price }</td>
-				<td>{ this.props.day_price }</td>
+				<td>{ this.props.price }</td>				
 				<td>
 					<Link to={ "/dashboard/seasons/groups/edit/" + this.props.id } className="groups-item-edit-link">
 						<i className="fa fa-pencil" aria-hidden="true"></i>

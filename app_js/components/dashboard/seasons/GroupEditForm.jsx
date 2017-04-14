@@ -72,10 +72,6 @@ class GroupEditForm extends React.Component {
 					    <input name="price" type="number" className="form-control" id="groupPrice" onChange={ this.handleFieldChange.bind(this) } value={ this.props.data.price || '' } placeholder="10000" required/>
 					</div>
 					<div className="form-group">
-					    <label htmlFor="groupDayPrice">Стоимость разового занятия</label>
-					    <input name="day_price" type="number" className="form-control" id="groupDayPrice" onChange={ this.handleFieldChange.bind(this) } value={ this.props.data.day_price || '' } placeholder="500" required/>
-					</div>
-					<div className="form-group">
 						<button type="submit" className="btn btn-labeled btn-success">
 				    		<span className="btn-label">
 				    			<i className="fa fa-floppy-o" aria-hidden="true"></i>

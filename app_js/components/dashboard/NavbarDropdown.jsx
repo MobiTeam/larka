@@ -9,7 +9,6 @@ class NavbarDropdown extends React.Component {
   }
 
   render () {   
-    console.log(this.props);
     return (
       <Dropdown className="account-dropdown" ref="dropdown">
         <DropdownTrigger>

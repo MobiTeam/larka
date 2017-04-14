@@ -1,0 +1,13 @@
+.active-season-image {
+	/*max-height: 200px;*/
+	margin: 0 auto;
+}
+
+.active-season-description {
+	margin-top: 10px;
+}
+
+.active-season-shedule {
+	padding: 5px;
+	color: #f35637;
+}
