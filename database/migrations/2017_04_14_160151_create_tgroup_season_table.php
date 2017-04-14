@@ -13,15 +13,18 @@ class CreateTgroupSeasonTable extends Migration
      */
     public function up()
     {
-        Schema::create('log_payments', function (Blueprint $table) {
+        Schema::create('user_tsgroups', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->string('payments_id')->nullable();
-            $table->double('amount');
-            // Если тип 1 - Доход, а 2 - Расход
-            $table->integer('type')->nullable();
-            // Если isApproved 0 - то оплата отклонена, а 1 - оплата прошла успешно
-            $table->integer('isApproved')->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')
+                  ->on('users')->onDelete('set null');
+
+            $table->integer('info_group_id')->unsigned()->nullable();
+            $table->foreign('info_group_id')->references('id')
+                  ->on('info_groups')->onDelete('set null');
+
+            // Полностью ли оплачено
+            $table->integer('isFullyPaid')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +37,6 @@ class CreateTgroupSeasonTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_tsgroups');
     }
 }

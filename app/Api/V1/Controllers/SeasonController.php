@@ -4,6 +4,7 @@ namespace App\Api\V1\Controllers;
 
 use App\Season;
 use App\Image;
+use App\Info_group;
 use JWTAuth;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -63,7 +64,7 @@ class SeasonController extends Controller
             $group = Season::find($value['id'])->info_groups()->get()->toArray();
              foreach ($group as $key2 => $value2) {
                  $seasons[$key]['groups'][$key2] = $value2;
-                 $seasons[$key]['groups'][$key2]['capacity_empty'] = 5;
+                 $seasons[$key]['groups'][$key2]['capacity_empty'] = ($value2['capacity']) - (info_group::find($value2['id'])->users()->count());
              }
         }
         return $seasons;

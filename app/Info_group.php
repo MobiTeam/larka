@@ -16,12 +16,18 @@ class Info_group extends Model
     ];
 
     protected $hidden = [
-        'deleted_at'
+        'deleted_at','pivot'
     ];
 
     public function season()
     {
         return $this->belongsTo('App\Season');
+    }
+
+    // Связь многие со многим с группами сезонов, в которых принимает участие пользователь
+    public function users() {
+        return $this->belongsToMany('App\User', 'user_tsgroups')
+                ->withTimestamps();
     }
 
 
