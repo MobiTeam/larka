@@ -7,11 +7,7 @@
 @section('content')
     <h1 class="clear-sans text-center"><b>Про сезон</b></h1>
     <div class="about-description">
-        <h4 class="clear-sans"><b>Классические группы</b></h4>
-        <p class="clear-sans about-description-text">Классические группы - группы, в которые можно придти разово, а также приобрести абонемент на 12 занятий.</p>
-        <p class="clear-sans about-description-text">Классические группы занимаются 3 раза в неделю, дополнительных наполнений у данных групп нет. Придти может любой желающий (при наличии свободных мест)</p>
-        <img class="about-description-img" src="base/img/carousel/season_3.jpg" alt="">
-        <hr>
+        <img class="about-description-img" src="base/img/carousel/season_1.jpg" alt="...">
         <h4 class="clear-sans"><b>Что такое СЕЗОН?</b></h4>
         <ul>
             <li>
@@ -50,18 +46,29 @@
                 <p class="clear-sans about-description-text">Билет? Да! Невозвратный билет. Именно он дает право на участие в СЕЗОНЕ. Ты приобретаешь его сразу на все 12 предстоящих недель. В билете есть указанное место твоей посадки, а точнее группа, с которой ты постоянно ходишь на занятия. Группа имеет ограниченное количество участниц и никого «левого» не впускает. </p>
             </li>
         </ul>
-        <img class="about-description-img" src="base/img/carousel/season_1.jpg" alt="...">
+        <img class="about-description-img" src="base/img/carousel/season_3.jpg" alt="">
+        <h4 class="clear-sans"><b>Недосезон #жирокосилка </b></h4>
+        <p class="clear-sans about-description-text">Иногда случается, что после долгого СЕЗОНА остается месяц-полтора до периода отпусков и массовых разъездов. Поэтому мы решили ввести новый формат - недосезон, он же - "маленький сезон".</p>
+        <p class="clear-sans about-description-text">Отличен своей короткой продолжительностью: 4 недели. Количество занятий - 16 (по 4 раза в неделю). Начинка: взвешивание, спортивное питание, занятия на улице по выходным, фитнес-пикник.</p>
+        <hr>
 
-        <h4 class="clear-sans"><b>Стоимость:</b></h4>
+        <img class="about-description-img" src="base/img/carousel/season_2.jpg" alt="">
+        <h4 class="clear-sans"><b>Классические группы</b></h4>
+        <p class="clear-sans about-description-text">Классические группы - группы, в которые можно придти разово, а также приобрести абонемент на 12 занятий.</p>
+        <p class="clear-sans about-description-text">Классические группы занимаются 3 раза в неделю, дополнительных наполнений у данных групп нет. Придти может любой желающий (при наличии свободных мест)</p>
+
+        <hr>
+
+        <h4 class="clear-sans"><b>Цена вопроса:</b></h4>
             <ul>
                 <li>
                     <p class="clear-sans about-description-text">
-                        Сезон 3 месяца - 12000 ₽
+                        Сезон 12 недель - 12000 ₽
                     </p>
                 </li>
                 <li>
                     <p class="clear-sans about-description-text">
-                        Сезон 1 месяц - 4000 ₽
+                        Недосезон  #жирокосилка 4 недели - 4000 ₽
                     </p>
                 </li>
                 <li>
@@ -71,7 +78,7 @@
                 </li>
                 <li>
                     <p class="clear-sans about-description-text">
-                        Разовое - 350 ₽
+                        Разовое посещение - 350 ₽
                     </p>
                 </li>
             </ul>

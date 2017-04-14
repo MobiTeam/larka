@@ -53,7 +53,7 @@
                     <p class="clear-sans about-description-text"><b>Телефон:</b><a href="tel:89044662777"> +7 904 466-27-77 </a></p>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-5">
-                    <img class="media-object about-trainer-img" src="base/img/trainer/Masha2.jpg" alt="">
+                    <img class="media-object about-trainer-img" src="base/img/trainer/Masha3.jpg" alt="">
                 </div>
             </div>
         <hr>

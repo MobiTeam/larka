@@ -80,8 +80,10 @@ $api->version('v1', function (Router $api) {
         });
 
         // Работа с привязкой пользователей к сезонам
-        $api->group(['prefix' => 'sberbank'], function(Router $api){
-            
+        $api->group(['prefix' => 'tgroup_season'], function(Router $api){
+            $api->get('index', 'App\Api\V1\Controllers\TgroupSeasonController@index');
+            $api->post('create', 'App\Api\V1\Controllers\TgroupSeasonController@create_relation');
+
         });
     });
 
