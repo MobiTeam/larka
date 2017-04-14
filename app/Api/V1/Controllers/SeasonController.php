@@ -50,16 +50,21 @@ class SeasonController extends Controller
         return $season;
     }
 
+    // Текущие существующие сезоны и привязанные к ним группы
     public function group()
     {
-        $season = Season::where('date_finish', '>=', \DB::raw('CURRENT_DATE'))->orderBy('date_finish')->get();
+        $season = Season::where('date_finish', '>=', \DB::raw('CURRENT_DATE'))->orderBy('date_finish')->get()->toArray();
         if(!$season)
             return response()->json(['seasons' => []], 200);
-
         $seasons = [];
         foreach ($season as $key => $value) {
             $seasons[$key] = $value;
-            $seasons[$key]['groups'] = Season::find($value['id'])->info_groups()->get();
+            $seasons[$key]['groups'] = [];
+            $group = Season::find($value['id'])->info_groups()->get()->toArray();
+             foreach ($group as $key2 => $value2) {
+                 $seasons[$key]['groups'][$key2] = $value2;
+                 $seasons[$key]['groups'][$key2]['capacity_empty'] = 5;
+             }
         }
         return $seasons;
     }

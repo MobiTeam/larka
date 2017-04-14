@@ -27,6 +27,7 @@ $api->version('v1', function (Router $api) {
 
     // Только авторизованные и с токеном
     $api->group(['middleware' => 'jwt.auth'], function(Router $api) {
+
         $api->get('protected', function() {
             return response()->json([
                 'message' => 'Access to this item is only for authenticated user. Provide a token in your request!'
@@ -77,6 +78,11 @@ $api->version('v1', function (Router $api) {
             // Получение статуса заказа
             $api->post('status', 'App\Api\V1\Controllers\SberbankController@statusOrder');
         });
+
+        // Работа с привязкой пользователей к сезонам
+        $api->group(['prefix' => 'sberbank'], function(Router $api){
+            
+        });
     });
 
     // Работа с ответами сбербанка
@@ -86,10 +92,5 @@ $api->version('v1', function (Router $api) {
         $api->any('create-fail', 'App\Api\V1\Controllers\SberbankController@createFail');
     });
 
-    $api->get('hello', function() {
-        return response()->json([
-            'message' => 'This is a simple example of item returned by your APIs. Everyone can see it.'
-        ]);
-    });
 
 });
