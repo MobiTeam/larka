@@ -50,6 +50,20 @@ class SeasonController extends Controller
         return $season;
     }
 
+    public function group()
+    {
+        $season = Season::where('date_finish', '>=', \DB::raw('CURRENT_DATE'))->orderBy('date_finish')->get();
+        if(!$season)
+            return response()->json(['seasons' => []], 200);
+
+        $seasons = [];
+        foreach ($season as $key => $value) {
+            $seasons[$key] = $value;
+            $seasons[$key]['groups'] = Season::find($value['id'])->info_groups()->get();
+        }
+        return $seasons;
+    }
+
     /**
      * Создание нового сезона
      */

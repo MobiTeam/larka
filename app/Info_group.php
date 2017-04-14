@@ -12,11 +12,11 @@ class Info_group extends Model
 
     // Поля для мультисохранения
     protected $fillable = [
-        'season_id', 'name','description', 'capacity', 'count_training', 'price', 'day_price',
+        'season_id', 'name','description', 'capacity', 'count_training', 'price',
     ];
-    
+
     protected $hidden = [
-    'deleted_at'
+        'deleted_at'
     ];
 
     public function season()

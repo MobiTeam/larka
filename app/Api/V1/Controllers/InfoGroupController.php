@@ -45,7 +45,7 @@ class InfoGroupController extends Controller
     {
         // Указываем какие переменные получить из POST
         // Получаем основные данные для группы
-        $inputData = $request->only(['season_id', 'name','description', 'capacity', 'count_training', 'price', 'day_price']);
+        $inputData = $request->only(['season_id', 'name','description', 'capacity', 'count_training', 'price']);
         $group = new Info_group($inputData);
         $group->save();
         return response()->json(['message' => 'created'], 201);

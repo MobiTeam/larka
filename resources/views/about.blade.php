@@ -50,7 +50,7 @@
                 <p class="clear-sans about-description-text">Билет? Да! Невозвратный билет. Именно он дает право на участие в СЕЗОНЕ. Ты приобретаешь его сразу на все 12 предстоящих недель. В билете есть указанное место твоей посадки, а точнее группа, с которой ты постоянно ходишь на занятия. Группа имеет ограниченное количество участниц и никого «левого» не впускает. </p>
             </li>
         </ul>
-        <img class="about-description-img" src="base/img/carousel/season_2.jpg" alt="...">
+        <img class="about-description-img" src="base/img/carousel/season_1.jpg" alt="...">
 
         <h4 class="clear-sans"><b>Стоимость:</b></h4>
             <ul>
@@ -75,7 +75,6 @@
                     </p>
                 </li>
             </ul>
-            <img class="about-description-img" src="base/img/carousel/season_1.jpg" alt="...">
     </div>
 
 @endsection

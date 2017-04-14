@@ -182,7 +182,7 @@
     <div class="panel-heading" role="tab" id="headingSix">
       <h4 class="panel-title jusfify-accrodion-panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-          Пользовательское соглашение
+          Пользовательское соглашение и политика конфиденциальности
         </a>
       </h4>
     </div>

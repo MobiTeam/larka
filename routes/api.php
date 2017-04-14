@@ -41,9 +41,6 @@ $api->version('v1', function (Router $api) {
                 ]);
             }
         ]);
-        // Test(after delete)
-        $api->get('book', 'App\Api\V1\Controllers\BookController@index');
-        $api->post('book/store', 'App\Api\V1\Controllers\BookController@store');
 
         // Профиль пользователя (Work)
         $api->group(['prefix' => 'user'], function(Router $api) {
@@ -55,6 +52,7 @@ $api->version('v1', function (Router $api) {
         $api->group(['prefix' => 'season'], function(Router $api) {
             $api->get('season', 'App\Api\V1\Controllers\SeasonController@index');
             $api->get('brief_index', 'App\Api\V1\Controllers\SeasonController@brief_index');
+            $api->get('season_group', 'App\Api\V1\Controllers\SeasonController@group');
             $api->post('create', 'App\Api\V1\Controllers\SeasonController@create');
             $api->get('show/{id}', 'App\Api\V1\Controllers\SeasonController@show');
             $api->post('update/{id}', 'App\Api\V1\Controllers\SeasonController@update');
@@ -78,8 +76,6 @@ $api->version('v1', function (Router $api) {
             $api->post('create', 'App\Api\V1\Controllers\SberbankController@create');
             // Получение статуса заказа
             $api->post('status', 'App\Api\V1\Controllers\SberbankController@statusOrder');
-            
-
         });
     });
 

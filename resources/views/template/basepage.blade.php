@@ -112,8 +112,8 @@
                 </div>
                 <div class="col-xs-12 footer-information">© VForme {{ date('Y') }}</div>
             </div>
-
         </div>
+
 <script type="text/javascript" src="base/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
         $(document).ready(function(){
