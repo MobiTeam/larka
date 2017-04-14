@@ -9,3 +9,4 @@ Homestead.yaml
 .env
 node_modules
 public/base/img/carousel
+public/base/img/photogallery

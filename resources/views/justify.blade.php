@@ -195,12 +195,6 @@
   </div>
 </div>
 
-<hr>
-    <h3 class="clear-sans text-center">Пользовательское соглашение</h3>
-
-
-    <p class="clear-sans about-description-text justify-user-agreement"></p>
-
 
 </div>
 
