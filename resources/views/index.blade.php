@@ -24,21 +24,21 @@
     </div>
 
     <div class="item content-carousel-img">
-      <img src="base/img/carousel/2.jpg" alt="...">
+      <img src="base/img/carousel/2.jpg" alt="Картинка">
     </div>
 
 
     <div class="item content-carousel-img">
-      <img src="base/img/carousel/3.jpg" alt="...">
+      <img src="base/img/carousel/3.jpg" alt="Картинка">
     </div>
 
 
     <div class="item content-carousel-img">
-      <img src="base/img/carousel/4.jpg" alt="...">
+      <img src="base/img/carousel/4.jpg" alt="Картинка">
     </div>
 
     <div class="item content-carousel-img">
-      <img src="base/img/carousel/5.jpg" alt="...">
+      <img src="base/img/carousel/5.jpg" alt="Картинка">
     </div>
 
   </div>
@@ -89,31 +89,4 @@
 <div class="container">
     <p class="post-scriptum-text">*Запись производится через нужный кабинет</p>
 </div>
-<!-- <div class="separate"></div> -->
-<!-- Про нас -->
-<!--<div class="about-text container">
-    <div class="col-xs-12 col-sm-4">
-        <p class="about-text-head">Наш инстаграмм</p>
-        <a href="">
-            <img src="http://placehold.it/320x280" alt="">
-        </a>
-        <p class="about-text-footer">Наш Инстаграм ежедневно обновляется.<br>Заглядывайте.</p>
-    </div>
-
-    <div class="col-xs-12 col-sm-4">
-        <p class="about-text-head">Наш личный кабинет</p>
-        <a href="">
-            <img src="http://placehold.it/320x280" alt="">
-        </a>
-        <p class="about-text-footer">Наш личный кабинет поможет вам...</p>
-    </div>
-
-    <div class="col-xs-12 col-sm-4">
-        <p class="about-text-head">Наши контакты</p>
-        <a href="">
-            <img src="http://placehold.it/320x280" alt="">
-        </a>
-        <p class="about-text-footer">Записывайте к нам...</p>
-    </div>
-</div>-->
 @endsection

@@ -225,3 +225,31 @@ body{
 .table-justify-tr-info{
     text-align: center;
 }
+
+.justify-user-agreement{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.jusfify-accrodion-panel-title{
+    font-size: 17px;
+    font-family: 'ClearSansRegular';
+    font-weight: 600;
+}
+
+.jusfify-accrodion-panel-body{
+    font-size: 15px;
+    font-family: 'ClearSansRegular';
+}
+
+.jusfify-accrodion-pay-banks {
+    text-align: center;
+}
+.jusfify-accrodion-pay-banks a{
+    display: inline;
+    margin-right: 35px;
+    margin-bottom: 5px;
+}
+.jusfify-accrodion-pay-banks a img{
+    max-height: 48px;
+}

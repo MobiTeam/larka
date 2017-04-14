@@ -10,7 +10,7 @@
         <h4 class="clear-sans"><b>Классические группы</b></h4>
         <p class="clear-sans about-description-text">Классические группы - группы, в которые можно придти разово, а также приобрести абонемент на 12 занятий.</p>
         <p class="clear-sans about-description-text">Классические группы занимаются 3 раза в неделю, дополнительных наполнений у данных групп нет. Придти может любой желающий (при наличии свободных мест)</p>
-        <img class="about-description-img" src="base/img/carousel/season_1.jpg" alt="">
+        <img class="about-description-img" src="base/img/carousel/season_3.jpg" alt="">
         <hr>
         <h4 class="clear-sans"><b>Что такое СЕЗОН?</b></h4>
         <ul>
@@ -50,8 +50,32 @@
                 <p class="clear-sans about-description-text">Билет? Да! Невозвратный билет. Именно он дает право на участие в СЕЗОНЕ. Ты приобретаешь его сразу на все 12 предстоящих недель. В билете есть указанное место твоей посадки, а точнее группа, с которой ты постоянно ходишь на занятия. Группа имеет ограниченное количество участниц и никого «левого» не впускает. </p>
             </li>
         </ul>
-
         <img class="about-description-img" src="base/img/carousel/season_2.jpg" alt="...">
+
+        <h4 class="clear-sans"><b>Стоимость:</b></h4>
+            <ul>
+                <li>
+                    <p class="clear-sans about-description-text">
+                        Сезон 3 месяца - 12000 ₽
+                    </p>
+                </li>
+                <li>
+                    <p class="clear-sans about-description-text">
+                        Сезон 1 месяц - 4000 ₽
+                    </p>
+                </li>
+                <li>
+                    <p class="clear-sans about-description-text">
+                        Классический абонемент - 2500 ₽
+                    </p>
+                </li>
+                <li>
+                    <p class="clear-sans about-description-text">
+                        Разовое - 350 ₽
+                    </p>
+                </li>
+            </ul>
+            <img class="about-description-img" src="base/img/carousel/season_1.jpg" alt="...">
     </div>
 
 @endsection
