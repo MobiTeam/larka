@@ -94,5 +94,5 @@ $api->version('v1', function (Router $api) {
         $api->any('create-fail', 'App\Api\V1\Controllers\SberbankController@createFail');
     });
 
-
+    /**/
 });
