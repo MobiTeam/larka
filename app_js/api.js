@@ -51,6 +51,7 @@ export const authFetch = createFetchPromise('/auth/login');
 export const reAuthFetch = createFetchPromise('/auth/relogin'); 
 
 export const profileInfoFetch = createFetchPromise('/user/user', 'GET'); 
+export const userGroupsFetch = createFetchPromise('/tsgroup/index', 'GET'); 
 export const profileInfoUpdate = createFetchPromise('/user/update', 'POST'); 
 
 

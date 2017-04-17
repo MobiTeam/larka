@@ -18,6 +18,20 @@ class ActiveSeasons extends React.Component {
 								</span>
 								<div className="alert alert-warning active-season-description"><b>Про сезон:</b> { season.description } </div>
 							</div>
+							<hr />
+							<div className="active-season-groups">
+								<h4>Группы</h4>
+								{ season.groups.map(group => {
+									return (
+											<div>
+												<b>{ group.name } : { group.count_training } занятий(я)</b>
+												<p>{ group.description }</p>
+												<p>Количество мест: { group.capacity }</p>
+												<p>Стоимость записи: { group.price }</p>
+											</div>
+										)
+								}) }
+							</div>
 						</div>
 	 				</div>
 					<hr />
