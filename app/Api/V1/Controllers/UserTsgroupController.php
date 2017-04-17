@@ -5,6 +5,7 @@ namespace App\Api\V1\Controllers;
 use JWTAuth;
 use App\User_tsgroup;
 use App\Info_group;
+use App\Log_payments;
 use App\User;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -47,10 +48,26 @@ class UserTsgroupController extends Controller
             // Проверяем имеются ли свободные места
             $emptyCapacity = ($Group->capacity) - (info_group::find($group_id)->users()->count());
             if ($emptyCapacity > 0) {
+                // Вычитаем сумму вступления в группу из баланса пользователя
+                $user->balance -=$costGroup;
+                $user->save();
+
+                // Заносим данные по оплате в логи
+                $log = new Log_payments();
+                $log->user_id = $user->id;
+                // За какую группу оплата
+                $log->payments_id = $group_id;
+                $log->amount = $costGroup;
+                $log->type = 2;
+                $log->isApproved = 1;
+                $log->save();
+
+                // Привязываем пользователя к определенной группе
                 $userTsgroup = new User_tsgroup();
                 $userTsgroup->user_id = $user->id;
                 $userTsgroup->info_group_id = $group_id;
                 $userTsgroup->save();
+
                 return response()->json(['message' => 'Запись проведена успешно!'], 200);
             }
             else {
