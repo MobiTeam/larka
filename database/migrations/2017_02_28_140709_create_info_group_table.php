@@ -23,6 +23,7 @@ class CreateInfoGroupTable extends Migration
             $table->integer('count_training');
             $table->double('price');
             $table->double('day_price')->nullable();
+            $table->double('booking_price')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

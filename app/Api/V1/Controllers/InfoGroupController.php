@@ -45,7 +45,7 @@ class InfoGroupController extends Controller
     {
         // Указываем какие переменные получить из POST
         // Получаем основные данные для группы
-        $inputData = $request->only(['season_id', 'name','description', 'capacity', 'count_training', 'price']);
+        $inputData = $request->only(['season_id', 'name','description', 'capacity', 'count_training', 'price','booking_price']);
         $group = new Info_group($inputData);
         $group->save();
         return response()->json(['message' => 'created'], 201);
@@ -80,7 +80,7 @@ class InfoGroupController extends Controller
         if(!$group)
             throw new NotFoundHttpException;
         // Получаем данные
-        $inputData = $request->only(['season_id', 'name','description', 'capacity', 'count_training', 'price', 'day_price']);
+        $inputData = $request->only(['season_id', 'name','description', 'capacity', 'count_training', 'price', 'booking_price']);
         // Заменяем аналогичные параметры, которые уже имеются присланными
         $group->fill($inputData);
         if($group->save())
