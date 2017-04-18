@@ -1187,6 +1187,23 @@ html, body {
 	padding: 5px;
 	color: #f35637;
 }
+
+.seasons-group-wrapper {
+	min-width: 300px;
+	max-width: 800px;
+}
+
+.seasons-group-wrapper h3 {
+	margin: 0px;
+}
+
+.seasons-group-wrapper i {
+	padding: 2px;
+}
+
+.seasons-group-wrapper button {
+	margin: 5px;
+}
 .profile-box {
 	padding-top: 20px;
 	text-align: center;

@@ -30,7 +30,7 @@ class Index extends React.Component {
 									: null
 							}							
 							<div className="white-wrapper">
-								<ActiveSeasons data={ this.props.seasons.data || [] } />
+								<ActiveSeasons data={ this.props.seasons.data || [] } router={ this.props.router } />
 							</div>
 						</div>
 						<div className="col col-xs-12 col-sm-7">

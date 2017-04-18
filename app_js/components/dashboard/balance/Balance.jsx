@@ -51,7 +51,7 @@ class Balance extends React.Component {
 							</div>
 							<div className="white-wrapper">
 								<h3>Пополнение баланса</h3>
-								<BalanceForm setStatus={ this.setOperationStatus.bind(this) } />
+								<BalanceForm setStatus={ this.setOperationStatus.bind(this) } amount={ queryString.parse(location.search).amount || 0 } />
 								<div className="alert alert-info">
 									*Оплата производится посредством Сбербанка
 								</div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchUserGroups } from '../../../actions/userActions.js'
+import { fetchUserGroups } from '../../../actions/userActions.js';
 import { connect } from 'react-redux';
 
 class UserSeasons extends React.Component {
@@ -25,7 +25,6 @@ class UserSeasons extends React.Component {
 	}
 
 	render () {
-		console.log(this.props);
 		return (<div>
 					<h3>Группы</h3>
 					{ !this.props.groups || this.props.groups.length == 0 ? 

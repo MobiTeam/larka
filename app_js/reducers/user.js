@@ -5,10 +5,11 @@ const getStatusByCode = (code) => {
 		   				 'На сервере произошла ошибка, повторите попытку позже';
 }
 
-
-
 const user = (state = null, action) => {
 	switch (action.type) {
+	case 'PURCHASE_SUCCESS':
+		state.profile.balance -= action.payload;
+		return { ...state }	
 	case 'FETCH_USER_GROUPS_SUCCESS':
 		return { ...state, groups: action.payload }
 	case 'FETCH_USER_GROUPS_ERROR':

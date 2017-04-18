@@ -8,7 +8,7 @@ class BalanceForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			summ: 0
+			summ: props.amount
 		}
 	}
 

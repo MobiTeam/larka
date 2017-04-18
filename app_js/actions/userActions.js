@@ -158,3 +158,10 @@ export const logOut = (payload) => {
 		payload
 	}
 };
+
+export const purchaseSuccess = (payload) => {
+	return {
+		type: 'PURCHASE_SUCCESS',
+		payload
+	}
+}
