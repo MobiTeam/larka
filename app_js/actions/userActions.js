@@ -1,4 +1,31 @@
-import { authFetch, reAuthFetch, profileInfoFetch, profileInfoUpdate } from '../api';
+import { authFetch, reAuthFetch, profileInfoFetch, profileInfoUpdate, userGroupsFetch } from '../api';
+
+
+export const fetchUserGroups = (payload, { redirect, showPreloader, additionHeader }) => {
+	return {
+		type: 'FETCH_USER_GROUPS',
+		payload: userGroupsFetch(payload, additionHeader),
+		handlers: {
+			'onSuccess': fetchUserGroupsSuccess,
+			'onError': fetchUserGroupsError
+		},
+		redirect,
+		showPreloader
+	}
+};
+
+export const fetchUserGroupsSuccess = (payload) => {
+	return {
+		type: 'FETCH_USER_GROUPS_SUCCESS',
+		payload
+	}
+}
+
+export const fetchUserGroupsError = (payload) => {
+	return {
+		type: 'FETCH_USER_GROUPS_ERROR'
+	}
+}
 
 export const localUpdateProfileInfo = (payload) => {
 	return {

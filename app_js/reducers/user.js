@@ -5,8 +5,14 @@ const getStatusByCode = (code) => {
 		   				 'На сервере произошла ошибка, повторите попытку позже';
 }
 
+
+
 const user = (state = null, action) => {
 	switch (action.type) {
+	case 'FETCH_USER_GROUPS_SUCCESS':
+		return { ...state, groups: action.payload }
+	case 'FETCH_USER_GROUPS_ERROR':
+		return { ...state, groups: [] }	
 	case 'UPDATE_PROFILE_INFO_SUCCESS':
 		return { ...state, isPersist: true, persistStatus: 'Информация о профиле была успешно изменена.' }	
 	case 'UPDATE_PROFILE_INFO_ERROR':

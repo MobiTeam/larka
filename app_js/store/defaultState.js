@@ -9,7 +9,8 @@ const defaultState = {
 		'isPersist' : true,
 		'statusCode' : 200,
 		'logOutFlag' : false,
-		'isAuthorised' : false
+		'isAuthorised' : false,
+		'groups' : []
 	},
 	'operationList' : {
 		'data' : [],
@@ -30,7 +31,7 @@ const defaultState = {
 		'deletedImages' : []
 	},
 	'activeSeasons' : {
-		'data' : []
+		'data' : undefined
 	},
 	'seasonList' : { 
 		'data' : [],
