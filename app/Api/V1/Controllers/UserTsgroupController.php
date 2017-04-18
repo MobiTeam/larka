@@ -41,7 +41,7 @@ class UserTsgroupController extends Controller
     }
 
     // Привязка пользователя к тренировочной сезонной группе полностью
-    public function create_relation(Request $resuest)
+    public function create_relation(Request $request)
     {
         // Получаем пользователя и его баланс
         $token = JWTAuth::getToken();
@@ -49,7 +49,7 @@ class UserTsgroupController extends Controller
         // Средства на балансе у пользователя
         $userBalance = $user->balance;
         // Получаем номер группы, в которую он хочет записаться
-        $group_id = $resuest->input('info_group_id');
+        $group_id = $request->input('info_group_id');
         $Group = info_group::find($group_id);
         // Стоимость сезона
         $costGroup = $Group->price;
@@ -58,10 +58,6 @@ class UserTsgroupController extends Controller
             // Проверяем имеются ли свободные места
             $emptyCapacity = ($Group->capacity) - (info_group::find($group_id)->users()->count());
             if ($emptyCapacity > 0) {
-                // Вычитаем сумму вступления в группу из баланса пользователя
-                $user->balance -=$costGroup;
-                $user->save();
-
                 // Заносим данные по оплате в логи
                 $log = new Log_payments();
                 $log->user_id = $user->id;
@@ -71,6 +67,10 @@ class UserTsgroupController extends Controller
                 $log->type = 2;
                 $log->isApproved = 1;
                 $log->save();
+
+                // Вычитаем сумму вступления в группу из баланса пользователя
+                $user->balance -=$costGroup;
+                $user->save();
 
                 // Привязываем пользователя к определенной группе
                 $userTsgroup = new User_tsgroup();
@@ -91,7 +91,7 @@ class UserTsgroupController extends Controller
     }
 
     // Привязка пользователя к тренировочной сезонной группе через бронирование
-    public function create_booking_relation(Request $resuest)
+    public function create_booking_relation(Request $request)
     {
         // Получаем пользователя и его баланс
         $token = JWTAuth::getToken();
@@ -99,7 +99,7 @@ class UserTsgroupController extends Controller
         // Средства на балансе у пользователя
         $userBalance = $user->balance;
         // Получаем номер группы, в которую он хочет записаться
-        $group_id = $resuest->input('info_group_id');
+        $group_id = $request->input('info_group_id');
         $Group = info_group::find($group_id);
         // Стоимость бронирования сезона
         $costBookingGroup = $Group->booking_price;
@@ -108,10 +108,6 @@ class UserTsgroupController extends Controller
             // Проверяем имеются ли свободные места
             $emptyCapacity = ($Group->capacity) - (info_group::find($group_id)->users()->count());
             if ($emptyCapacity > 0) {
-                // Вычитаем сумму вступления в группу из баланса пользователя
-                $user->balance -=$costBookingGroup;
-                $user->save();
-
                 // Заносим данные по оплате в логи
                 $log = new Log_payments();
                 $log->user_id = $user->id;
@@ -122,6 +118,10 @@ class UserTsgroupController extends Controller
                 $log->isApproved = 1;
                 $log->save();
 
+                // Вычитаем сумму бронирования группы из баланса пользователя
+                $user->balance -=$costBookingGroup;
+                $user->save();
+
                 // Привязываем пользователя к определенной группе
                 $userTsgroup = new User_tsgroup();
                 $userTsgroup->user_id = $user->id;
@@ -130,7 +130,7 @@ class UserTsgroupController extends Controller
                 $userTsgroup->leftPayd = ($Group->price) - $costBookingGroup;
                 $userTsgroup->save();
 
-                return response()->json(['message' => 'Запись проведена успешно, со временем необходимо оплатить сезон полностьюю'], 200);
+                return response()->json(['message' => 'Запись проведена успешно, со временем необходимо оплатить сезон полностью'], 200);
             }
             else {
                 return response()->json(['message' => 'Все места в группе уже заняты!'], 403);
@@ -141,9 +141,47 @@ class UserTsgroupController extends Controller
         }
     }
 
-    // Доплата суммы бронирования
+    // Доплата необходимой суммы после бронирования
     public function booking_pay(Request $request)
     {
+        // Получаем пользователя и его баланс
+        $token = JWTAuth::getToken();
+        $user = JWTAuth::toUser($token);
+        // Средства на балансе у пользователя
+        $userBalance = $user->balance;
+        // Получаем номер группы, за которую ему необходимо доплатить бронирование
+        $group_id = $request->input('info_group_id');
+        // Получаем по пользователю и группе данные из смежной таблицы
+        $pivotUserGroup = (User_tsgroup::where([
+                                             ['user_id',$user->id],
+                                             ['info_group_id',$group_id]])->get()->first());
+        // Сумма, которую осталось оплатить пользователю
+        $leftUserPayd = $pivotUserGroup->leftPayd;
+        // Проверяем хватает ли пользователю средств для погашения суммы
+        if ($userBalance >= $leftUserPayd) {
+            // Заносим данные по оплате в логи
+            $log = new Log_payments();
+            $log->user_id = $user->id;
+            // За какую группу оплата
+            $log->payments_id = $group_id;
+            $log->amount = $leftUserPayd;
+            $log->type = 2;
+            $log->isApproved = 1;
+            $log->save();
+
+            // Вычитаем сумму оплаты из баланса пользователя
+            $user->balance -=$leftUserPayd;
+            $user->save();
+
+            // Вычитаем оплаченную сумму из связной таблицы
+            $pivotUserGroup->leftPayd -=$leftUserPayd;
+            $pivotUserGroup->save();
+
+            return response()->json(['message' => 'Оплата прошла успешно!'], 200);
+        }
+        else {
+            return response()->json(['message' => 'Недостаточно средств для оплаты!'], 403);
+        }
 
     }
 

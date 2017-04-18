@@ -84,6 +84,7 @@ $api->version('v1', function (Router $api) {
             $api->get('index', 'App\Api\V1\Controllers\UserTsgroupController@index');
             $api->post('create', 'App\Api\V1\Controllers\UserTsgroupController@create_relation');
             $api->post('create_booking', 'App\Api\V1\Controllers\UserTsgroupController@create_booking_relation');
+            $api->post('pay_booking', 'App\Api\V1\Controllers\UserTsgroupController@booking_pay');
 
         });
     });
