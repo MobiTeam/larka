@@ -23,6 +23,8 @@ class CreateTgroupSeasonTable extends Migration
             $table->foreign('info_group_id')->references('id')
                   ->on('info_groups')->onDelete('set null');
 
+            // Осталось оплатить
+            $table->double('leftPayd')->nullable();   
             // Полностью ли оплачено
             $table->integer('isFullyPaid')->nullable();
             $table->timestamps();
