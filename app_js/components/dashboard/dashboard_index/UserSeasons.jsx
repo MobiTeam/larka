@@ -15,13 +15,34 @@ class UserSeasons extends React.Component {
 	}
 
 	userGroupTemplate(group) {
-		return (<div>
-				{ JSON.stringify(group) }
-			</div>)
+		return (<tr>
+					<td>{ group.name }</td>
+					<td>{ group.leftPayd == 0 ? "Оплачена" : `Необходимо заплатить ${ group.leftPayd } RUB`}</td>
+					<td>
+						{ group.leftPayd != 0 ? 
+							<button className="btn btn-labeled btn-success" onClick={ () => {} }>
+								<span className="btn-label">
+									<i className="fa fa-credit-card" aria-hidden="true"></i>
+								</span>
+								Выкупить
+							</button> : null }	
+					</td>
+				</tr>);
 	}
 
 	printUsersGroups() {
-		return this.props.groups.map(group => this.userGroupTemplate.bind(this)(group))
+		return (<table className="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Название</th>
+							<th>Сатус</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{ this.props.groups.map(group => this.userGroupTemplate.bind(this)(group)) }
+					</tbody>
+				</table>);
 	}
 
 	render () {

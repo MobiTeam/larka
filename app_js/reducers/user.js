@@ -8,8 +8,7 @@ const getStatusByCode = (code) => {
 const user = (state = null, action) => {
 	switch (action.type) {
 	case 'PURCHASE_SUCCESS':
-		state.profile.balance -= action.payload;
-		return { ...state }	
+		return { ...state, profile: { ...state.profile, balance : (state.profile.balance - action.payload) } }
 	case 'FETCH_USER_GROUPS_SUCCESS':
 		return { ...state, groups: action.payload }
 	case 'FETCH_USER_GROUPS_ERROR':

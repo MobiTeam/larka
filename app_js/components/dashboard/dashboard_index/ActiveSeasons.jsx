@@ -13,8 +13,7 @@ class ActiveSeasons extends React.Component {
 		this.state = {
 			isShowingModal: false,
 			groups: [],
-			seasonName: '',
-			fetchMethod: null
+			seasonName: ''
 		}
 	}
 
@@ -59,30 +58,22 @@ class ActiveSeasons extends React.Component {
 
 	
 	bookSeasonGroup (data) {
-		this.setState({
-			fetchMethod: bookingSeasonGroup 
-		});
-
-		this.purchase(data.id, data.booking_price);		
+		this.purchase(bookingSeasonGroup, data.id, data.booking_price);		
 	}
 
 	buySeasonGroup (data) {
-		this.setState({
-			fetchMethod: bookingSeasonGroup 
-		});
-
-		this.purchase(data.id, data.price);			
+		this.purchase(joinToSeasonGroup, data.id, data.price);			
 	}
 
-	purchase(id, cost) {
+	purchase(fetchMethod, info_group_id, cost) {
 		this.props.showSpinner();
-		if (this.props.profile.money >= cost) {
-			if (!confirm(`С вашего баланса будет списано ${cost} средств. Вы согласны?`)) return;
-			this.state
-				.fetchMethod({ id, cost }, { "Authorization": `Bearer{${ this.props.token }}` })
+		if (this.props.profile.balance >= cost) {
+			if (!confirm(`С вашего баланса будет списано ${cost} RUB. Вы согласны?`)) return;
+
+			fetchMethod({ info_group_id }, { "Authorization": `Bearer{${ this.props.token }}` })
 				.then(() => {
 					this.props.purchaseSuccess(cost);
-
+					this.handleClose();
 					this.props
 						.fetchUserGroups(null, {
 							redirect: false, 
@@ -116,8 +107,8 @@ class ActiveSeasons extends React.Component {
 				            <hr/>
 				            { this.state.groups.map(group => {
 								return (
-									<div>
-										<div className="row" key={ group.id }>
+									<div key={ group.id }>
+										<div className="row">
 											<div className="col col-xs-12 col-sm-8">
 												<div className="col col-xs-12">
 													<h4>{ group.name }</h4>
@@ -129,7 +120,7 @@ class ActiveSeasons extends React.Component {
 													<b><i className="fa fa-calendar" aria-hidden="true"></i>Занятий:</b> { group.count_training }
 												</div>
 												<div className="col col-xs-12 col-sm-3">
-													<b><i className="fa fa-users" aria-hidden="true"></i> Мест:</b> { group.capacity }
+													<b><i className="fa fa-users" aria-hidden="true"></i> Мест:</b> { group.capacity_empty }
 												</div>
 												<div className="col col-xs-12 col-sm-6">
 													<div><b><i className="fa fa-check" aria-hidden="true"></i>Стоимость брони:</b> { group.booking_price } RUB</div>
