@@ -24,6 +24,31 @@ class SberbankController extends Controller
         return response()->json(['userPayments' => $userPayments], 200);
     }
 
+    // Получаем список всех доходов и расходов в системе
+    public function list()
+    {
+        $token = JWTAuth::getToken();
+        $user = JWTAuth::toUser($token);
+        $result = [];
+        // Проверяем является ли пользователь тренером или администратором
+        if ($user->user_groups_id == 1 || $user->user_groups_id == 4) {
+            $logs = Log_payments::all();
+            foreach ($logs as $key => $value) {
+                $user =  User::find($value->user_id)->toArray();
+                $result[$key] = $value;
+                $result[$key]['type_name'] = ($value->type == 1 ? 'Доход' : 'Расход');
+                $result[$key]['isApproved_name'] = ($value->isApproved == 1 ? 'Утверждена' : 'Отклонена');
+                $result[$key]['email'] = $user['email'];
+                $result[$key]['full_name'] = $user['name'].' '.$user['family_name'];
+            }
+            return $result;
+        }
+        else {
+            return response()->json(['message' => 'Доступ запрещен!'], 403);
+        }
+
+    }
+
     // Создать форму для оплаты
     public function create(Request $request)
     {

@@ -32,7 +32,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','is_activated', 'activated_token', 'created_at', 'updated_at', 'deleted_at'
+        'password', 'remember_token','is_activated', 'activated_token', 'created_at', 'updated_at', 'deleted_at','pivot'
     ];
 
     /**
@@ -61,10 +61,6 @@ class User extends Authenticatable
        }
     }
 
-/*    public function books()
-    {
-        return $this->hasMany('App\Book');
-    }*/
     // Связь пользователя с группой
     public function user_group()
     {

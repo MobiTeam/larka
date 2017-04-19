@@ -77,15 +77,17 @@ $api->version('v1', function (Router $api) {
             $api->post('create', 'App\Api\V1\Controllers\SberbankController@create');
             // Получение статуса заказа
             $api->post('status', 'App\Api\V1\Controllers\SberbankController@statusOrder');
+            // Получение списка всех оплат
+            $api->get('list', 'App\Api\V1\Controllers\SberbankController@list');
         });
 
         // Работа с привязкой пользователей к сезонам
         $api->group(['prefix' => 'tsgroup'], function(Router $api){
             $api->get('index', 'App\Api\V1\Controllers\UserTsgroupController@index');
+            $api->get('list', 'App\Api\V1\Controllers\UserTsgroupController@list');
             $api->post('create', 'App\Api\V1\Controllers\UserTsgroupController@create_relation');
             $api->post('create_booking', 'App\Api\V1\Controllers\UserTsgroupController@create_booking_relation');
             $api->post('pay_booking', 'App\Api\V1\Controllers\UserTsgroupController@booking_pay');
-
         });
     });
 

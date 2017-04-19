@@ -6,6 +6,7 @@ use JWTAuth;
 use App\User_tsgroup;
 use App\Info_group;
 use App\Log_payments;
+use App\Season;
 use App\User;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -38,6 +39,38 @@ class UserTsgroupController extends Controller
             $userGroup[$key]['leftPayd'] = $paydGroupUser['leftPayd'];
         }
         return $userGroup;
+    }
+
+    // Вывод всех людей вступивших в группы 
+    public function list(Request $request)
+    {
+        $token = JWTAuth::getToken();
+        $user = JWTAuth::toUser($token);
+        $result = [];
+        // Проверяем является ли пользователь тренером или администратором
+        if ($user->user_groups_id == 1 || $user->user_groups_id == 4) {
+            // Получаем текущие действующие сезоны
+            $seasons = Season::where('date_finish', '>=', \DB::raw('CURRENT_DATE'))->orderBy('date_finish')->get();
+            foreach ($seasons as $key => $value) {
+                // Получаем все группы текущего сезона
+                $groups = Season::find($value->id)->info_groups()->get()->toArray();
+                foreach ($groups as $key => $value) {
+                    $result[$key] = $value;
+                    // Получаем всех пользователей состоящих в группе
+                    $users = Info_group::find($value['id'])->users()->get()->toArray();
+                    foreach ($users as $key2 => $value2) {
+                        $result[$key]['users'][$key2] = $value2;
+                        $result[$key]['users'][$key2]['left_payd'] = (User_tsgroup::where([
+                                                                     ['user_id',$value2['id']],
+                                                                     ['info_group_id',$value['id']]])->get()->first())->leftPayd;
+                    }
+                }
+            }
+            return $result;
+        }
+        else {
+            return response()->json(['message' => 'Доступ запрещен!'], 403);
+        }
     }
 
     // Привязка пользователя к тренировочной сезонной группе c с полной оплатой
