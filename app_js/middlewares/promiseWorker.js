@@ -28,6 +28,7 @@ const promiseWorker = ({ dispatch }) => next => action => {
 					})
 			.then(data => {
 				dispatch(action.handlers.onSuccess(data));
+				action.handlers.afterFetch && action.handlers.afterFetch();
 				action.showPreloader && dispatch(closeSpinner());
 				action.redirect && action.redirect();
 			})

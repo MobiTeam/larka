@@ -55,6 +55,7 @@ export const userGroupsFetch = createFetchPromise('/tsgroup/index', 'GET');
 export const profileInfoUpdate = createFetchPromise('/user/update', 'POST'); 
 export const joinToSeasonGroup = createFetchPromise('/tsgroup/create', 'POST');
 export const bookingSeasonGroup = createFetchPromise('/tsgroup/create_booking', 'POST');
+export const buyoutGroupBookPromise = createFetchPromise('/tsgroup/pay_booking', 'POST');
 
 export const allSesonsBriefFetch = createFetchPromise('/season/brief_index', 'GET'); 
 export const newSesonFetch = createFetchPromise('/season/create', 'POST'); 

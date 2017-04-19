@@ -7,6 +7,13 @@ const getStatusByCode = (code) => {
 
 const user = (state = null, action) => {
 	switch (action.type) {
+	case 'BUYOUT_GROUP_BOOK_SUCCESS':
+		return { ...state, groups: state.groups.map((group) => {
+			if (group.id === action.payload.id) {
+				return action.payload;
+			}
+			return group;
+		}) }
 	case 'PURCHASE_SUCCESS':
 		return { ...state, profile: { ...state.profile, balance : (state.profile.balance - action.payload) } }
 	case 'FETCH_USER_GROUPS_SUCCESS':

@@ -1,4 +1,31 @@
-import { authFetch, reAuthFetch, profileInfoFetch, profileInfoUpdate, userGroupsFetch } from '../api';
+import { authFetch, reAuthFetch, profileInfoFetch, profileInfoUpdate, userGroupsFetch, buyoutGroupBookPromise } from '../api';
+
+export const buyoutGroupBook = (payload, { redirect, showPreloader, additionHeader, afterFetch }) => {
+	return {
+		type: 'BUYOUT_GROUP_BOOK',
+		payload: buyoutGroupBookPromise(payload, additionHeader),
+		handlers: {
+			'onSuccess': buyoutGroupBookSuccess,
+			'onError': buyoutGroupBookError,
+			'afterFetch': afterFetch 
+		},
+		redirect,
+		showPreloader
+	}
+};
+
+export const buyoutGroupBookSuccess = ({ group }) => {
+	return {
+		type: 'BUYOUT_GROUP_BOOK_SUCCESS',
+		payload: group
+	}
+}
+
+export const buyoutGroupBookError = (payload) => {
+	return {
+		type: 'BUYOUT_GROUP_BOOK_ERROR'
+	}
+}
 
 
 export const fetchUserGroups = (payload, { redirect, showPreloader, additionHeader }) => {

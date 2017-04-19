@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchUserGroups } from '../../../actions/userActions.js';
+import { fetchUserGroups, purchaseSuccess, buyoutGroupBook  } from '../../../actions/userActions.js';
 import { connect } from 'react-redux';
 
 class UserSeasons extends React.Component {
@@ -14,13 +14,24 @@ class UserSeasons extends React.Component {
 		});		
 	}
 
+	onBuyGroupBtnClick(paidSumm, info_group_id) {
+		this.props.buyoutGroupBook({ info_group_id }, {
+			redirect: false, 
+            showPreloader: true,
+            afterFetch: () => this.props.purchaseSuccess(paidSumm),
+            additionHeader: {
+              "Authorization": `Bearer{${ this.props.token }}`
+            }
+		});
+	}
+
 	userGroupTemplate(group) {
-		return (<tr>
+		return (<tr key={ group.id } >
 					<td>{ group.name }</td>
 					<td>{ group.leftPayd == 0 ? "Оплачена" : `Необходимо заплатить ${ group.leftPayd } RUB`}</td>
 					<td>
 						{ group.leftPayd != 0 ? 
-							<button className="btn btn-labeled btn-success" onClick={ () => {} }>
+							<button className="btn btn-labeled btn-success" onClick={ this.onBuyGroupBtnClick.bind(this, group.leftPayd, group.id) }>
 								<span className="btn-label">
 									<i className="fa fa-credit-card" aria-hidden="true"></i>
 								</span>
@@ -64,7 +75,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		fetchUserGroups : (payload, meta) => dispatch(fetchUserGroups(payload, meta))
+		fetchUserGroups : (payload, meta) => dispatch(fetchUserGroups(payload, meta)),
+		purchaseSuccess : (payload) => dispatch(purchaseSuccess(payload)),
+		buyoutGroupBook : (payload, meta) => dispatch(buyoutGroupBook(payload, meta))
 	}
 }
 

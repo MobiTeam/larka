@@ -68,7 +68,10 @@ class ActiveSeasons extends React.Component {
 	purchase(fetchMethod, info_group_id, cost) {
 		this.props.showSpinner();
 		if (this.props.profile.balance >= cost) {
-			if (!confirm(`С вашего баланса будет списано ${cost} RUB. Вы согласны?`)) return;
+			if (!confirm(`С вашего баланса будет списано ${cost} RUB. Вы согласны?`)) {
+				this.props.closeSpinner();
+				return;	
+			} 
 
 			fetchMethod({ info_group_id }, { "Authorization": `Bearer{${ this.props.token }}` })
 				.then(() => {
