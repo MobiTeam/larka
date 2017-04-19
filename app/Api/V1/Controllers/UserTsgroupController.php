@@ -41,7 +41,7 @@ class UserTsgroupController extends Controller
         return $userGroup;
     }
 
-    // Вывод всех людей вступивших в группы 
+    // Вывод всех людей вступивших в группы
     public function list(Request $request)
     {
         $token = JWTAuth::getToken();
@@ -229,7 +229,14 @@ class UserTsgroupController extends Controller
             $pivotUserGroup->leftPayd -=$leftUserPayd;
             $pivotUserGroup->save();
 
-            return response()->json(['message' => 'Оплата прошла успешно!'], 200);
+            // Вернуть эту группу по типу index
+            $currentGroups = Info_group::find($group_id);
+            $result = $currentGroups;
+            $result['leftPayd'] = (User_tsgroup::where([
+                                                     ['user_id', $user->id],
+                                                     ['info_group_id', $group_id ]])->get()->first())->leftPayd;
+
+            return response()->json(['group' => $result], 200);
         }
         else {
             return response()->json(['message' => 'Недостаточно средств для оплаты!'], 403);
