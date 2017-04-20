@@ -27,6 +27,8 @@ import DashboardIndex from './components/dashboard/Index'
 
 import Balance from './components/dashboard/balance/Balance'
 import Seasons from './components/dashboard/seasons/Seasons'
+import Admin from './components/dashboard/admin/Admin'
+import UserList from './components/dashboard/admin/UserList'
 import CreateSeason from './components/dashboard/seasons/CreateSeason'
 import EditSeason from './components/dashboard/seasons/EditSeason'
 import SeasonsList from './components/dashboard/seasons/SeasonsList'
@@ -82,7 +84,9 @@ render(
 							<Route path='/dashboard/profile' component={needProfileInfo(Profile)} />					
 							<Route path='/dashboard/profile/edit' component={needProfileInfo(ProfileEditor)} />
 						</Route>						
-						<Route component={canSee(Wrapper, [admin])}>										
+						<Route component={canSee(Wrapper, [admin])}>		
+							<Route path='/dashboard/admin' component={ Admin } />								
+							<Route path='/dashboard/admin/users' component={ UserList } />								
 							<Route path='/dashboard/seasons' component={ Seasons } />					
 							<Route path='/dashboard/seasons/new' component={ CreateSeason } />					
 							<Route path='/dashboard/seasons/edit/:seasonId' component={ EditSeason } />					

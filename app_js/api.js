@@ -71,5 +71,7 @@ export const groupShow = createFetchPromise('/group/show/[:id]', 'GET');
 export const groupUpdate = createFetchPromise('/group/update/[:id]', 'POST'); 
 export const groupDelete = createFetchPromise('/group/delete/[:id]', 'DELETE'); 
 
+export const getUsersInGroups = createFetchPromise('/tsgroup/list', 'GET');
+
 export const fetchBankOperations = createFetchPromise('/sberbank/index', 'GET');
 export const createBankOrder = createFetchPromise('/sberbank/create', 'POST');

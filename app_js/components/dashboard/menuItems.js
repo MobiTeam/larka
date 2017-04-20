@@ -15,6 +15,12 @@ const items = [
 					'iconClass' : 'fa fa-clock-o'	
 				},
 				{
+					'title' : 'Админ панель',
+					'link' :  baseLink + "/admin",
+					'roles' : [admin],
+					'iconClass' : 'fa fa-cogs'	
+				},
+				{
 					'title' : 'Баланс',
 					'link' :  baseLink  + "/balance",
 					'roles' : authorized,

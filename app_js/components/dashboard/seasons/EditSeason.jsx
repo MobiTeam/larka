@@ -55,11 +55,13 @@ class EditSeason extends React.Component {
 					<span className='reload-span-season' onClick={ this.loadSeasonData.bind(this) }>Нажмите для повторной загрузки</span>
 				</div>);
 	}
+	
 	printForm () {
 		return (<div className='create-season-wrapper'>
 					<EditForm formTitle='Форма редактирования сезона' submitBtnTitle='Сохранить изменения' />
 				</div>);
 	}
+
 	render () {
 		return (
 			<DocumentTitle title={ SITE_NAME + ': редактирование сезона' }>
