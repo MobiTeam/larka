@@ -1,0 +1,15 @@
+.success-tr {
+	background-color: #d7fae2!important;
+}
+
+.success-tr:hover {
+	background-color: #ecfef1!important;
+}
+
+.error-tr {
+	background-color: #fad9d7!important;
+}
+
+.error-tr:hover {
+	background-color: #fceae9!important;
+}

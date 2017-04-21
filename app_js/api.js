@@ -75,3 +75,4 @@ export const getUsersInGroups = createFetchPromise('/tsgroup/list', 'GET');
 
 export const fetchBankOperations = createFetchPromise('/sberbank/index', 'GET');
 export const createBankOrder = createFetchPromise('/sberbank/create', 'POST');
+export const getPaymentsList = createFetchPromise('/sberbank/list', 'GET');

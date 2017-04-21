@@ -9,12 +9,20 @@ class Admin extends React.Component {
 	render() {
 		return (
 				<DocumentTitle title={ SITE_NAME + ': админ панель' }>
-					<div className='row season-items'>
+					<div className='row admin-items'>
 						<div className="col-xs-12 col-sm-6 sol-md-4 col-lg-3">
 							<Link to='/dashboard/admin/users' className='default-link-style'>
 								<div className='dashboard-item manage-group-item'>
 									<i className="fa fa-users" aria-hidden="true"></i>
 									<span>Пользователи</span>
+								</div>
+							</Link>
+						</div>
+						<div className="col-xs-12 col-sm-6 sol-md-4 col-lg-3">
+							<Link to='/dashboard/admin/payments' className='default-link-style'>
+								<div className='dashboard-item manage-group-item'>
+									<i className="fa fa-credit-card" aria-hidden="true"></i>
+									<span>История платежей</span>
 								</div>
 							</Link>
 						</div>
