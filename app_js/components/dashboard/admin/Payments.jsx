@@ -28,6 +28,7 @@ class Payments extends React.Component {
 		return (<tr key={ payment.id } className={ payment.type == 1 ? 'success-tr' : 'error-tr' }>
 					<td>{ payment.created_at }</td>
 					<td>{ payment.type_name }</td>
+					<td>{ payment.amount }</td>
 					<td>{ payment.isApproved_name }</td>
 					<td>{ payment.full_name }</td>
 					<td>{ payment.email }</td>
@@ -40,6 +41,7 @@ class Payments extends React.Component {
 						<tr>
 							<th>Дата</th>
 							<th>Тип</th>
+							<th>Сумма (RUB)</th>
 							<th>Статус</th>
 							<th>ФИО</th>
 							<th>email</th>
