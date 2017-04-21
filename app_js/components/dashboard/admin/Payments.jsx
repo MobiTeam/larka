@@ -25,7 +25,7 @@ class Payments extends React.Component {
 	}
 
 	paymentsTemplate(payment) {
-		return (<tr key={ payment.id } className={ payment.isApproved == 1 ? 'success-tr' : 'error-tr' }>
+		return (<tr key={ payment.id } className={ payment.type == 1 ? 'success-tr' : 'error-tr' }>
 					<td>{ payment.created_at }</td>
 					<td>{ payment.type_name }</td>
 					<td>{ payment.isApproved_name }</td>
@@ -53,7 +53,7 @@ class Payments extends React.Component {
 
 	render () {
 		return (<div className="white-wrapper">
-					<h3>История платежей</h3>
+					<h3>История операций</h3>
 					{ this.state.payments.length == 0 ? null : this.printPayments() }
 				</div>)
 	}
