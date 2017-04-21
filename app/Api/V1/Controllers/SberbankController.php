@@ -32,7 +32,7 @@ class SberbankController extends Controller
         $result = [];
         // Проверяем является ли пользователь тренером или администратором
         if ($user->user_groups_id == 1 || $user->user_groups_id == 4) {
-            $logs = Log_payments::all();
+            $logs = Log_payments::orderBy("created_at", "desc")->get();
             foreach ($logs as $key => $value) {
                 $user =  User::find($value->user_id)->toArray();
                 $result[$key] = $value;
