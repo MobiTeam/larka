@@ -56,37 +56,37 @@
 <!-- Мотивация -->
 <div class="motivation-text">
     <p class="motivation-text-head text-center">Привет! Наконец-то ты зашла!</p>
-    <p class="motivation-text-base text-justify">
+    <p class="motivation-text-base text-center">
         Все! Теперь можешь не втягивать свой живот, вызов принят.
     </p>
-    <p class="motivation-text-base text-justify">
-        Мы твои <a href="/contact">ЖИРОСЖИГАТЕЛИ</a>, и мы знаем, как научить тебя жить без апельсиновых корок, выпирающих ушей, желеобразных частей тела.</p>
-    <p class="motivation-text-base text-justify">
-        Ты полюбишь себя и спорт!
-     </p>
-    <p class="motivation-text-base text-justify">
-        Загляни в <a href="/photogallery">АРХИВ ПОХУДИЗМА</a>, ты окажешься в атмосфере жаркой ликвидации.
+    <p class="motivation-text-base text-center">
+        Мы твои <a href="/contact">ЖИРОСЖИГАТЕЛИ</a>, и мы знаем, как научить тебя жить без апельсиновых корок, выпирающих ушей, желеобразных частей тела.
     </p>
-    <p class="motivation-text-base text-justify">
+    <p class="motivation-text-base text-center">
+         Поверь! Ты полюбишь себя и спорт!
+     </p>
+    <p class="motivation-text-base text-center">
+        Заглянув в <a href="/photogallery">АРХИВ ПОХУДИЗМА</a>, ты окажешься в атмосфере жаркой ликвидации.
+    </p>
+    <p class="motivation-text-base text-center">
         Возможно, мы напугаем тебя. Возможно, ты покинешь сайт прямо сейчас. Но скорее всего, ты захочешь присоединиться и попасть в прожигающий <a href="/about">СЕЗОН</a>.
     </p>
-    <p class="motivation-text-base text-justify">
+    <p class="motivation-text-base text-center">
         Долой иллюзии!
     </p>
-    <p class="motivation-text-base text-justify">
+    <p class="motivation-text-base text-center">
         Ты будешь плакать в планке, ненавидеть нас в стульчике-плие, проклинать проект в берпи...но при этом видеть результат!
     </p>
-    <p class="motivation-text-base text-justify">
+    <p class="motivation-text-base text-center">
         Наличие невозвратного билета будет постоянно сдерживать тебя от поднятия белого флага.
     </p>
 
         <p class="motivation-text-head text-center">Как найти кассу и приобрести билет?!</p>
         <p class="motivation-text-head text-center">Никуда не сворачивай! Ты на правильном пути! Вот <a href="/dashboard">НУЖНЫЙ КАБИНЕТ</a>.</p>
-        <p class="motivation-text-head text-center">Успей записаться<span class="post-scriptum-text">*</span> к следующему занятию, которое начнется через:</p>
+        <p class="motivation-text-head text-center"> До окончания приобретения невозвратного билета осталось:</p>
         <script src="http://megatimer.ru/s/eadcb0a7c0be55b3601b34af030c17db.js"></script>
 </div>
 <hr>
 <div class="container">
-    <p class="post-scriptum-text">*Запись производится через нужный кабинет</p>
 </div>
 @endsection
