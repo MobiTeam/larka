@@ -84,11 +84,48 @@ $api->version('v1', function (Router $api) {
         // Работа с привязкой пользователей к сезонам
         $api->group(['prefix' => 'tsgroup'], function(Router $api){
             $api->get('index', 'App\Api\V1\Controllers\UserTsgroupController@index');
+            //
             $api->get('list', 'App\Api\V1\Controllers\UserTsgroupController@list');
+            // Запись на сезон
             $api->post('create', 'App\Api\V1\Controllers\UserTsgroupController@create_relation');
+            // Бронирование сезона
             $api->post('create_booking', 'App\Api\V1\Controllers\UserTsgroupController@create_booking_relation');
+            // Доплата за бронирование
             $api->post('pay_booking', 'App\Api\V1\Controllers\UserTsgroupController@booking_pay');
         });
+
+        // Работа с событиями сезона
+        $api->group(['prefix' => 'event'], function(Router $api){
+            // Показать все действующие события
+            $api->get('index', 'App\Api\V1\Controllers\EventController@index');
+            // Показать все события определенного сезона
+            $api->get('list', 'App\Api\V1\Controllers\EventController@list');
+            // Показ определенного события w
+            $api->get('show/{id}', 'App\Api\V1\Controllers\EventController@show');
+            // Содание события w
+            $api->post('create', 'App\Api\V1\Controllers\EventController@create');
+            // Обновление события w
+            $api->post('update/{id}', 'App\Api\V1\Controllers\EventController@update');
+            // Удаление события
+            $api->delete('delete/{id}', 'App\Api\V1\Controllers\EventController@destroy');
+        });
+
+        // Работа с временем события сезона
+        $api->group(['prefix' => 'event_time'], function(Router $api){
+            // Показать все действующие события
+            $api->get('index', 'App\Api\V1\Controllers\EventController@index');
+            // Показать все события определенного сезона
+            $api->get('list', 'App\Api\V1\Controllers\EventController@list');
+            // Показ определенного события w
+            $api->get('show/{id}', 'App\Api\V1\Controllers\EventController@show');
+            // Содание события w
+            $api->post('create', 'App\Api\V1\Controllers\EventController@create');
+            // Обновление события w
+            $api->post('update/{id}', 'App\Api\V1\Controllers\EventController@update');
+            // Удаление события
+            $api->delete('delete/{id}', 'App\Api\V1\Controllers\EventController@destroy');
+        });
+
     });
 
     // Работа с ответами сбербанка

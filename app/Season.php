@@ -56,4 +56,10 @@ class Season extends Model
         return $this->hasMany('App\Info_group');
     }
 
+    // Один сезон может содержать много событий
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
+
 }
