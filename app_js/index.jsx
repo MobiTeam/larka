@@ -32,8 +32,10 @@ import UserList from './components/dashboard/admin/UserList'
 import Payments from './components/dashboard/admin/Payments'
 import CreateSeason from './components/dashboard/seasons/CreateSeason'
 import EditSeason from './components/dashboard/seasons/EditSeason'
+import EventManage from './components/dashboard/seasons/EventManage'
+import EditEvent from './components/dashboard/seasons/EditEvent'
+import CreateEvent from './components/dashboard/seasons/CreateEvent'
 import SeasonsList from './components/dashboard/seasons/SeasonsList'
-import GroupManage from './components/dashboard/seasons/GroupManage'
 import EditGroup from './components/dashboard/seasons/EditGroup'
 import CreateGroup from './components/dashboard/seasons/CreateGroup'
 
@@ -94,6 +96,9 @@ render(
 							<Route path='/dashboard/seasons/edit/:seasonId' component={ EditSeason } />					
 							<Route path='/dashboard/seasons/list' component={ SeasonsList } />	
 							<Route path='/dashboard/seasons/groups' component={ GroupManage } />					
+							<Route path='/dashboard/seasons/events' component={ EventManage } />					
+							<Route path='/dashboard/seasons/events/new' component={ CreateEvent } />					
+							<Route path='/dashboard/seasons/events/edit/:eventId' component={ EditEvent } />					
 							<Route path='/dashboard/seasons/groups/new' component={ CreateGroup } />					
 							<Route path='/dashboard/seasons/groups/edit/:groupId' component={ EditGroup } />					
 						</Route>	
@@ -109,3 +114,4 @@ render(
 
 
 
+import GroupManage from './components/dashboard/seasons/GroupManage'

@@ -33,17 +33,19 @@ class Seasons extends React.Component {
 								</div>
 							</Link>
 						</div>
+						<div className="col-xs-12 col-sm-6 sol-md-4 col-lg-3">
+							<Link to='/dashboard/seasons/events' className='default-link-style'>
+								<div className='dashboard-item manage-events-item'>
+									<i className="fa fa-calendar" aria-hidden="true"></i>
+									<span>Работа с мероприятиями</span>
+								</div>
+							</Link>
+						</div>
 	                </div>    
 				</DocumentTitle>
 		)		
 	}
 }
-
-// const mapStateToProps = (state) => {
-// 	return {
-// 		statusCode : state.user.statusCode
-// 	}
-// }
 
 export default connect(null)(Seasons);
 

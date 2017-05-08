@@ -1505,6 +1505,12 @@ html, body {
 .manage-group-item i {
 	color: #c25757;	
 }
+
+.manage-events-item i {
+	color: #5957c2;	
+}
+
+
 .season-list-wrapper {
 	background: white;
     margin: 5px;

@@ -11,5 +11,8 @@ export default {
 					"/dashboard/seasons/edit"   	 : "Редактирование сезона",
 					"/dashboard/seasons/groups" 	 : "Управление группами",
 					"/dashboard/seasons/groups/new"  : "Создание новой группы",
-					"/dashboard/seasons/groups/edit" : "Редактирование группы"
+					"/dashboard/seasons/groups/edit" : "Редактирование группы",
+					"/dashboard/seasons/events" 	 : "Работа с мероприятиями",
+					"/dashboard/seasons/events/new"  : "Создание мероприятия",
+					"/dashboard/seasons/events/edit" : "Редактирование мероприятия"
 				}

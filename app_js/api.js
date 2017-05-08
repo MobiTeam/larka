@@ -76,3 +76,10 @@ export const getUsersInGroups = createFetchPromise('/tsgroup/list', 'GET');
 export const fetchBankOperations = createFetchPromise('/sberbank/index', 'GET');
 export const createBankOrder = createFetchPromise('/sberbank/create', 'POST');
 export const getPaymentsList = createFetchPromise('/sberbank/list', 'GET');
+
+export const fetchAllSeasonEventsPromise = createFetchPromise('/event/index', 'GET');
+export const fetchAllEventsPromise = createFetchPromise('/event/list', 'GET');
+export const fetchEventPromise = createFetchPromise('/event/show/[:id]', 'GET');
+export const createEventPromise = createFetchPromise('/event/create', 'POST');
+export const updateEventPromise = createFetchPromise('/event/update/[:id]', 'POST');
+export const deleteEventPromise = createFetchPromise('/event/delete/[:id]', 'DELETE');
