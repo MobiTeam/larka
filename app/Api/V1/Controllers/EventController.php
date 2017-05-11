@@ -36,14 +36,19 @@ class EventController extends Controller
     }
 
     /**
-     * Вывести все events определенного сезона
+     * Вывести все events определенных сезонов
      *
      * @return \Illuminate\Http\Response
      */
     public function list()
     {
         $event = Event::where('date_hold', '>=', \DB::raw('CURRENT_DATE'))->get()->toArray();
-        return $event;
+        $eventData = [];
+        foreach ($event as $key => $value) {
+            $eventData[$key] = $value;
+            $eventData[$key]['season_name'] = Event::find($value['id'])->season()->get()->first()->toArray()['name'];
+        }
+        return $eventData;
     }
 
     /**

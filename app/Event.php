@@ -39,7 +39,7 @@ class Event extends Model
         return $this->belongsTo('App\Season');
     }
 
-    // Одно событие может содержать много времен
+    // Одно событие может содержать много времен для записи
     public function times()
     {
         return $this->hasMany('App\Event_time');

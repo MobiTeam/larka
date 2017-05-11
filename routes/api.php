@@ -98,7 +98,7 @@ $api->version('v1', function (Router $api) {
         $api->group(['prefix' => 'event'], function(Router $api){
             // Показать все действующие события
             $api->get('index', 'App\Api\V1\Controllers\EventController@index');
-            // Показать все события определенного сезона
+            // Получить список всех событий действующих
             $api->get('list', 'App\Api\V1\Controllers\EventController@list');
             // Показ определенного события w
             $api->get('show/{id}', 'App\Api\V1\Controllers\EventController@show');
