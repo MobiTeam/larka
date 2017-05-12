@@ -98,13 +98,15 @@ $api->version('v1', function (Router $api) {
         $api->group(['prefix' => 'event'], function(Router $api){
             // Показать все действующие события
             $api->get('index', 'App\Api\V1\Controllers\EventController@index');
+            // Показать все действующие события в кратком виде
+            $api->get('brief_index/{id}', 'App\Api\V1\Controllers\EventController@brief_index');
             // Получить список всех событий действующих
             $api->get('list', 'App\Api\V1\Controllers\EventController@list');
-            // Показ определенного события w
+            // Показ определенного события
             $api->get('show/{id}', 'App\Api\V1\Controllers\EventController@show');
-            // Содание события w
+            // Содание события
             $api->post('create', 'App\Api\V1\Controllers\EventController@create');
-            // Обновление события w
+            // Обновление события
             $api->post('update/{id}', 'App\Api\V1\Controllers\EventController@update');
             // Удаление события
             $api->delete('delete/{id}', 'App\Api\V1\Controllers\EventController@destroy');
@@ -112,18 +114,36 @@ $api->version('v1', function (Router $api) {
 
         // Работа с временем события сезона
         $api->group(['prefix' => 'event_time'], function(Router $api){
-            // Показать все действующие события
-            $api->get('index', 'App\Api\V1\Controllers\EventController@index');
-            // Показать все события определенного сезона
-            $api->get('list', 'App\Api\V1\Controllers\EventController@list');
-            // Показ определенного события w
-            $api->get('show/{id}', 'App\Api\V1\Controllers\EventController@show');
-            // Содание события w
-            $api->post('create', 'App\Api\V1\Controllers\EventController@create');
-            // Обновление события w
-            $api->post('update/{id}', 'App\Api\V1\Controllers\EventController@update');
-            // Удаление события
-            $api->delete('delete/{id}', 'App\Api\V1\Controllers\EventController@destroy');
+            // Показать все действующие времена и события
+            $api->get('index', 'App\Api\V1\Controllers\EventTimeController@index');
+            // Показать все действующие времена для конкретного события
+            $api->get('brief_index/{id}', 'App\Api\V1\Controllers\EventTimeController@brief_index');
+            // Вывести все текущие времена c событием
+            // $api->get('list', 'App\Api\V1\Controllers\EventTimeController@list');
+            // Показ определенного времени события
+            $api->get('show/{id}', 'App\Api\V1\Controllers\EventTimeController@show');
+            // Содание времени для события
+            $api->post('create', 'App\Api\V1\Controllers\EventTimeController@create');
+            // Обновление времени для события
+            $api->post('update/{id}', 'App\Api\V1\Controllers\EventTimeController@update');
+            // Удаление время события
+            $api->delete('delete/{id}', 'App\Api\V1\Controllers\EventTimeController@destroy');
+        });
+
+        // Работа с пользователем и событиями
+        $api->group(['prefix' => 'user_event'], function(Router $api){
+            // Вывести список всех действущих событий с сезонами и временами
+            $api->get('index', 'App\Api\V1\Controllers\UserEventController@index');
+            // Вывести все события на которые записан пользователь
+            $api->get('list', 'App\Api\V1\Controllers\UserEventController@list');
+            // Показ события пользователю
+            // $api->get('show/{id}', 'App\Api\V1\Controllers\UserEventController@show');
+            // Содание времени для события
+            $api->post('create', 'App\Api\V1\Controllers\UserEventController@create');
+            // Обновление времени для события
+            $api->post('update', 'App\Api\V1\Controllers\UserEventController@update');
+            // Удаление время события
+            $api->post('delete', 'App\Api\V1\Controllers\UserEventController@destroy');
         });
 
     });

@@ -82,4 +82,10 @@ class User extends Authenticatable
                 ->withTimestamps();
     }
 
+    // Связь многие со многим с событиями сезонов, на которые пользователь записался
+    public function event_times() {
+        return $this->belongsToMany('App\Event_time', 'user_event_time')
+                ->withTimestamps();
+    }
+
 }

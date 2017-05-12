@@ -13,7 +13,7 @@ class Event_time extends Model
 
     // Поля для массового заполнения
     protected $fillable = [
-        'event_id', 'name','description', 'time_hold_start', 'time_hold_finish',
+        'event_id', 'name','description', 'capacity', 'time_hold_start', 'time_hold_finish',
     ];
 
     // Скрытые поля при выводе
@@ -27,4 +27,11 @@ class Event_time extends Model
     {
         return $this->belongsTo('App\Event');
     }
+
+    // Связь многие со многим с пользователями, которые записались на данное время
+    public function users() {
+        return $this->belongsToMany('App\User', 'user_event_time')
+                ->withTimestamps();
+    }
+
 }

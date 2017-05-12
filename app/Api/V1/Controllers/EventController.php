@@ -36,7 +36,18 @@ class EventController extends Controller
     }
 
     /**
-     * Вывести все events определенных сезонов
+     * Вывести все events определенного сезона
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function brief_index($id)
+    {
+        $events = Season::find($id)->events()->get()->toArray();
+        return $events;
+    }
+
+    /**
+     * Вывести все events с наименованием сезона
      *
      * @return \Illuminate\Http\Response
      */
