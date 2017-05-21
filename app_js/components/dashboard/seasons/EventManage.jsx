@@ -54,7 +54,7 @@ class EventManage extends React.Component {
 			return (<tr key={ ev.id } >
 						<td>{ ev.name }</td>
 						<td>{ ev.description }</td>
-						<td>{ ev.season_id }</td>
+						<td>{ ev.season_name }</td>
 						<td>{ ev.date_hold }</td>
 						<td>{ ev.created_at }</td>
 						<td>

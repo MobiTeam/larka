@@ -2,7 +2,8 @@ import React from 'react';
 import ActiveSeasons from './dashboard_index/ActiveSeasons.jsx';
 import UserSeasons from './dashboard_index/UserSeasons.jsx';
 import { connect } from 'react-redux';
-import { fetchActiveSeasons } from '../../actions/activeSeasonsActions.js'
+import { fetchActiveSeasons } from '../../actions/activeSeasonsActions.js';
+import UserEvents from './dashboard_index/UserEvents.jsx';
 
 class Index extends React.Component {
 
@@ -33,7 +34,10 @@ class Index extends React.Component {
 								<ActiveSeasons data={ this.props.seasons.data || [] } router={ this.props.router } />
 							</div>
 						</div>
-						<div className="col col-xs-12 col-sm-7">
+						<div className="col col-xs-12 col-sm-5">
+							<div className="white-wrapper">
+								<UserEvents />
+							</div>
 						</div>
 					</div>
 				</div>

@@ -1,0 +1,18 @@
+.add-time-wrapper {
+	clear:both;
+	padding: 10px;
+}
+
+.from-time, .to-time, .add-time-span, .capacity-block {
+	float: left;
+	padding: 0px 8px 0px 6px;
+}
+
+.from-time label, .to-time label {
+	padding-right: 5px;
+}
+
+.times-block {
+	background-color: #ffffe5;
+	padding: 5px;
+}
