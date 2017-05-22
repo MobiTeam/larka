@@ -134,7 +134,9 @@ $api->version('v1', function (Router $api) {
         $api->group(['prefix' => 'user_event'], function(Router $api){
             // Вывести список всех действущих событий с сезонами и временами
             $api->get('index', 'App\Api\V1\Controllers\UserEventController@index');
-            // Вывести все события на которые записан пользователь
+            // Вывести все события на которые записан пользователь и на которые может записаться
+            $api->get('show', 'App\Api\V1\Controllers\UserEventController@listEvent');
+            // Вывести все события на которые записан пользователь и на которые может записаться с сезонами
             $api->get('list', 'App\Api\V1\Controllers\UserEventController@list');
             // Показ события пользователю
             // $api->get('show/{id}', 'App\Api\V1\Controllers\UserEventController@show');

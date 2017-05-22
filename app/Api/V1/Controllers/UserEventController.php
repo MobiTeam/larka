@@ -56,9 +56,60 @@ class UserEventController extends Controller
         return $data;
     }
 
+    /*
+     * Вывод всех событий и времен на которые записан пользователь
+     */
+     public function listEvent()
+     {
+         // Получаем пользователя
+         $token = JWTAuth::getToken();
+         $user = JWTAuth::toUser($token);
+
+         $data = [];
+        //  Получаем все действущие события пользователя на которые он записан и может записаться
+
+        // Получаем все действующие сезоны пользователя
+        $seasonUserGroup = $user->tsgroup()->get(['season_id'])->toArray();
+
+        foreach ($seasonUserGroup as $key => $value) {
+            // Получаем все события сезона
+            $events = Season::find($value['season_id'])->events()->get()->toArray();
+
+            // Все события
+            foreach ($events as $key2 => $value2) {
+                $data[$key2] = $value2;
+                $allEventTimes = Event::find($value2['id'])->times()->get()->toArray();
+                $statusEvents = 0;
+                // Все времена события
+                foreach ($allEventTimes as $key3 => $value3) {
+                    $eventTime = Event_time::find($value3['id'])->toArray()['id'];
+
+                    // Проверяем записан ли пользователь на данное событие
+                    if ($statusEvents == 0) {
+                        $checkUserRelationEventTime = DB::table('user_event_time')
+                                                        ->where('user_id', $user->id)
+                                                        ->where('event_time_id', $eventTime)
+                                                        ->count();
+                        // Ставим время на которое он записан
+                        if ($checkUserRelationEventTime > 0) {
+                            $statusEvents = 1;
+                            // Ставим время на которое он записан
+                            $data[$key2]['eventTime'] = Event_time::find($eventTime);
+                        }
+                        else {
+                            $data[$key2]['eventTime'][$key3] = Event_time::find($eventTime);
+                        }
+                    }
+                }
+                $data[$key2]['status'] = $statusEvents;
+            }
+        }
+        return $data;
+     }
+
     /**
      * Вывести текущие сезоны и события на которые записан пользователь и на которые надо записаться
-     *
+     * Status Записан - 1, Не Записан - 0
      * @return \Illuminate\Http\Response
      */
     public function list()
