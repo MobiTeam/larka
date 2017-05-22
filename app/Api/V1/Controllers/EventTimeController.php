@@ -58,7 +58,7 @@ class EventTimeController extends Controller
         $inputData = $request->only(['event_id', 'name','description', 'capacity', 'time_hold_start', 'time_hold_finish']);
         $eventTime = new Event_time($inputData);
         if($eventTime->save())
-            return response()->json(['message' => 'created'], 201);
+            return response()->json(['message' => 'created', 'eventTime' => $eventTime->toArray()], 201);
         else
             return $this->response->error('could not update', 500);
     }

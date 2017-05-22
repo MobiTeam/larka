@@ -74,7 +74,7 @@ class EventController extends Controller
         $inputData = $request->only(['season_id', 'name','description', 'date_hold']);
         $event = new Event($inputData);
         if($event->save())
-            return response()->json(['message' => 'created'], 201);
+            return response()->json(['message' => 'created', 'event'=>$event->toArray()], 201);
         else
             return $this->response->error('could not update', 500);
     }
