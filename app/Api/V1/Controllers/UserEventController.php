@@ -79,29 +79,34 @@ class UserEventController extends Controller
             foreach ($events as $key2 => $value2) {
                 $data[$key2] = $value2;
                 $allEventTimes = Event::find($value2['id'])->times()->get()->toArray();
-                $statusEvents = 0;
+                // $statusEvents = 0;
                 // Все времена события
                 foreach ($allEventTimes as $key3 => $value3) {
                     $eventTime = Event_time::find($value3['id'])->toArray()['id'];
 
                     // Проверяем записан ли пользователь на данное событие
-                    if ($statusEvents == 0) {
-                        $checkUserRelationEventTime = DB::table('user_event_time')
+                    $checkUserRelationEventTime = DB::table('user_event_time')
                                                         ->where('user_id', $user->id)
                                                         ->where('event_time_id', $eventTime)
                                                         ->count();
+                    if($checkUserRelationEventTime > 0) {
+                        $eventTimeId = $eventTime;
                         // Ставим время на которое он записан
-                        if ($checkUserRelationEventTime > 0) {
+                        $data[$key2]['eventTimeId'] = $eventTimeId;
+                    }
+                    // Заносим все доступные времена для данного осбытия
+                    $data[$key2]['eventTime'][$key3] = Event_time::find($eventTime);
+                        // Ставим время на которое он записан
+/*                        if ($checkUserRelationEventTime > 0) {
                             $statusEvents = 1;
                             // Ставим время на которое он записан
                             $data[$key2]['eventTime'] = Event_time::find($eventTime);
                         }
                         else {
-                            $data[$key2]['eventTime'][$key3] = Event_time::find($eventTime);
-                        }
-                    }
+                        }*/
+
                 }
-                $data[$key2]['status'] = $statusEvents;
+                // $data[$key2]['status'] = $statusEvents;
             }
         }
         return $data;
