@@ -90,3 +90,4 @@ export const updateEventTimePromise = createFetchPromise('/event_time/update/[:i
 export const deleteEventTimePromise = createFetchPromise('/event_time/delete/[:id]', 'DELETE');
 
 export const fetchUserEvents = createFetchPromise('/user_event/list', 'GET');
+export const fetchAvailUserEvents = createFetchPromise('/user_event/show', 'GET');

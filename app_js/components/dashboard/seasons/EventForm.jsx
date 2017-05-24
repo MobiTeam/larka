@@ -28,7 +28,7 @@ class EventForm extends React.Component {
 			selectedSeason: props.data.season_id,
 			date: props.data.date_hold ? this.createMomentDate(props.data.date_hold) : moment(),
 			statusMsg: '',
-			eventTimes: props.eventTimes,
+			eventTimes: [ ...props.eventTimes ],
 			deletedTimes: []
 		}
 	}
@@ -43,10 +43,10 @@ class EventForm extends React.Component {
 		});
 	}
 
-	createTimesPromises () {
+	createTimesPromises (event_id) {
 		// create / update / delete
 		const auth = { "Authorization": `Bearer{${ this.props.token }}` };
-		return this.state.eventTimes.map(item => item.isNew ? createEventTimePromise(item, auth) : updateEventTimePromise(item, auth))
+		return this.state.eventTimes.map(item => item.isNew ? createEventTimePromise({ ...item, event_id }, auth) : updateEventTimePromise(item, auth))
 					.concat(this.state.deletedTimes.filter(item => !item.isNew)
 								.map((item) => deleteEventTimePromise(item, auth)));
 	}
@@ -83,12 +83,18 @@ class EventForm extends React.Component {
 		});
 
 		this.props.sendMethod(data, { "Authorization": `Bearer{${ this.props.token }}` })
-			  .then(result => {			  	
-			  	Promise.all(this.createTimesPromises())
+			  .then(result => result.json())
+			  .then(({ event }) => {	
+
+			  	Promise.all(this.createTimesPromises(event ? event.id : this.props.data.id))
 			  		.then(() => {
 			  			if (!this.props.data.id) {
 					  		this.refs.editForm.reset();
+					  		this.setState({
+					  			eventTimes: []
+					  		});
 					  	}
+
 					  	this.props.closeSpinner();
 					  	this.setState({
 					  		statusMsg: 'Мероприятие было успешно сохранено.',
