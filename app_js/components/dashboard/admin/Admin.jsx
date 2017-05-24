@@ -26,6 +26,14 @@ class Admin extends React.Component {
 								</div>
 							</Link>
 						</div>
+						<div className="col-xs-12 col-sm-6 sol-md-4 col-lg-3">
+							<Link to='/dashboard/admin/events' className='default-link-style'>
+								<div className='dashboard-item manage-group-item'>
+									<i className="fa fa-calendar" aria-hidden="true"></i>
+									<span>Мероприятия</span>
+								</div>
+							</Link>
+						</div>
 	                </div>    
 				</DocumentTitle>
 			)

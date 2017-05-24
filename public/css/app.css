@@ -1425,6 +1425,13 @@ li.rc-time-picker-panel-select-option-disabled:hover {
 .seasons-group-wrapper button {
 	margin: 5px;
 }
+.join-to-event-span {
+	color: #4e9d4e;
+	cursor:pointer;
+	font-size: 20px;
+	padding: 0px 6px 0px 6px;
+	vertical-align: middle;
+}
 .profile-box {
 	padding-top: 20px;
 	text-align: center;

@@ -1,7 +1,8 @@
 export default {
 					"/dashboard"                	 : "Главная страница",
 					"/dashboard/admin"               : "Админ панель",
-					"/dashboard/admin/users"         : "Работа с пользователями",
+					"/dashboard/admin/users"         : "Список пользователей",
+					"/dashboard/admin/events"        : "Список текущий событий",
 					"/dashboard/balance"             : "Баланс",
 					"/dashboard/profile"        	 : "Профиль",
 					"/dashboard/profile/edit"   	 : "Редактирование профиля",
