@@ -1351,6 +1351,27 @@ li.rc-time-picker-panel-select-option-disabled:hover {
 }
 
 
+.admin-items {
+	padding: 10px 25px;
+}
+.success-tr {
+	background-color: #d7fae2!important;
+}
+
+.success-tr:hover {
+	background-color: #ecfef1!important;
+}
+
+.error-tr {
+	background-color: #fad9d7!important;
+}
+
+.error-tr:hover {
+	background-color: #fceae9!important;
+}
+.user-list-table {
+	margin-bottom: 10px;
+}
 .balance-wrapper {
 	/*padding: 20px;*/
 }
@@ -1373,27 +1394,6 @@ li.rc-time-picker-panel-select-option-disabled:hover {
 
 .error-tr:hover {
 	background-color: #fceae9!important;
-}
-.admin-items {
-	padding: 10px 25px;
-}
-.success-tr {
-	background-color: #d7fae2!important;
-}
-
-.success-tr:hover {
-	background-color: #ecfef1!important;
-}
-
-.error-tr {
-	background-color: #fad9d7!important;
-}
-
-.error-tr:hover {
-	background-color: #fceae9!important;
-}
-.user-list-table {
-	margin-bottom: 10px;
 }
 .active-season-image {
 	/*max-height: 200px;*/
