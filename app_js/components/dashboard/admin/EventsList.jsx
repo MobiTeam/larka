@@ -9,7 +9,7 @@ class EventsList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			events : [] 
+			seasons : [] 
 		}
 	}
 
@@ -17,51 +17,56 @@ class EventsList extends React.Component {
 		this.props.showSpinner();
 		fetchAllUserEvents(null, { "Authorization": `Bearer{${ this.props.token }}` })
 			.then(result => result.json())
-			.then((groups) => {
+			.then((seasons) => {
 				this.setState({
-					groups
+					seasons
 				});
 				this.props.closeSpinner();
 			})
 	}
 
-	printGroups() {
-		if (this.state.groups.length == 0) return 'Нет ни одной группы';
-		return (this.state.groups.map(group => {
-			return (<div className="row user-list-table" key={ group.id }>
-						<div className="col col-xs-12">
-							<h4> { group.name } </h4>
-							<div>
-								{ this.printGroupUsers(group.users) }
-							</div>
-						</div>
-					</div>);
-		}));
+	printUsers(eventTime) {		
+		return eventTime.users.map(user => {
+			return <tr key={ user.id }>
+						<td>{ user.family_name + ' ' + user.name }</td>
+						<td>{ user.email }</td>
+						<td>{ user.phone }</td>
+						<td>{ eventTime.time_hold_start + ' - ' + eventTime.time_hold_finish }</td>
+					</tr>;
+		});
 	}
 
-	printGroupUsers(users) {
-		if (!users) return 'В группе нет пользователей.';
-		return (<table className="table table-striped table-hover">
-					<tbody> 
-						{ users.map((user, index) => {
-							return (<tr className="row" key={ user.id }>
-										<td>{ index + 1 }</td>
-										<td>{ user.name + " " + user.family_name }</td>
-										<td>{ user.left_payd === 0 ? 'Оплачено полностью' : 'Бронь'}</td>
-									</tr>);
-						}) }
-					</tbody>
-		 		</table>);
+	printTimes(sEvent) {
+		return [ <tr key={ 'event' + sEvent.id }><td colSpan={4}><b>{ sEvent.name }</b></td></tr> ]
+					.concat(sEvent.event_time.map(eventTime => this.printUsers(eventTime)));							
+	}
+
+	printEvents(events) {
+		if (events.length == 0) {
+			return <div className="alert alert-warning">В данном сезоне нет мероприятий.</div>
+		}
+		return  <table className="table table-striped table-hover"><tbody>{ events.map(this.printTimes.bind(this)) }</tbody></table>;
+	}
+			
+
+	printSeasons(seasons) {
+		return seasons.map(season => {
+			return <div className="admin-season-wrapper" key={ season.id }>
+						<h4>{ season.name }</h4>
+						<hr />
+						{ this.printEvents(season.event || []) }
+					</div>	
+		});
 	}
 
 	render() {
 		return (
 				<div>
 					<div className="row">
-						<div className="col col-xs-12 col-sm-8 col-lg-8">
+						<div className="col col-xs-10">
 							<div className="white-wrapper">
-								<h3>Список пользователей</h3>
-								{ this.printGroups() }
+								<h3>Текущие мероприятия</h3>
+								{ this.printSeasons(this.state.seasons) }								
 							</div>
 						</div>
 					</div>

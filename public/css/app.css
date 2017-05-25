@@ -1432,6 +1432,14 @@ li.rc-time-picker-panel-select-option-disabled:hover {
 	padding: 0px 6px 0px 6px;
 	vertical-align: middle;
 }
+
+.events-table tr td {
+	vertical-align: middle!important;
+}
+
+.edit-event-button {
+	margin-left: 10px;
+}
 .profile-box {
 	padding-top: 20px;
 	text-align: center;

@@ -5,3 +5,11 @@
 	padding: 0px 6px 0px 6px;
 	vertical-align: middle;
 }
+
+.events-table tr td {
+	vertical-align: middle!important;
+}
+
+.edit-event-button {
+	margin-left: 10px;
+}

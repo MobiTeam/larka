@@ -13,9 +13,20 @@ class UserEvents extends Component {
 	}
 
 	componentWillMount() {
+		this.loadUserEvents();		
+	}
+
+	loadUserEvents() {
 		fetchAvailUserEvents(null, { "Authorization": `Bearer{${ this.props.token }}` })
 			.then(result => result.json())
-			.then(userEvents => {
+			.then(userEvents => {				
+				if (userEvents.error) {
+					setTimeout(() => {
+						this.loadUserEvents();
+					}, 500);
+					return;
+				}
+
 				this.setState({
 					userEvents: userEvents.filter(item => !!item.eventTime)
 				});
@@ -36,17 +47,7 @@ class UserEvents extends Component {
 
 	handleTimeSelectChange (userEvent, event) {
 		event.persist();
-		this.changeUserEventRelation(userEvent, createUserEventsRelation, 1, event.target.value)
-			.then(() => {
-					this.setState({
-						userEvents: this.state.userEvents.map(uEvent => {
-								if (uEvent.id == userEvent.id) {
-									uEvent.eventTimeId = event.target.value;
-								}
-								return uEvent;
-							})
-					});
-			});
+		this.changeUserEventRelation(userEvent, createUserEventsRelation, 1, event.target.value);		
 	}
 
 	printEventTimes (uEvent) {
@@ -55,7 +56,7 @@ class UserEvents extends Component {
 		}
 
 		return <select value={ uEvent.eventTimeId || 0 } onChange={ this.handleTimeSelectChange.bind(this, uEvent) }>
-					<option value={0} disabled="disabled">время..</option>   
+					<option value={0} disabled="disabled">выберите время..</option>   
 					{ uEvent.eventTime
 						.filter(this.issetPlaces)
 						.map(time => {
@@ -66,21 +67,24 @@ class UserEvents extends Component {
 				</select>
 	}
 
-	changeUserEventRelation (userEvent, method, code, event_id) {
+	changeUserEventRelation (userEvent, method, code, event_id) {		
 		this.props.showSpinner();
 		return method({ event_time_id : event_id || userEvent.eventTimeId }, { "Authorization": `Bearer{${ this.props.token }}` })
 				.then(result => {
-					this.props.closeSpinner();
-					if (code == 0) {
-						this.setState({
-							userEvents: this.state.userEvents.map(uEvent => {
-								if (uEvent.id == userEvent.id) {
+					this.props.closeSpinner();					
+					this.setState({
+						userEvents: this.state.userEvents.map(uEvent => {
+							if (uEvent.id == userEvent.id) {
+								if (code == 0) {
 									delete uEvent.eventTimeId;
+								} else {
+									uEvent.eventTimeId = event_id;
+									console.log(uEvent, userEvent, event_id);
 								}
-								return uEvent;
-							})
-						});		
-					}
+							}
+							return uEvent;
+						})
+					});					
 				})
 				.catch(error => {
 					alert(error);
@@ -90,6 +94,9 @@ class UserEvents extends Component {
 
 	getSelectedTimeStr (uEvent) {
 		const selectedTime = uEvent.eventTime.find(time => time.id == uEvent.eventTimeId);
+		if (!selectedTime) {
+			return '-';
+		}
 		return `${this.sliceSeconds(selectedTime.time_hold_start)} - ${this.sliceSeconds(selectedTime.time_hold_finish)}`;
 	}
 
@@ -98,7 +105,7 @@ class UserEvents extends Component {
 			return <div>Пока ничего не запланировано.</div>;
 		}
 
-		return (<table className="table table-striped table-hover">
+		return (<table className="table table-striped table-hover events-table">
 			<thead>
 				<tr>
 					<th>Название</th>
@@ -121,7 +128,7 @@ class UserEvents extends Component {
 									</div>
 									: <div>
 										<span>{ this.getSelectedTimeStr(uEvent) }</span>
-										<button className="btn btn-warning" onClick={ this.changeUserEventRelation.bind(this, uEvent, deleteUserEventsRelation, 0, null) }>
+										<button className="btn btn-warning edit-event-button" onClick={ this.changeUserEventRelation.bind(this, uEvent, deleteUserEventsRelation, 0, null) }>
 									       <i className="fa fa-pencil" aria-hidden="true"></i>
 									   </button>
 									</div> }								
