@@ -8,7 +8,33 @@
 
     <h1 class="clear-sans text-center"><b>Новости</b></h1>
     <div class="container news">
-            <!-- Вторая новость -->
+            <!-- Третья новость -->
+        <div class="well news-single">
+            <div class="media">
+                <a class="pull-left" href="#">
+                <img class="media-object news-img" src="base/img/news/4.jpg">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">Приветули, бутербродам!  </h4>
+                 <p class="clear-sans about-description-text">Медленно, но верно начинаем скучать и неимоверно счастливы сообщить что начинаются наконец утренние занятия от 
+                    <a href="https://vk.com/feed?section=search&q=%23fitnessprojectvforme">#fitnessprojectvforme</a>, с инструктором Машей
+                <p>           
+                <p class="clear-sans about-description-text">
+                    Ира активно готовится к первому запуску <a href="https://vk.com/feed?section=search&q=%23фитнестур_vforme">#фитнестур_vforme</a>
+                <p>  
+                <p class="clear-sans about-description-text">Ближайшее расписание:<br>
+                    <ul>
+                        <li>9.06 в 6:00 утра площадка ЮКИОР;</li>
+                        <li>11.06 в 11:00 биатлонный центр,- очень интересный формат занятия.</li>
+                    </ul>
+                </p>
+                <p class="clear-sans about-description-text">По занятиям вечером-пока решается вопрос</p>
+                <p class="clear-sans about-description-text">Если поджирать любишь-нет смысла приходить!</p>
+                <p class="clear-sans about-description-text">Кэш-200 р. одно занятие!</p>
+             </div>
+          </div>
+        </div>   
+        <!-- Вторая новость -->
         <div class="well news-single">
             <div class="media">
                 <a class="pull-left" href="#">
@@ -88,7 +114,7 @@
                 </p>
                 <p class="clear-sans about-description-text"><b>Для кого?</b></p>
                 <p class="clear-sans about-description-text">Для тебя, супруга (супруги), родственников, друзей, соседей!!! Заниматься может любой желающий (в зависимости от приобретенного тарифа, от 8000 до 24 000 рублей на человека за сезон).</p>
-                <p class="clear-sans about-description-text">Мы едем не только тренироваться до двух раз в день, но и вдыхать всю красоту Горного Алтая, сплавляться по горной Катуни, купаться, загорать, много гулять, встречать рассвет и провожать закат на берегу реки, забывая про телефоны и прочие гаджеты; погружаться в атмосферу своей семьи или близких.</p>
+                <p class="clear-sans about-description-text">Мы едем не только тренироваться два раза в день, но и вдыхать всю красоту Горного Алтая, сплавляться по горной Катуни, купаться, загорать, много гулять, встречать рассвет и провожать закат на берегу реки, забывая про телефоны и прочие гаджеты; погружаться в атмосферу своей семьи или близких.</p>
                 <ul class="list-inline list-unstyled">
         			<li><span><i class="glyphicon glyphicon-calendar"></i>Добавлено  29 марта 2017 </span></li>
       			</ul>

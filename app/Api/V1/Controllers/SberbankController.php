@@ -71,7 +71,7 @@ class SberbankController extends Controller
             $userPaymentsId = $userPayments->id;
 
             // Создаём нового клиента
-            $client = new Client([ 'userName' => \Config::get('sberbank.login'), 'password' => \Config::get('sberbank.password'), 'apiUri' => Client::API_URI_TEST ]);
+            $client = new Client([ 'userName' => \Config::get('sberbank.login'), 'password' => \Config::get('sberbank.password'), 'apiUri' => Client::API_URI ]);
 
             // Обязательные параметры
             $orderId     = $userPayments->id;
@@ -151,7 +151,7 @@ class SberbankController extends Controller
     public function statusOrder(Request $request)
     {
         $paymentOrderId = $request->input(['orderId']);
-        $client = new Client([ 'userName' => \Config::get('sberbank.login'), 'password' => \Config::get('sberbank.password'), 'apiUri' => Client::API_URI_TEST ]);
+        $client = new Client([ 'userName' => \Config::get('sberbank.login'), 'password' => \Config::get('sberbank.password'), 'apiUri' => Client::API_URI ]);
         $result = $client->getOrderStatusExtended($paymentOrderId);
         return $result;
     }

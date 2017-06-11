@@ -15,7 +15,7 @@
         @endif
             <!-- Тренера -->
             <div class="row container">
-                <h4 class="clear-sans"><b>Наши фитнес инструкторы:</b></h4>
+                <h4 class="clear-sans"><b>Наши фитнес-инструкторы:</b></h4>
                 <!-- Первый тренер -->
                 <div class="col-xs-12 col-md-6 col-lg-5">
                     <img class="media-object about-trainer-img" src="base/img/trainer/Irina2.jpg" alt="">
@@ -23,7 +23,7 @@
                 <div class="col-xs-12 col-md-6 col-lg-7">
                     <h3 class="text-center clear-sans about-trainer-text-head">Ирина</h3>
                     <p class="clear-sans about-description-text">Мама маленькой принцессы <a href="https://vk.com/feed?section=search&q=%23фитнес_мама_хм">#фитнес_мама_хм</a>, работаем в паре на занятиях "Мама + малыш":)</p>
-                    <p class="clear-sans about-description-text">Окончила магистратуру по специальности "Спорт", личные достижения - КМС по волейболу</p>
+                    <p class="clear-sans about-description-text">Окончила магистратуру по специальности "Спорт", личные достижения - КМС по волейболу.</p>
                     <p class="clear-sans about-description-text"><b>Квалификация  на сегодняшний день:</b>
                         <ul>
                             <li>Инструктор групповых программ, г. Москва </li>
@@ -43,7 +43,7 @@
             <div class="row container">
                 <div class="col-xs-12 col-md-6 col-lg-7">
                     <h3 class="text-center clear-sans about-trainer-text-head">Мария</h3>
-                    <p class="clear-sans about-description-text">Студентка Педагогического колледжа фитнеса, направление:"Фитнес-инструктор международного класса", г.Санкт-Петербург</p>
+                    <p class="clear-sans about-description-text">Студентка Педагогического колледжа фитнеса, направление: "Фитнес-инструктор международного класса", г.Санкт-Петербург</p>
                     <p class="clear-sans about-description-text"><b>Квалификация  на сегодняшний день:</b>
                         <ul>
                             <li>Инструктор групповых программ, г. Санкт-Петербург </li>
