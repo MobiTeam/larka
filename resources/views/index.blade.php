@@ -84,7 +84,7 @@
         <p class="motivation-text-head text-center">Как найти кассу и приобрести билет?!</p>
         <p class="motivation-text-head text-center">Никуда не сворачивай! Ты на правильном пути! Вот <a href="/dashboard">НУЖНЫЙ КАБИНЕТ</a>.</p>
         <p class="motivation-text-head text-center"> До окончания приобретения невозвратного билета осталось:</p>
-        <script src="http://megatimer.ru/s/eadcb0a7c0be55b3601b34af030c17db.js"></script>
+        <script src="http://megatimer.ru/s/2aa9553af8683d3ab5eb9d96c978bb72.js"></script>
 </div>
 <hr>
 <div class="container">
