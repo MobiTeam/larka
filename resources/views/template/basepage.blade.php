@@ -106,7 +106,7 @@
                     <a href="https://vk.com/vforme_hm" target="_blank">
                         <img class="footer-social-vk" src="base/img/social/vk.png" alt="">
                     </a>
-                    <a href="https://www.instagram.com/irina_vforme" target="_blank">
+                    <a href="https://instagram.com/fitnessprojectvforme" target="_blank">
                         <img class="footer-social-insta" src="base/img/social/instagram.png" alt="">
                     </a>
                 </div>

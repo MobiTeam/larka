@@ -73,7 +73,7 @@
                 </li>
                 <li>
                     <p class="clear-sans about-description-text">
-                        Классический абонемент - 2500 ₽
+                        Классический абонемент - 2800 ₽
                     </p>
                 </li>
                 <li>
