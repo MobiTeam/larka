@@ -57,6 +57,24 @@
                     <img class="media-object about-trainer-img" src="base/img/trainer/Masha3.jpg" alt="">
                 </div>
             </div>
+            <hr>
+            <!-- Третий тренер -->
+            <div class="row container">
+                <div class="col-xs-12 col-md-6 col-lg-5">
+                    <img class="media-object about-trainer-img" src="base/img/trainer/Lyubov1.jpg" alt="">
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-7">
+                    <h3 class="text-center clear-sans about-trainer-text-head">Любовь</h3>
+                    <p class="clear-sans about-description-text">Студентка Югорского Государственного университета по направлению подготовки "Физическая культура"</p>
+                    <p class="clear-sans about-description-text">Личные достижения: КМС по волейболу</p>
+                    <p class="clear-sans about-description-text"><b>Квалификация  на сегодняшний день:</b>
+                        <ul>
+                            <li>"Основы группового тренинга.Базовый курс" г.Тюмень</li>
+                            <li>"Функциональный тренинг.Функциональные петли" г.Тюмень</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
         <hr>
         <!-- Мы на карте -->
         <div class="row container">
